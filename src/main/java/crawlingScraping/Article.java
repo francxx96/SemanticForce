@@ -16,6 +16,9 @@ public class Article {
     public String url;
 
     public Article() {
+        this.title = "=== WARNING! ===";
+        this.text = "This page cannot be displayed here!";
+        this.url = "";
     }
     
     public Article(String title, String text, String url) {

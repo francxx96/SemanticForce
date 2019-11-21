@@ -36,7 +36,7 @@ import com.google.gson.Gson;
  * @author aless
  */
 public class App {
-    public App(String visionURL, String crawlerDepth) throws Exception{
+    public App(String visionURL, String crawlerDepth) throws Exception {
     //public static void main(String[] args) throws Exception {
         
         final int CRAWLER_MAX_DEPTH = Integer.parseInt(crawlerDepth);
@@ -109,41 +109,14 @@ public class App {
         return urli2;
     }
         /* DATA EXTRACTION DAGLI ARTICOLI DELLA LISTA*/
-    public ArrayList<Article> extraction(ArrayList<String> x) throws IOException, BoilerpipeProcessingException{
+    public ArrayList<Article> extraction(ArrayList<String> x) throws Exception {
         ArrayList<Article> articles = new ArrayList();
-        for(int j=8; j<14; j++){
-            System.out.println("----------------- ARTICOLO "+j+"-------------------------------");
-            HTMLDocument htmlDoc = null;
-            try {
-                htmlDoc = HTMLFetcher.fetch(new URL(x.get(j)));
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            TextDocument doc = null;
-            try {
-                doc = new BoilerpipeSAXInput(htmlDoc.toInputSource()).getTextDocument();
-            } catch (SAXException ex) {
-                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            String title = null;
-            String text = null;
-            String url = null;
-            Article artl = null;
-            try {
-                title = doc.getTitle();
-                text = CommonExtractors.ARTICLE_EXTRACTOR.getText(doc);
-                url = x.get(j);
-                artl= new Article(title, text, url);
-            } catch (BoilerpipeProcessingException ex) {
-                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            System.out.println(text);
-            articles.add(artl);
-            System.out.println("------------------------------ LISTA DI ARTICOLI ------------------------");
-            System.out.println(articles);
+        System.out.println("------------- LISTA DI ARTICOLI -------------");
+        for(int j=8; j<14; j++) {
+            articles.add(Extractor.getArticle(x.get(j)));
         }
+        
+        System.out.println(articles);
         return articles;
     }
     

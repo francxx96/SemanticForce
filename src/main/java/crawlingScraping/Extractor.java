@@ -14,6 +14,7 @@ import de.l3s.boilerpipe.sax.HTMLDocument;
 import de.l3s.boilerpipe.sax.HTMLFetcher;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import org.apache.logging.log4j.LogManager;
 import org.json.simple.parser.ParseException;
+import org.xml.sax.SAXException;
 
 /**
  * REST Web Service
@@ -91,29 +93,42 @@ public class Extractor {
     @GET
     @Path("articoloa/{url}")
     @Produces(MediaType.APPLICATION_JSON)
-    public static Article getArticle(@PathParam("url") String url) throws Exception{
-        final HTMLDocument htmlDoc = HTMLFetcher.fetch(new URL(url));
-        final TextDocument doc = new BoilerpipeSAXInput(htmlDoc.toInputSource()).getTextDocument();
+    public static Article getArticle(@PathParam("url") String url) throws Exception {
+        HTMLDocument htmlDoc;
+        TextDocument doc;
+        Article article = new Article();
+        article.setUrl(url);
         
-        String title = doc.getTitle();
-        String text = CommonExtractors.ARTICLE_EXTRACTOR.getText(doc);
-        Article articlea = new Article(title, text, url);
+        try {
+            
+            htmlDoc = HTMLFetcher.fetch(new URL(url));
+            doc = new BoilerpipeSAXInput(htmlDoc.toInputSource()).getTextDocument();
+            String title = doc.getTitle();
+            String text = CommonExtractors.ARTICLE_EXTRACTOR.getText(doc);
+            article.setText(text);
+            article.setTitle(title);
+            
+        } catch (MalformedURLException | SAXException | BoilerpipeProcessingException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            System.out.println("Cannot retrieve article from the given URL: " + url);
+        }
         
-        return articlea;
+        return article;
     }
     
     @GET
     @Path("siti/{crawl}")
     public static String getXml(@PathParam("crawl") String crawl, String cDepth) throws Exception{
-    crawler = new App(crawl, cDepth);
-    extractedUrl = crawler.readExtractedUrl();
-    return extractedUrl.toString();
+        crawler = new App(crawl, cDepth);
+        extractedUrl = crawler.readExtractedUrl();
+        return extractedUrl.toString();
     }
     
     @GET
     @Path("articolob")
     @Produces(MediaType.TEXT_HTML)
-    public static ArrayList<Article> getExtractedArticles() throws IOException, BoilerpipeProcessingException{
+    public static ArrayList<Article> getExtractedArticles() throws Exception, IOException, BoilerpipeProcessingException{
         articles = crawler.extraction(extractedUrl);
         return articles;
     }
