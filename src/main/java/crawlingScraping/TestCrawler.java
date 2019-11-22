@@ -13,25 +13,27 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
-
 
 /**
  *
  * @author aless
  */
 public class TestCrawler extends WebCrawler{
-    public static ArrayList<String> cmd =new ArrayList();
+    public static ArrayList<String> cmd = new ArrayList();
     
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
 
     /**
      * Specify whether the given url should be crawled or not based on
-     * the crawling logic. Here URLs with extensions css, js etc will not be visited
+     * the crawling logic. Here URLs with extensions css, js etc will not be visited.
+     * 
+     * @param referringPage
+     * @param url
+     * @return 
      */
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
@@ -51,6 +53,8 @@ public class TestCrawler extends WebCrawler{
     /**
      * This function is called when a page is fetched and ready
      * to be processed by the program.
+     * 
+     * @param page 
      */
     @Override
     public void visit(Page page) {
@@ -93,8 +97,8 @@ public class TestCrawler extends WebCrawler{
         cmd.addAll(x);
         System.out.println("--------------NUOVA LISTA--------------\n"+cmd.size());
         System.out.println(cmd.toString());
-        FileWriter w=new FileWriter("testina.txt");
-        BufferedWriter bw=new BufferedWriter (w);
+        FileWriter w = new FileWriter("testina.txt");
+        BufferedWriter bw = new BufferedWriter(w);
         bw.write(cmd.toString());
         bw.flush();
         bw.close();
