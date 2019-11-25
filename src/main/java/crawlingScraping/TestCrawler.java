@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  *
  * @author aless
  */
-public class TestCrawler extends WebCrawler{
+public class TestCrawler extends WebCrawler {
     public static ArrayList<String> cmd = new ArrayList();
     
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");

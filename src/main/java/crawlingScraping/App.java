@@ -47,8 +47,7 @@ public class App {
         // Starts the crawler
         controller.start(TestCrawler.class, CRAWLERS_NUM);
         
-        /*
-        //NON SERVE QUESTA ROBA
+        /* NON SERVE QUESTA ROBA
         if(controller.isFinished())
             finished();
         boolean fin=killExecution();

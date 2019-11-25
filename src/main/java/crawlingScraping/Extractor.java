@@ -67,6 +67,7 @@ public class Extractor {
 
     /**
      * Retrieves representation of an instance of EstrazioneWebProva.Estractor
+     * 
      * @return an instance of java.lang.String
      */
     @GET
@@ -75,6 +76,7 @@ public class Extractor {
         //TODO return proper representation object
         throw new UnsupportedOperationException();
     }
+    
     @GET
     @Path("articolo/{url}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -140,63 +142,6 @@ public class Extractor {
         crawler.saveToJson(articles, docum);
     }
     
-    @GET
-    @Path("{ciaone}")
-    public static void elastic(@PathParam("ciaone") String ind, String file){
-        
-        PropertyReader properties = null;
-        ElasticSearchConnector es = null;
-
-        try {
-            properties = new PropertyReader( getRelativeResourcePath( "config.properties" ) );
-        } catch (FileNotFoundException ex) {
-        }
-
-        String numberOfShards = properties.read( NUMBER_OF_SHARDS );
-        String numberOfReplicas = properties.read( NUMBER_OF_REPLICAS );
-        String clusterName = properties.read( CLUSTER_NAME );
-        String indexName = ind + "-" + indi;
-        String indexType = properties.read( INDEX_TYPE );
-        String ip = properties.read( IP );
-
-        int port = Integer.parseInt( properties.read( PORT ) );
-        
-        try {
-            es = new ElasticSearchConnector( clusterName, ip, port );
-        } catch (UnknownHostException ex) {}
-        
-        es.isClusterHealthy();
-        
-        if( !es.isIndexRegistered( indexName ) ) {
-            es.createIndex( indexName, numberOfShards, numberOfReplicas );
-                           
-            try {
-                es.bulkInsert( indexName, indexType, getRelativeResourcePath(file));
-            } catch (ParseException ex) {
-                Logger.getLogger(Extractor.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                indi++;
-            }
-            /*
-            else{
-                JOptionPane.showMessageDialog(rootPane, "L'indice è gia presente in elasticsearch" + "\n" + "Prego cambiare nome");
-            }
-            if(jTextArea1.getText().length()==1)
-                JOptionPane.showMessageDialog(rootPane, "ERRORE!" +"\n" + "Il nome dell'indice non rispetta i requisiti" + "\n" + "Prego cambiare nome");
-            */
-            es.close();
-        }
-    }
-    
-   private static String getRelativeResourcePath(String resource) throws FileNotFoundException{
-	if( resource == null || resource.equals("") ) 
-            throw new IllegalArgumentException( resource );
-	
-        URL url = Extractor.class.getClassLoader().getResource( resource );
-	if( url == null ) 
-            throw new FileNotFoundException( resource );
-        return url.getPath();
-    }
     /**
      * PUT method for updating or creating an instance of Estractor
      * @param content representation for the resource
