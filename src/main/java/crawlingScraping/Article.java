@@ -53,6 +53,6 @@ public class Article {
 
     @Override
     public String toString() {
-        return "URL: " + url + "Title: " + title + "\nText:\n" + text + "\n";
+        return "\nURL: " + url + "\nTitle: " + title + "\nText:\n" + text + "\n";
     }
 }
