@@ -38,7 +38,9 @@
                 String url=request.getParameter("urle");
                 String profa = request.getParameter("Cprofa");
                 String links = Extractor.getXml(url,profa);
-                ArrayList<Article> arti = Extractor.getExtractedArticles();
+                String nArticles = request.getParameter("nArticles");
+                int numArticles = Integer.parseInt(nArticles);
+                ArrayList<Article> arti = Extractor.getExtractedArticles(numArticles);
             %>
             <span>
                 <%

@@ -107,8 +107,8 @@ public class Extractor {
     @GET
     @Path("articolob")
     @Produces(MediaType.TEXT_HTML)
-    public static ArrayList<Article> getExtractedArticles() throws Exception, IOException, BoilerpipeProcessingException{
-        articles = crawler.extraction(extractedUrl);
+    public static ArrayList<Article> getExtractedArticles(int nArticles) throws Exception, IOException, BoilerpipeProcessingException{
+        articles = crawler.extraction(extractedUrl,nArticles);
         return articles;
     }
     

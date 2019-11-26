@@ -89,13 +89,18 @@ public class App {
      * @return
      * @throws Exception 
      */
-    public ArrayList<Article> extraction(ArrayList<String> x) throws Exception {
+    public ArrayList<Article> extraction(ArrayList<String> x, int nArticles) throws Exception {
         ArrayList<Article> articles = new ArrayList();
-        
+        if(x.size()<nArticles)
+            nArticles = x.size();
         System.out.println("---- LISTA DI ARTICOLI ----");
-        for(String url : x) {
-            Article art = Extractor.getArticle(url);
-            articles.add(art);
+        for(int i=0;i<nArticles;i++) {
+            Article art = Extractor.getArticle(x.get(i));
+            if(art.getTitle().equals("=== WARNING! ==="))
+                i++;
+            else
+                articles.add(art);
+            /*Domanda per ciccio, vogliamo visualizzare in ogni caso il numero di articoli richesti dall'utente?*/
         }
         
         System.out.println(articles);
@@ -106,7 +111,7 @@ public class App {
         Gson gson = new Gson();     
         String userJson = gson.toJson(y);
         FileWriter w;
-        w = new FileWriter("src\\main\\resources\\" + z);
+        w = new FileWriter(z);
 
         BufferedWriter u;
         u = new BufferedWriter(w);
