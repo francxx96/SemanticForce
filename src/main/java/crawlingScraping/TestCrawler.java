@@ -12,7 +12,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +23,7 @@ import java.util.regex.Pattern;
  * @author aless
  */
 public class TestCrawler extends WebCrawler {
-    public static ArrayList<String> cmd = new ArrayList();
-    
+    private Set<WebURL> allLinks = new HashSet();    
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
 
     /**
@@ -33,22 +32,13 @@ public class TestCrawler extends WebCrawler {
      * 
      * @param referringPage
      * @param url
-     * @return 
+     * @return true if the page should be visited
      */
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String href = url.getURL().toLowerCase();
         
-        System.out.println("shouldVisit: " + href);
-
-        boolean result = !FILTERS.matcher(href).matches();
-
-        if(result)
-            System.out.println("URL Should Visit");
-        else
-            System.out.println("URL Should not Visit");
-
-        return result;
+        return !FILTERS.matcher(href).matches();
     }
 
     /**
@@ -59,49 +49,52 @@ public class TestCrawler extends WebCrawler {
      */
     @Override
     public void visit(Page page) {
-        String url = page.getWebURL().getURL();
-        System.out.println("URL: " + url);
+        WebURL webUrl = page.getWebURL();
+        allLinks.add(webUrl);
+        String url = webUrl.getURL();
         
-        if (page.getParseData() instanceof HtmlParseData) {
-            ArrayList<String> linki = new ArrayList();
-            HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();      
-            String text = htmlParseData.getText(); //extract text from page
-            String html = htmlParseData.getHtml(); //extract html from page
-            Set<WebURL> links = htmlParseData.getOutgoingUrls();
+        if(shouldVisit(page, webUrl)) {
+            if(page.getParseData() instanceof HtmlParseData) {
+                
+                HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();      
+                String text = htmlParseData.getText(); //extract text from page
+                String html = htmlParseData.getHtml(); //extract html from page
+                Set<WebURL> outLinks = htmlParseData.getOutgoingUrls();
+                
+                for(WebURL link : outLinks)
+                    if(shouldVisit(page, link))
+                        allLinks.add(link);
 
-            System.out.println("---------------------------------------------------------");
-            System.out.println("Page URL: " + url);
-            System.out.println("Text length: " + text.length());
-            System.out.println("Html length: " + html.length());
-            for(WebURL w : links){
-                System.out.println(w.toString());
-                linki.add(w.toString());
+                System.out.println("-------------------------------------");
+                System.out.println("Page URL: " + url);
+                System.out.println("Text length: " + text.length());
+                System.out.println("Html length: " + html.length());
+                System.out.println("Number of outgoing links: " + outLinks.size());
+                System.out.println("-------------------------------------");
+                
+                try {
+                    Savatage(allLinks);
+                } catch(IOException ex) {
+                    Logger.getLogger(TestCrawler.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            
-            System.out.println("Number of outgoing links: " + links.size());
-            System.out.println("---------------------------------------------------------");
-
-            //if required write content to file
-            
-            System.out.println("----------------SALVATAGGIO------------------");
-            try {
-                Savatage(linki);
-            } catch (IOException ex) {
-                Logger.getLogger(TestCrawler.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
         }
 }
     /*faccio salvare sul file perchè non ho possibilità di passare al main pur assegnando un tipo di ritorno alla funzione
     Nel main infatti viene invocato "TestCrawler.class" senza inizializare un oggetto del tipo TestCrawler*/
-    public void Savatage(ArrayList<String> x) throws IOException{
-        cmd.addAll(x);
-        System.out.println("--------------NUOVA LISTA--------------\n"+cmd.size());
-        System.out.println(cmd.toString());
-        FileWriter w = new FileWriter("testina.txt");
-        BufferedWriter bw = new BufferedWriter(w);
-        bw.write(cmd.toString());
-        bw.flush();
+    public void Savatage(Set<WebURL> links) throws IOException {
+        System.out.println("=== Saving URL list, size: " + links.size() + " ...");
+        
+        FileWriter fw = new FileWriter("testina.txt");
+        BufferedWriter bw = new BufferedWriter(fw);
+        
+        for(WebURL link : links)
+            bw.write(link.getURL() + "\n");
+        
+        // bw.flush();
         bw.close();
+        
+        System.out.println("=== Saving complete!");
+        // System.out.println(links.toString());
     }
 }
