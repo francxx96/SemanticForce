@@ -13,7 +13,6 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -64,19 +63,17 @@ public class App {
      * @throws IOException 
      */
     public ArrayList<String> readExtractedUrl() throws FileNotFoundException, IOException{
-        FileReader f = new FileReader("testina.txt");
-        BufferedReader buf = new BufferedReader(f);
-        
-        String bufferLine = buf.readLine();
-        StringTokenizer tokenizer = new StringTokenizer(bufferLine, ",");
+        FileReader fr = new FileReader("testina.txt");
+        BufferedReader br = new BufferedReader(fr);
         
         ArrayList<String> urlList = new ArrayList();
         
         System.out.println("---- URL LIST ----");
-        while (tokenizer.hasMoreTokens()) {
-            String url = tokenizer.nextToken();
+        String url = br.readLine();
+        while(url != null) {
             urlList.add(url);
             System.out.println(url);
+            url = br.readLine();
         }
         
         return urlList;
@@ -86,6 +83,7 @@ public class App {
      * Function for data estraction of articles
      * 
      * @param x
+     * @param nArticles
      * @return
      * @throws Exception 
      */
@@ -93,7 +91,7 @@ public class App {
         ArrayList<Article> articles = new ArrayList();
         if(x.size()<nArticles)
             nArticles = x.size();
-        System.out.println("---- LISTA DI ARTICOLI ----");
+        System.out.println("---- Articles list ----");
         for(int i=0;i<nArticles;i++) {
             Article art = Extractor.getArticle(x.get(i));
             if(art.getTitle().equals("=== WARNING! ==="))
