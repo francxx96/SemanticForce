@@ -12,16 +12,13 @@ import de.l3s.boilerpipe.extractors.CommonExtractors;
 import de.l3s.boilerpipe.sax.BoilerpipeSAXInput;
 import de.l3s.boilerpipe.sax.HTMLDocument;
 import de.l3s.boilerpipe.sax.HTMLFetcher;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
+import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
@@ -29,8 +26,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
-import org.apache.logging.log4j.LogManager;
-import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
 /**
@@ -40,41 +35,14 @@ import org.xml.sax.SAXException;
  */
 @Path("WebEstrazione")
 public class Extractor {
-
-    @Context
-    private UriInfo context;
-    static ArrayList<String> extractedUrl = new ArrayList();
     static App crawler;
-    static ArrayList<Article> articles = new ArrayList();
-    
-    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger(Extractor.class.getName() );
-    private static String NUMBER_OF_SHARDS = "number_of_shards";
-    private static String NUMBER_OF_REPLICAS = "number_of_replicas";
-
-    private static String CLUSTER_NAME = "cluster_name";
-    private static String INDEX_NAME = "index_name";
-    private static String INDEX_TYPE = "index_type";
-    private static String IP = "master_ip";
-    private static String PORT = "master_port";
-    private static int indi;
-    
+    static ArrayList<String> extractedUrl = new ArrayList();
+    static ArrayList<Article> articles = new ArrayList();    
 
     /**
      * Creates a new instance of Estractor
      */
     public Extractor() {
-    }
-
-    /**
-     * Retrieves representation of an instance of EstrazioneWebProva.Estractor
-     * 
-     * @return an instance of java.lang.String
-     */
-    @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
     }
     
     @GET
@@ -112,15 +80,24 @@ public class Extractor {
             
         } catch (MalformedURLException | SAXException | BoilerpipeProcessingException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (IOException | IllegalCharsetNameException ex) {
             System.out.println("Cannot retrieve article from the given URL: " + url);
         }
         
         return article;
     }
     
+    /**
+     * Retrieves representation of an instance of EstrazioneWebProva.Estractor
+     * 
+     * @param crawl
+     * @param cDepth
+     * @return an instance of java.lang.String
+     * @throws Exception 
+     */
     @GET
     @Path("siti/{crawl}")
+    @Produces(MediaType.APPLICATION_XML)
     public static String getXml(@PathParam("crawl") String crawl, String cDepth) throws Exception{
         crawler = new App(crawl, cDepth);
         extractedUrl = crawler.readExtractedUrl();

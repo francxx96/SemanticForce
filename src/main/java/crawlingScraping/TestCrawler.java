@@ -37,9 +37,10 @@ public class TestCrawler extends WebCrawler {
      */
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
-        System.out.println("shouldVisit: " + url.getURL().toLowerCase());
-
         String href = url.getURL().toLowerCase();
+        
+        System.out.println("shouldVisit: " + href);
+
         boolean result = !FILTERS.matcher(href).matches();
 
         if(result)

@@ -91,9 +91,11 @@ public class App {
      */
     public ArrayList<Article> extraction(ArrayList<String> x) throws Exception {
         ArrayList<Article> articles = new ArrayList();
+        
         System.out.println("---- LISTA DI ARTICOLI ----");
-        for(int j=8; j<14; j++) {
-            articles.add(Extractor.getArticle(x.get(j)));
+        for(String url : x) {
+            Article art = Extractor.getArticle(url);
+            articles.add(art);
         }
         
         System.out.println(articles);
