@@ -18,16 +18,26 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import com.google.gson.Gson;
+import java.io.File;
 
 /**
  *
  * @author aless
  */
 public class App {
-    public App(String visionURL, String crawlerDepth) throws Exception {        
+    private final String directory;
+    private final String txtFile;
+    private final String txtAbsPath;
+    
+    public App(String visionURL, String crawlerDepth) throws Exception {   
+        this.directory = System.getProperty("user.home");
+        
+        this.txtFile = "output.txt";
+        this.txtAbsPath = directory + File.separator + txtFile;
+        
+        final String CRAWL_STORAGE = "/data/crawl/root";
         final int CRAWLER_MAX_DEPTH = Integer.parseInt(crawlerDepth);
         final int CRAWLERS_NUM = 1; // +++ aggiustare passaggio del numero di crawlers +++
-        final String CRAWL_STORAGE = "/data/crawl/root";
         
         // Instantiate crawler config
         CrawlConfig config = new CrawlConfig();
@@ -59,21 +69,22 @@ public class App {
      * Function that reads the extracted URLs from the stored file
      * 
      * @return
-     * @throws FileNotFoundException
-     * @throws IOException 
      */
-    public ArrayList<String> readExtractedUrl() throws FileNotFoundException, IOException{
-        FileReader fr = new FileReader("testina.txt");
-        BufferedReader br = new BufferedReader(fr);
-        
+    public ArrayList<String> readExtractedUrl() {
         ArrayList<String> urlList = new ArrayList();
         
         System.out.println("---- URL LIST ----");
-        String url = br.readLine();
-        while(url != null) {
-            urlList.add(url);
-            System.out.println(url);
-            url = br.readLine();
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(txtAbsPath))) {
+            String url = bufferedReader.readLine();
+            while(url != null) {
+                urlList.add(url);
+                System.out.println(url);
+                url = bufferedReader.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
         
         return urlList;
