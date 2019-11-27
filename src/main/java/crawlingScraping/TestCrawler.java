@@ -10,12 +10,11 @@ import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -71,28 +70,29 @@ public class TestCrawler extends WebCrawler {
                 System.out.println("Number of outgoing links: " + outLinks.size());
                 System.out.println("-------------------------------------");
                 
-                try {
-                    Savatage(allLinks);
-                } catch(IOException ex) {
-                    Logger.getLogger(TestCrawler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                Savatage(allLinks);
             }
         }
     }
     
     /*faccio salvare sul file perchè non ho possibilità di passare al main pur assegnando un tipo di ritorno alla funzione
     Nel main infatti viene invocato "TestCrawler.class" senza inizializare un oggetto del tipo TestCrawler*/
-    public void Savatage(Set<WebURL> links) throws IOException {
+    public void Savatage(Set<WebURL> links) {
         System.out.println("=== Saving URL list, size: " + links.size() + " ...");
         
-        FileWriter fw = new FileWriter("testina.txt");
-        BufferedWriter bw = new BufferedWriter(fw);
-        
-        for(WebURL link : links)
-            bw.write(link.getURL() + "\n");
-        
-        // bw.flush();
-        bw.close();
+        String directory = System.getProperty("user.home");
+        System.out.println("=== File path: " + directory);
+        String fileName = "output.txt";
+        String absolutePath = directory + File.separator + fileName;
+
+        // write the content in file 
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(absolutePath))) {
+            for(WebURL link : links)
+                bufferedWriter.write(link.getURL() + "\n");
+            
+        } catch (IOException e) {
+            System.err.println(e);
+        }
         
         System.out.println("=== Saving complete!");
         // System.out.println(links.toString());
