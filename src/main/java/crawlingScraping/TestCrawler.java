@@ -50,10 +50,9 @@ public class TestCrawler extends WebCrawler {
     @Override
     public void visit(Page page) {
         WebURL webUrl = page.getWebURL();
-        allLinks.add(webUrl);
-        String url = webUrl.getURL();
         
         if(shouldVisit(page, webUrl)) {
+            allLinks.add(webUrl);
             if(page.getParseData() instanceof HtmlParseData) {
                 
                 HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();      
@@ -66,7 +65,7 @@ public class TestCrawler extends WebCrawler {
                         allLinks.add(link);
 
                 System.out.println("-------------------------------------");
-                System.out.println("Page URL: " + url);
+                System.out.println("Page URL: " + webUrl.getURL());
                 System.out.println("Text length: " + text.length());
                 System.out.println("Html length: " + html.length());
                 System.out.println("Number of outgoing links: " + outLinks.size());
@@ -79,7 +78,8 @@ public class TestCrawler extends WebCrawler {
                 }
             }
         }
-}
+    }
+    
     /*faccio salvare sul file perchè non ho possibilità di passare al main pur assegnando un tipo di ritorno alla funzione
     Nel main infatti viene invocato "TestCrawler.class" senza inizializare un oggetto del tipo TestCrawler*/
     public void Savatage(Set<WebURL> links) throws IOException {
