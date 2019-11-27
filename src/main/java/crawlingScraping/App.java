@@ -92,12 +92,19 @@ public class App {
         if(x.size()<nArticles)
             nArticles = x.size();
         System.out.println("---- Articles list ----");
-        for(int i=0;i<nArticles;i++) {
-            Article art = Extractor.getArticle(x.get(i));
-            if(art.getTitle().equals("=== WARNING! ==="))
-                i++;
-            else
+        int i=0, j;
+        j=i;
+        for(i=0;i<nArticles;i++) {
+            Article art = Extractor.getArticle(x.get(j));
+            if(art.getTitle().equals("=== WARNING! ===")){
+                j++;
+                i--;
+            }
+            else{
                 articles.add(art);
+                j++;
+            }
+            
             /*Domanda per ciccio, vogliamo visualizzare in ogni caso il numero di articoli richesti dall'utente?*/
         }
         

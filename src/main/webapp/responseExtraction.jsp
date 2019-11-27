@@ -45,10 +45,10 @@
             <span>
                 <%
                     for(Article x : arti){
-                        %>
+                %>
                     <h2 tyle="font-family: verdana;"><%out.write("TITOLO: "+x.getTitle());%></h2>
                     <h3 tyle="font-family: verdana;"><%out.write("URL: "+x.getUrl());%></h3>
-                    <span style="font-family: verdana; font-size: 10px; color: #000000"><%out.write("TESTO ARTICOLO: "+x.getText()+"\n");%></span>
+                    <pre><span style="font-family: verdana; font-size: 10px; color: #000000"><%out.write("TESTO ARTICOLO: "+x.getText()+"\n");%></span></pre>
                 <%  }
                 %>
              </span>
