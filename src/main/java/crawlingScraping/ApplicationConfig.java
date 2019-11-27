@@ -8,10 +8,6 @@ package crawlingScraping;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
-/**
- *
- * @author aless
- */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
 
@@ -30,6 +26,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(crawlingScraping.Extractor.class);
+        resources.add(ner.NERresource.class);
     }
     
 }
