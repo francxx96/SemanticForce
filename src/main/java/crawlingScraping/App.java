@@ -100,23 +100,21 @@ public class App {
      */
     public ArrayList<Article> extraction(ArrayList<String> x, int nArticles) throws Exception {
         ArrayList<Article> articles = new ArrayList();
-        if(x.size()<nArticles)
-            nArticles = x.size();
+        
+        int listLen = x.size();
+        if(listLen < nArticles)
+            nArticles = listLen;
+        
         System.out.println("---- Articles list ----");
-        int i=0, j;
-        j=i;
-        for(i=0;i<nArticles;i++) {
-            Article art = Extractor.getArticle(x.get(j));
-            if(art.getTitle().equals("=== WARNING! ===")){
-                j++;
-                i--;
-            }
-            else{
-                articles.add(art);
-                j++;
-            }
+        int i = 0;
+        while(i < nArticles) {
+            String url = x.get(i);
+            Article art = Extractor.getArticle(url);
             
-            /*Domanda per ciccio, vogliamo visualizzare in ogni caso il numero di articoli richesti dall'utente?*/
+            if(!art.getTitle().equals("=== WARNING! ===")) {
+                articles.add(art);
+                i++;
+            }
         }
         
         System.out.println(articles);
