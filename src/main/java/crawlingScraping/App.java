@@ -106,15 +106,17 @@ public class App {
             nArticles = listLen;
         
         System.out.println("---- Articles list ----");
-        int i = 0;
-        while(i < nArticles) {
-            String url = x.get(i);
+        int addedArt = 0, j = 0;
+        while(addedArt < nArticles && j < listLen) {
+            String url = x.get(j);
             Article art = Extractor.getArticle(url);
             
             if(!art.getTitle().equals("=== WARNING! ===")) {
                 articles.add(art);
-                i++;
+                addedArt++;
             }
+            
+            j++;
         }
         
         System.out.println(articles);
@@ -122,16 +124,19 @@ public class App {
     }
     
     public void saveToJson(ArrayList<Article> y, String z) throws IOException{
-        Gson gson = new Gson();     
-        String userJson = gson.toJson(y);
-        FileWriter w;
-        w = new FileWriter(z);
-
-        BufferedWriter u;
-        u = new BufferedWriter(w);
-        u.write(userJson);
-        u.flush();
-        u.close();
+        String dir = System.getProperty("user.home");
+        String jsonArticles = z;
+        String articlesPath = dir + File.separator + jsonArticles;
+        
+        Gson gson = new Gson();
+        String data = gson.toJson(y);
+        
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(articlesPath))) {
+            bw.write(data);
+        
+        } catch (IOException e) {
+            System.err.println(e);
+        }
     }
     
     public boolean finished(){

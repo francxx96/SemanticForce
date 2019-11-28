@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  * @author aless
  */
 public class TestCrawler extends WebCrawler {
-    private Set<WebURL> allLinks = new HashSet();    
+    private Set<String> allLinks = new HashSet();    
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
 
     /**
@@ -51,7 +51,7 @@ public class TestCrawler extends WebCrawler {
         WebURL webUrl = page.getWebURL();
         
         if(shouldVisit(page, webUrl)) {
-            allLinks.add(webUrl);
+            allLinks.add(webUrl.getURL());
             if(page.getParseData() instanceof HtmlParseData) {
                 
                 HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();      
@@ -61,7 +61,7 @@ public class TestCrawler extends WebCrawler {
                 
                 for(WebURL link : outLinks)
                     if(shouldVisit(page, link))
-                        allLinks.add(link);
+                        allLinks.add(link.getURL());
 
                 System.out.println("-------------------------------------");
                 System.out.println("Page URL: " + webUrl.getURL());
@@ -77,7 +77,7 @@ public class TestCrawler extends WebCrawler {
     
     /*faccio salvare sul file perchè non ho possibilità di passare al main pur assegnando un tipo di ritorno alla funzione
     Nel main infatti viene invocato "TestCrawler.class" senza inizializare un oggetto del tipo TestCrawler*/
-    public void Savatage(Set<WebURL> links) {
+    public void Savatage(Set<String> links) {
         System.out.println("=== Saving URL list, size: " + links.size() + " ...");
         
         String directory = System.getProperty("user.home");
@@ -87,8 +87,8 @@ public class TestCrawler extends WebCrawler {
 
         // write the content in file 
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(absolutePath))) {
-            for(WebURL link : links)
-                bufferedWriter.write(link.getURL() + "\n");
+            for(String link : links)
+                bufferedWriter.write(link + "\n");
             
         } catch (IOException e) {
             System.err.println(e);
