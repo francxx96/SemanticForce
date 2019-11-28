@@ -24,10 +24,10 @@ import ner.Entity;
  * @author Utente
  */
 public class OutputHandler {
-    private static final String DIRECTORY = System.getProperty("user.home") + File.separator + "SemanticForceProject";
+    private static final String DIRECTORY = System.getProperty("user.home");
     private static final String TXT_URLS = "URLs_list.txt";
     private static final String URLS_PATH  = DIRECTORY + File.separator + TXT_URLS;;
-    private static final String JSON_ARTICLES = "prova.json";
+    private static final String JSON_ARTICLES = "Articles_list.json";
     private static final String ARTICLES_PATH = DIRECTORY + File.separator + JSON_ARTICLES;
     private static final String JSON_ENTITIES = "Entities_list.json";
     private static final String ENTITIES_PATH = DIRECTORY + File.separator + JSON_ENTITIES;
@@ -35,16 +35,14 @@ public class OutputHandler {
     public OutputHandler() {
     }
     
-    public ArrayList<String> readUrlsFile() {
+    public static ArrayList<String> readUrlsFile() {
         ArrayList<String> urlList = new ArrayList();
         
-        // System.out.println("---- URL LIST ----");
         try(BufferedReader br = new BufferedReader(new FileReader(URLS_PATH))) {
             String url = br.readLine();
             
             while(url != null) {
                 urlList.add(url);
-                // System.out.println(url);
                 url = br.readLine();
             }
         } catch(IOException e) {
@@ -54,9 +52,7 @@ public class OutputHandler {
         return urlList;
     }
     
-    public void writeUrlsFile(Set<String> links) {
-        // System.out.println("=== Saving URL list, size: " + links.size() + " ...");
-
+    public static void writeUrlsFile(Set<String> links) {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(URLS_PATH))) {
             
             for(String link : links)
@@ -65,8 +61,6 @@ public class OutputHandler {
         } catch (IOException e) {
             System.err.println(e);
         }
-        
-        // System.out.println("=== Saving complete!");
     }
     
     public static ArrayList<Article> readArticlesFile() {
@@ -84,7 +78,7 @@ public class OutputHandler {
         return articlesList;
     }
     
-    public void writeArticlesFile(ArrayList<Article> articles) {
+    public static void writeArticlesFile(ArrayList<Article> articles) {
         Gson gson = new Gson();
         String data = gson.toJson(articles);
         
@@ -111,7 +105,7 @@ public class OutputHandler {
         return entitiesList;
     }
     
-    public void writeEntitiesFile(ArrayList<Entity> entities) {
+    public static void writeEntitiesFile(ArrayList<Entity> entities) {
         Gson gson = new Gson();
         String data = gson.toJson(entities);
         

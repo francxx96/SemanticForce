@@ -9,13 +9,10 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
+import utils.OutputHandler;
 
 /**
  *
@@ -70,31 +67,10 @@ public class TestCrawler extends WebCrawler {
                 System.out.println("Number of outgoing links: " + outLinks.size());
                 System.out.println("-------------------------------------");
                 
-                Savatage(allLinks);
+                System.out.println("=== Saving URL list, size: " + allLinks.size() + " ...");
+                OutputHandler.writeUrlsFile(allLinks);
+                System.out.println("=== Saving complete!");
             }
         }
-    }
-    
-    /*faccio salvare sul file perchè non ho possibilità di passare al main pur assegnando un tipo di ritorno alla funzione
-    Nel main infatti viene invocato "TestCrawler.class" senza inizializare un oggetto del tipo TestCrawler*/
-    public void Savatage(Set<String> links) {
-        System.out.println("=== Saving URL list, size: " + links.size() + " ...");
-        
-        String directory = System.getProperty("user.home");
-        System.out.println("=== File path: " + directory);
-        String fileName = "output.txt";
-        String absolutePath = directory + File.separator + fileName;
-
-        // write the content in file 
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(absolutePath))) {
-            for(String link : links)
-                bufferedWriter.write(link + "\n");
-            
-        } catch (IOException e) {
-            System.err.println(e);
-        }
-        
-        System.out.println("=== Saving complete!");
-        // System.out.println(links.toString());
     }
 }

@@ -19,14 +19,13 @@ import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import org.xml.sax.SAXException;
+import utils.OutputHandler;
 
 /**
  * REST Web Service
@@ -100,7 +99,11 @@ public class Extractor {
     @Produces(MediaType.APPLICATION_XML)
     public static String getXml(@PathParam("crawl") String crawl, String cDepth) throws Exception{
         crawler = new App(crawl, cDepth);
-        extractedUrl = crawler.readExtractedUrl();
+        
+        System.out.println("---- URL LIST ----");
+        extractedUrl = OutputHandler.readUrlsFile();
+        System.out.println(extractedUrl.toString());
+        
         return extractedUrl.toString();
     }
     
@@ -115,16 +118,7 @@ public class Extractor {
     @GET
     @Path("artestrazione/{arti}")
     @Produces(MediaType.APPLICATION_JSON)
-    public static void getJSONSavatage(@PathParam("docum") String docum) throws IOException{
-        crawler.saveToJson(articles, docum);
-    }
-    
-    /**
-     * PUT method for updating or creating an instance of Estractor
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
+    public static void getJSONSavatage() throws IOException{
+        OutputHandler.writeArticlesFile(articles);
     }
 }

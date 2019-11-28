@@ -41,6 +41,7 @@
                 String nArticles = request.getParameter("nArticles");
                 int numArticles = Integer.parseInt(nArticles);
                 ArrayList<Article> arti = Extractor.getExtractedArticles(numArticles);
+                Extractor.getJSONSavatage();
             %>
             <span>
                 <%
@@ -55,9 +56,8 @@
         </p>
         <div style="text-align: center">
             <fieldset>
-                <legend><h3 style="color:#006666">Save content in JSON</h3></legend>
-                <form method="get" action="responseJSONSavatage.jsp">
-                    <tr><td><label><h3 style="color:#006666">Filename</h3></label></td><td><input name="doca" type="text" ></td></tr>
+                <legend><h3 style="color:#006666">Go to NER</h3></legend>
+                <form method="get" action="responseEntityExtraction.jsp">
                     <input class="bottone" type="submit" value="GO!">
                 </form>
             </fieldset>

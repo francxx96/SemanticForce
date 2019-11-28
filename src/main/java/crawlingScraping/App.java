@@ -10,14 +10,7 @@ import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import com.google.gson.Gson;
 import java.io.File;
 
 /**
@@ -25,16 +18,8 @@ import java.io.File;
  * @author aless
  */
 public class App {
-    private final String directory;
-    private final String txtFile;
-    private final String txtAbsPath;
     
     public App(String visionURL, String crawlerDepth) throws Exception {   
-        this.directory = System.getProperty("user.home");
-        
-        this.txtFile = "output.txt";
-        this.txtAbsPath = directory + File.separator + txtFile;
-        
         final String CRAWL_STORAGE = "/data/crawl/root";
         final int CRAWLER_MAX_DEPTH = Integer.parseInt(crawlerDepth);
         final int CRAWLERS_NUM = 1; // +++ aggiustare passaggio del numero di crawlers +++
@@ -55,39 +40,6 @@ public class App {
         
         // Starts the crawler
         controller.start(TestCrawler.class, CRAWLERS_NUM);
-        
-        /* NON SERVE QUESTA ROBA
-        if(controller.isFinished())
-            finished();
-        boolean fin=killExecution();
-        if(fin == true)
-            controller.shutdown();
-        */
-    }
-    
-    /**
-     * Function that reads the extracted URLs from the stored file
-     * 
-     * @return
-     */
-    public ArrayList<String> readExtractedUrl() {
-        ArrayList<String> urlList = new ArrayList();
-        
-        System.out.println("---- URL LIST ----");
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(txtAbsPath))) {
-            String url = bufferedReader.readLine();
-            while(url != null) {
-                urlList.add(url);
-                System.out.println(url);
-                url = bufferedReader.readLine();
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-        
-        return urlList;
     }
     
     /**
@@ -121,29 +73,5 @@ public class App {
         
         System.out.println(articles);
         return articles;
-    }
-    
-    public void saveToJson(ArrayList<Article> y, String z) throws IOException{
-        String dir = System.getProperty("user.home");
-        String jsonArticles = z;
-        String articlesPath = dir + File.separator + jsonArticles;
-        
-        Gson gson = new Gson();
-        String data = gson.toJson(y);
-        
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(articlesPath))) {
-            bw.write(data);
-        
-        } catch (IOException e) {
-            System.err.println(e);
-        }
-    }
-    
-    public boolean finished(){
-        return true;
-    }
-    
-    public boolean killExecution(){
-        return true;
     }
 }
