@@ -28,41 +28,43 @@ public class StanfordNLP {
         pipeline.annotate(document); // annnotate the doc
         List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class); // get the sentences contained in an annotation
 
-        int offset=0;
         boolean inEntity = false;
-        String currentEntity = "", currentEntityType = "";
+        String currentEntityType = "O";
         ArrayList<Entity> entityList = new ArrayList<>();
+        Entity entity = new Entity();
         
         for (CoreMap sentence : sentences) {
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) { //tokens contained by an annotation
                 String text = token.get(CoreAnnotations.TextAnnotation.class);
-                String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+                //String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
                 String namedEntity = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
                 //System.out.println("Token=" + token + "*\tText=" + text + "*\tPOS=" + pos + "*\tNER=" + namedEntity);
-
+                
                 if (!inEntity) {
                     if (!"O".equals(namedEntity)) { // eliminate the Other categories
                         inEntity = true;
-                        currentEntity = "";
                         currentEntityType = namedEntity;
-                        offset = token.beginPosition();
+                        entity = new Entity();
+                        entity.setName(text.trim());
+                        entity.setType(namedEntity);
+                        entity.setPosition(token.beginPosition());
                     }
                 }
-                if (inEntity) {
+                else {
                     if (!currentEntityType.equals(namedEntity)) { //"O".equals(namedEntity) 
                         inEntity = false;
-                        Entity entity = new Entity();
-                        entity.setName(currentEntity.trim()); // trim() returns a copy with leading and trailing white sapce removed
-                        System.out.println("Extracted " + currentEntity.trim());
-                        entity.setType(currentEntityType);
-                        entity.setPosition(offset);
+                        System.out.println("Extracted " + entity.getName());
                         entityList.add(entity);
                         //System.out.println("entityLen="+entityLength+"\toffset="+offset+"\tpos="+(offset-entityLength));
                     }else{
-                        currentEntity += " " + text;//token.originalText();
+                        entity.setName(entity.getName() + " " + text);//token.originalText();
                     }
                 }
             }
+        }
+        
+        if(inEntity){ // useful if the text ends with an entity
+           entityList.add(entity); 
         }
         
         NERresource.setDocumentText(doc);
