@@ -54,7 +54,15 @@ and open the template in the editor.
             
         }
         fieldset{
-            
+            text-align: center;
+            position: absolute;
+            right: 0%;
+            width:  45%;
+        }
+        
+        #description_functionality{
+            text-align: center;
+            font-family: Verdana;
         }
     </style>
 
@@ -62,22 +70,26 @@ and open the template in the editor.
     <body>
         <div class="heading_section">
             <h1 id="page_title"> SemanticForce</h1>
-        </div>
-        <div class="index_group">
-            <div>
-                <a href="indexCrawling.html">Crawling</a>
-                <a href="indexScraping.html">Scraping</a>
-                <a href="indexNER.html">EntityRecognition</a>
-                <a href="indexWikidata.html">Wikidata</a>
-                <a href="aboutus.html">About</a>
+            <div class="index_group">
+                <div>
+                    <a href="indexCrawling.html">Crawling</a>
+                    <a href="indexScraping.html">Scraping</a>
+                    <a href="indexNER.html">EntityRecognition</a>
+                    <a href="indexWikidata.html">Wikidata</a>
+                    <a href="aboutus.html">About</a>
+                </div>
             </div>
         </div>
+       
+        <br><br><br><br><br><br>
+        
         <div class="central_section">
-            <img src="img\kibhome.jpg" width="30%">
+            <img src="img\kibhome.jpg" style=" width:50%; float:left; ">
+            
             <fieldset>
                 <legend><h3>Main Functionality</h3></legend>
-                <p>
-                    DESCRIZIONE DELLA FUNZIONALITA' PRINCIPALE
+                <p id="description_functionality">
+                    DESCRIZIONE
                 </p>
                 <form method="get" action="responseExtraction.jsp">
                     <tr><td><label><h3>Insert Web Site URL </h3></label></td><td><input name="urla" type="text" ></td></tr>
@@ -91,6 +103,8 @@ and open the template in the editor.
                     <input type="submit" value="GO!">
                 </form>
             </fieldset>
-        </div>    
+
+        </div>            
+    
     </body>
 </html>

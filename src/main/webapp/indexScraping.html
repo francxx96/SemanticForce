@@ -18,13 +18,55 @@ and open the template in the editor.
             .heading_section{
                     text-align: center;
             }
+        .index_group a {
+          background-color: #4CAF50; /* Green background */
+          border: 1px solid green; /* Green border */
+          color: white; /* White text */
+          padding: 10px 24px; /* Some padding */
+          cursor: pointer; /* Pointer/hand icon */
+          float: left; /* Float the buttons side by side */
+          text-decoration: none; /* Remove underline */
+          font-family: Verdana;
+        }
+
+        /* Clear floats (clearfix hack) */
+        .index_group:after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+
+        .index_group a:not(:last-child) {
+          border-right: none; /* Prevent double borders */
+        }
+
+        /* Add a background color on hover */
+        .index_group a:hover {
+          background-color: #3e8e41;
+        }
+
+        /* Center display */
+        .index_group{
+                position: absolute;
+                right: 25%;
+        }
         </style>
     
     </head>
     <body>
         <div class="heading_section">
             <h1 id="page_title"> Scraping Article </h1>
+            <div class="index_group">
+                <div>
+                    <a href="index.html">Home</a>
+                    <a href="indexCrawling.html">Crawling</a>
+                    <a href="indexScraping.html">Scraping</a>
+                    <a href="indexNER.html">EntityRecognition</a>
+                    <a href="indexWikidata.html">Wikidata</a>
+                </div>
+            </div>
         </div>
+        <br>
         <div class="description_section">
             <h4 id="text_description"> --------- INSERIRE DESCRIZIONE DI QUESTA SEZIONE --------------- </h4>
         </div>
