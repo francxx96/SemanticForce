@@ -1,3 +1,4 @@
+
 package ner;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -8,7 +9,6 @@ import edu.stanford.nlp.util.CoreMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
 
 public class StanfordNLP {
 

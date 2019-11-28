@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package crawlingScraping;
 
 import edu.uci.ics.crawler4j.crawler.Page;
@@ -14,10 +10,6 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import utils.OutputHandler;
 
-/**
- *
- * @author aless
- */
 public class TestCrawler extends WebCrawler {
     private Set<String> allLinks = new HashSet();    
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");

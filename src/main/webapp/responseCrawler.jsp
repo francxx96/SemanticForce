@@ -1,8 +1,3 @@
-<%-- 
-    Document   : responseCrawler
-    Created on : 25-set-2018, 10.52.50
-    Author     : aless
---%>
 
 <%@page import="java.util.regex.Pattern"%>
 <%@page import="java.util.StringTokenizer"%>
@@ -10,6 +5,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.lang.Long"%>
 <%@page import="crawlingScraping.Extractor" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>

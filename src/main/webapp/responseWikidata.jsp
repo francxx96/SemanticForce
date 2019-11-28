@@ -1,3 +1,4 @@
+
 <%@page import="wikidata.wikidata"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

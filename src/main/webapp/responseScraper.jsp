@@ -1,10 +1,6 @@
-<%-- 
-    Document   : responseBoiler
-    Created on : 25-set-2018, 10.48.13
-    Author     : aless
---%>
 
 <%@page import="crawlingScraping.Extractor,crawlingScraping.Article" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>

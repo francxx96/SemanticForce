@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package utils;
 
 import com.google.gson.Gson;
@@ -19,10 +15,6 @@ import java.util.Arrays;
 import java.util.Set;
 import ner.Entity;
 
-/**
- *
- * @author Utente
- */
 public class OutputHandler {
     private static final String DIRECTORY = System.getProperty("user.home");
     private static final String TXT_URLS = "URLs_list.txt";
