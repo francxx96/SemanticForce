@@ -5,55 +5,89 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-	<head>
-		<title>SemanticForce</title>
-		<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="img\cg.png" type="image/x-icon"/>
-		
-		<style>
-			.index_group a {
-			  background-color: #4CAF50; /* Green background */
-			  border: 1px solid green; /* Green border */
-			  color: white; /* White text */
-			  padding: 10px 24px; /* Some padding */
-			  cursor: pointer; /* Pointer/hand icon */
-			  float: left; /* Float the buttons side by side */
-			  text-decoration: none; /* Remove underline */
-			}
+    <head>
+    <title>SemanticForce</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img\cg.png" type="image/x-icon"/>
 
-			/* Clear floats (clearfix hack) */
-			.index_group:after {
-			  content: "";
-			  clear: both;
-			  display: table;
-			}
+    <style>
+        .index_group a {
+          background-color: #4CAF50; /* Green background */
+          border: 1px solid green; /* Green border */
+          color: white; /* White text */
+          padding: 10px 24px; /* Some padding */
+          cursor: pointer; /* Pointer/hand icon */
+          float: left; /* Float the buttons side by side */
+          text-decoration: none; /* Remove underline */
+          font-family: Verdana;
+        }
 
-			.index_group a:not(:last-child) {
-			  border-right: none; /* Prevent double borders */
-			}
+        /* Clear floats (clearfix hack) */
+        .index_group:after {
+          content: "";
+          clear: both;
+          display: table;
+        }
 
-			/* Add a background color on hover */
-			.index_group a:hover {
-			  background-color: #3e8e41;
-			}
-			
-			/* Center display */
-			.index_group{
-				text-align: center;
-			}
-		</style>
+        .index_group a:not(:last-child) {
+          border-right: none; /* Prevent double borders */
+        }
 
-	</head>
-	<body>
-		<div class="index_group">
-			<div>
-				<a href="indexCrawling.html">Crawling</a>
-				<a href="indexScraping.html">Scraping</a>
-				<a href="indexNER.html">EntityRecognition</a>
-				<a href="indexWikidata.html">Wikidata</a>
-				<a href="aboutus.html">About</a>
-			</div>
-		</div>
-	</body>
+        /* Add a background color on hover */
+        .index_group a:hover {
+          background-color: #3e8e41;
+        }
+
+        /* Center display */
+        .index_group{
+                position: absolute;
+                right: 25%;
+        }
+        #page_title{
+            text-align: center;
+            font-family: Verdana;
+        }
+        #description_funcionality{
+            position: relative;
+            right: 50%;
+            
+        }
+    </style>
+
+    </head>
+    <body>
+        <div class="heading_section">
+            <h1 id="page_title"> SemanticForce</h1>
+        </div>
+        <div class="index_group">
+            <div>
+                <a href="indexCrawling.html">Crawling</a>
+                <a href="indexScraping.html">Scraping</a>
+                <a href="indexNER.html">EntityRecognition</a>
+                <a href="indexWikidata.html">Wikidata</a>
+                <a href="aboutus.html">About</a>
+            </div>
+        </div>
+        <div class="central_section">
+            <img src="img\kibhome.jpg" width="30%">
+            <fieldset id='description_functionality'>
+                <legend><h3>Web Crawler Extraction</h3></legend>
+                <p>
+                    DESCRIZIONE DELLA FUNZIONALITA' PRINCIPALE
+                </p>
+                <form method="get" action="responseExtraction.jsp">
+                    <tr><td><label><h3>Insert Web Site URL </h3></label></td><td><input name="urla" type="text" ></td></tr>
+                    <div style="text-align: center">
+                        <h3 style="color:#006666">Set the crawler</h3>
+                        <h4 style="color:#006666">Depth of crawler</h4><input type="range" name="Cprof" min="1" max="5" step="1">
+                        <br>
+                            1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
+                        <br>
+                    </div>
+                    <input type="submit" value="GO!">
+                </form>
+            </fieldset>
+        </div>    
+    </body>
 </html>
