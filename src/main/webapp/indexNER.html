@@ -6,12 +6,35 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Entity Recognizer "C.G."</title>
-        <meta charset="UTF-8">
+	<title>indexNER</title>
+	<meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
-        <style>
-           ul#menu li:hover{
+		
+    <style>
+	.central_section{
+	text-align: center;
+	}
+	.heading_section{
+	text-align: center;
+        }
+        #text_central{
+        font-size: 20px;
+        color:blue; 
+        font-family: Verdana, sans-serif
+        }
+        #text_central_1{
+        font-size: 10px;
+        color:blue; 
+        font-family: Verdana, sans-serif
+        }
+        #textAre{
+        font-size: 18px;
+        height: 360px;
+        width: 680px;
+        resize: none;
+        }
+        ul#menu li:hover{
                 background-color:green;
              }
 
@@ -39,23 +62,44 @@ and open the template in the editor.
                  height: 40px;
                  text-align: center;
              }
-</style>
+        
+        
+    </style>
+    
     </head>
-    <body  background="img\Sfondo.png">
-           <a style="font-size: 50px;color:green;position: absolute;right:38%; font-family: Verdana, sans-serif">Entity Recognizer</a>
-           <img src="img\cg.png" style="position: absolute;right :0px;top: 0; margin: 10px; height: 90px; width: 100px">
-           <br><br><br><br>
-           <ul id="menu" style="position:absolute;right:9%">
+	
+    <body>
+        <div class="heading_section">
+        
+            <h1 id="page_title"> Named Entity Recognition </h1>
+        <ul id="menu">
         <li><a href="index.html">Home</a></li>
-        <li><a href="textNER.html">Entity Recognition</a></li>
-        <li><a href="elastic.html">Elasticsearch</a></li>
+        <li><a href="entity.html">Entity Recognition</a></li>
         <li><a href="activities.html">Activities</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-           <br><br><br><br>
-           <div style="position: absolute;">
-           <img src="img\ner1.png" style="position:relative; left:13%; right:13%; max-width:80%" >
-           </div>
-            <br><br><br>
+            
+        </div>
+        <br>
+        <div class="description_section">
+            <h4 id="text_description"> --------- INSERIRE DESCRIZIONE DI QUESTA SEZIONE --------------- </h4>
+        </div>
+
+        <div class="central_section">
+           <h4 id="text_central">Insert the text and then click the button</h4>
+           <h5 id="text_central_1"/>(The operation may take a few seconds)</h5>
+           <br>
+           <form method="GET" action="newjsp.jsp" enctype='multipart/form-data' autocomplete="off" >
+           <div> <input type="submit" value="Entity Recognition"> </div>
+           <br>
+           <textarea id="textAre" name="are" required ></textarea>
+           </form>
+        </div>
+
+        <div class="footer_section">
+            <h5 id="text_description"> --------- INSERIRE DESCRIZIONE DI QUESTA SEZIONE FOOTER --------------- </h5>
+        </div>
+
     </body>
+
 </html>
