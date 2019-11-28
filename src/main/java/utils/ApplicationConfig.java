@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crawlingScraping;
+package utils;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
