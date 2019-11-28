@@ -40,14 +40,13 @@ public class NERresource {
     
     @GET
     @Produces(MediaType.APPLICATION_XML)
-    public static ArrayList<Entity> getEntities() throws IOException {       
+    public static ArrayList<Entity> getEntities() {       
         return entityList;
     }
     
     @GET
     @Produces(MediaType.APPLICATION_XML)
-    public static HashMap getEntities(String TextArea) throws IOException {
-        //SearchEntity currEntity;
+    public static HashMap getEntities(String TextArea) {
         Integer numCurrEntity;
         entityList = ner.recogniseNamedEntity(TextArea);
         entityFreq.clear();
