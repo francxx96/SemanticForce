@@ -89,13 +89,14 @@
                 text-align:center;
                 background-color:green;
             }
-            
-            a{
+            /*Per Christian -> secondo me è più leggibile il codice e renderlo bianco lo fa essere più visibile
+            nella pagina HTML (Alessio)*/
+            #footer_text{
                 text-decoration: none;
                 color: black;
             }
-            a:hover {
-                color: black;
+            #footer_text:hover {
+                color: white;
             }
 
         </style>
@@ -130,15 +131,13 @@
                             1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
                         <br>
                         <tr><td><label><h3>Articles number </h3></label></td><td><input name="nArticles" type="text" ></td></tr>
-                    
                     </div>
                     <input type="submit" value="GO!">
                 </form>
             </fieldset>
         </div>            
     </body>
-    
     <footer>
-	<a href="questions.html">Hai domande? Consulta la sezione</a>
+	<a id="footer_text" href="questions.html">Hai domande? Consulta la sezione</a>
     </footer>
 </html>
