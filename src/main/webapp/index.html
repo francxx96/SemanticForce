@@ -1,112 +1,59 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
-    <head>
-        <title>NewspapExt</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script>
-            var nascondi = function(iden){
-                var elem = document.getElementById(iden);
-                
-                if(elem.getAttribute("style")=="display:none"){
-                    elem.setAttribute("style","display:inline");
-                } else
-                    elem.setAttribute("style","display:none");
-                };
-	</script>
-        <style type="text/css">
-            fieldset{
-                border-style: dashed;
-                border-color: #006666;
-            }
-            body{
-                background-repeat: no-repeat;
-                background-size: auto;
-                background-attachment: fixed;
-                background-position: bottom, center;
-            }
-            .bottone{
-                background-color: #33CC66;
-                border: ridge;
-                color: white;
-                font-weight: lighter;
-                border-radius: 5px;
-                
-            }
-            .bottone:hover{
-                background-color: #336666;
-            }
-        </style>
-        <link rel="icon" href="img\tabLogo.png" type="image/x-icon"/>
-    </head>
-    
-    <body style="background-color:#CCFFCC; text-align:center" background="img\companyLogo.png">
-        <h1 style="color:#006666;">Welcome to NewspapExt</h1>
-        <div id="SelMenu" style="text-align:center">
-            <button class="bottone" onclick="nascondi('BExtractor')">Articles Extraction</button>
-            <button class="bottone" onclick="nascondi('CExtractor')">URL Extraction</button>
-            <button class="bottone" onclick="nascondi('CBExtractor')">Extraction for ElasticSearch</button>
-            <a href="indexNER.html">NER</a>
-        </div>
-        <div id="BExtractor" style="display:none">
-            <fieldset>
-                <legend><h3 style="color:#006666">Extract the info from article URL</h3></legend>
-                <div style="text-align: center">
-                    <img src="img\newspaperImg.png" width="200" height="200">
-                </div>
-                <p style="color:#000000;text-align:justify">
-                    Data extraction is the act or process of retrieving data out of data sources for further data processing or data storage. The import into the intermediate extracting system is thus usually followed by data transformation and possibly the addition of metadata prior to export to another stage in the data workflow. Typical unstructured data sources include web pages, emails, documents, PDFs, scanned text, mainframe reports, etc..
-                    The functionality offered by this section allows you to extract textual content from a journalistic article on a website.
-                </p>
-                <form method="get" action="responseBoiler.jsp">
-                    <tr><td><label><h3 style="color:#006666">Insert article URL</h3></label></td><td><input name="urli" type="text" ></td></tr>
-                    <input class="bottone" type="submit" value="GO!">
-                </form>
-            </fieldset>
-        </div>
-        <div id="CExtractor" style="display:none">
-            <fieldset>
-                <legend><h3 style="color:#006666">Web Crawler Extraction</h3></legend>
-                <div style="text-align: center">
-                    <img src="img\spiderImg.png" width="200" height="200">
-                </div>
-                <p style="color:#000000;text-align:justify">
-                    Web Crawling, also called Spidering, is the process of finding Web pages and downloading them. At the same time the Web Crawler also known as Spider or Robot, is a program that downloads Web pages associated with URLs indicated, extracts the hyperlinks contained in them and continuously downloads the Web pages found by these links. Over a period of time, a significant portion of the "Surface Web" is scanned and links are extracted from it. 
-                    The functionality offered by this section allows to obtain, starting from a source URL, all the hyperlinks present within it.
-                </p>
-                <form method="get" action="responseCrawler.jsp">
-                    <tr><td><label><h3 style="color:#006666">Insert Web Site URL </h3></label></td><td><input name="urla" type="text" ></td></tr>
-                    <div style="text-align: center">
-                        <h3 style="color:#006666">Set the crawler</h3>
-                        <h4 style="color:#006666">Depth of crawler</h4><input type="range" name="Cprof" min="1" max="5" step="1">
-                        <br>
-                            1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
-                        <br>
-                    <!--    <h4>Number of crawlers</h4><input type="range" name="Cnum" min="1" max="5" step="1">-->
-                    </div>
-                    <input class="bottone" type="submit" value="GO!">
-                </form>
-            </fieldset>
-        </div>
-        <div id="CBExtractor" style="display:none">
-            <fieldset>
-                <legend><h3 style="color:#006666">Crawling & Data Extraction</h3></legend>
-                <p style="color:  #000000;text-align:justify">
-                    This section provides a feature that integrates the two features of the remaining sections. By inserting the URL of a web page it will be possible to automatically accept all the hyperlinks present on the page and extract the data of the journalist articles present in the same from the various URLs.
-                </p>
-                <form method="get" action="responseExtraction.jsp">
-                    <tr><td><label><h3 style="color:#006666">Insert Web Site URL </h3></label></td><td><input name="urle" type="text" ></td></tr>
-                    <div style="text-align: center">
-                        <h3 style="color:#006666">Set the crawler</h3>
-                        <h4 style="color:#006666">Depth of crawler</h4><input type="range" name="Cprofa" min="1" max="5" step="1">
-                        <br>
-                            1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
-                        <br>
-                        <tr><td><label><h3 style="color:#006666">Numero di articoli</h3></label></td><td><input name="nArticles" type="text" ></td></tr>
-                    <!--    <h4>Number of crawlers</h4><input type="range" name="Cnum" min="1" max="5" step="1">-->
-                    </div>
-                    <input class="bottone" type="submit" value="GO!">
-                </form>
-            </fieldset>
-        </div>
-    </body>
+	<head>
+		<title>SemanticForce</title>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="img\cg.png" type="image/x-icon"/>
+		
+		<style>
+			.index_group a {
+			  background-color: #4CAF50; /* Green background */
+			  border: 1px solid green; /* Green border */
+			  color: white; /* White text */
+			  padding: 10px 24px; /* Some padding */
+			  cursor: pointer; /* Pointer/hand icon */
+			  float: left; /* Float the buttons side by side */
+			  text-decoration: none; /* Remove underline */
+			}
+
+			/* Clear floats (clearfix hack) */
+			.index_group:after {
+			  content: "";
+			  clear: both;
+			  display: table;
+			}
+
+			.index_group a:not(:last-child) {
+			  border-right: none; /* Prevent double borders */
+			}
+
+			/* Add a background color on hover */
+			.index_group a:hover {
+			  background-color: #3e8e41;
+			}
+			
+			/* Center display */
+			.index_group{
+				text-align: center;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="index_group">
+			<div>
+				<a href="indexCrawling.html">Crawling</a>
+				<a href="indexScraping.html">Scraping</a>
+				<a href="indexNER.html">EntityRecognition</a>
+				<a href="indexWikidata.html">Wikidata</a>
+				<a href="aboutus.html">About</a>
+			</div>
+		</div>
+	</body>
 </html>
