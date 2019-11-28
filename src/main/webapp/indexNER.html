@@ -34,51 +34,55 @@ and open the template in the editor.
         width: 680px;
         resize: none;
         }
-        ul#menu li:hover{
-                background-color:green;
-             }
-
-             ul#menu {
-                 font-family: Verdana, sans-serif;
-                 font-size: 18px;
-             }
-
-             ul#menu li {
-                 background-color: blue;
-                 display: inline;
-                 margin: 1px;
-                 float: left; 
-                 border-radius:10px 10px 10px 10px;
-
-             }
-
-             ul#menu li a {
-                 color: #fff;
-                 display: block;
-                 font-weight: bold;
-                 line-height: 40px;
-                 text-decoration: none;
-                 width: 244px;
-                 height: 40px;
-                 text-align: center;
-             }
         
-        
+        .index_group a {
+              background-color: #4CAF50; /* Green background */
+              border: 1px solid green; /* Green border */
+              color: white; /* White text */
+              padding: 10px 24px; /* Some padding */
+              cursor: pointer; /* Pointer/hand icon */
+              float: left; /* Float the buttons side by side */
+              text-decoration: none; /* Remove underline */
+              font-family: Verdana;
+            }
+
+            /* Clear floats (clearfix hack) */
+            .index_group:after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+
+            .index_group a:not(:last-child) {
+              border-right: none; /* Prevent double borders */
+            }
+
+            /* Add a background color on hover */
+            .index_group a:hover {
+              background-color: #3e8e41;
+            }
+
+            /* Center display */
+            .index_group{
+                    position: absolute;
+                    right: 25%;
+            }
     </style>
     
     </head>
 	
     <body>
         <div class="heading_section">
-        
-            <h1 id="page_title"> Named Entity Recognition </h1>
-        <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="entity.html">Entity Recognition</a></li>
-        <li><a href="activities.html">Activities</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-            
+        <h1 id="page_title"> Named Entity Recognition </h1>
+        <div class="index_group">
+                <div>
+                    <a href="index.html">Home</a>
+                    <a href="indexCrawling.html">Crawling</a>
+                    <a href="indexScraping.html">Scraping</a>
+                    <a href="indexNER.html">EntityRecognition</a>
+                    <a href="indexWikidata.html">Wikidata</a>
+                </div>
+            </div>    
         </div>
         <br>
         <div class="description_section">
@@ -89,7 +93,7 @@ and open the template in the editor.
            <h4 id="text_central">Insert the text and then click the button</h4>
            <h5 id="text_central_1"/>(The operation may take a few seconds)</h5>
            <br>
-           <form method="POST" action="numEntityPage.jsp" enctype="multipart/form-data" autocomplete="off">
+           <form method="GET" action="numEntityPage.jsp" enctype="multipart/form-data" autocomplete="off">
                 <div> <input type="submit" value="Entity Recognition"> </div>
                 <br>
                 <textarea id="textAre" name="textArea" required ></textarea>

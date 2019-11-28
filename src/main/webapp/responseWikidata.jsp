@@ -1,10 +1,12 @@
+<%@page import="wikidata.wikidata"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Wikidata Response</title>
         <style>
             .myBox {
                     border: groove;
@@ -44,6 +46,24 @@
             String parameter = request.getParameter("entityWiki");
             System.out.println("enity for wikidata = " + parameter);
             
+            ArrayList<String[]> list = new ArrayList<String[]>();
+            list = wikidata.executeGet(parameter);
+                     
+          
         %>
+         <div class="myBox">
+        <div id="list">
+            <%
+            for(String[] elem : list){
+                %>
+            
+                <p><a href=<%out.write(elem[1]);%>> <%out.write(elem[0]);%></a></p>
+                <%
+                }
+            
+            %>
+        </div>
+        </div>
+
     </body>
 </html>
