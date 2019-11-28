@@ -1,10 +1,6 @@
-<%-- 
-    Document   : responseExtraction
-    Created on : 26-set-2018, 18.55.55
-    Author     : aless
---%>
 
 <%@page import="crawlingScraping.Extractor,java.util.ArrayList,crawlingScraping.Article" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>

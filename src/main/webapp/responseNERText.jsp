@@ -1,3 +1,4 @@
+
 <%@page import="java.io.IOException"%>
 <%@page import="java.io.BufferedWriter"%>
 <%@page import="java.io.FileWriter"%>
@@ -6,6 +7,7 @@
 <%@page import="ner.Entity"%>
 <%@page import="ner.NERresource"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
