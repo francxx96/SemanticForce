@@ -11,6 +11,22 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
         <style>
+            
+            body{
+              background-color:#00ffbf;
+            }
+            
+            .central_section{
+                text-align: center;
+            }
+            
+            .heading_section{
+                text-align: center;
+            }
+            
+            .h_type{
+                color:#006666;
+            }
             .index_group a {
               background-color: #4CAF50; /* Green background */
               border: 1px solid green; /* Green border */
@@ -77,12 +93,20 @@ and open the template in the editor.
                 left:0;
                 text-align:center;
                 background-color:green;
-                
             }
+            
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            a:hover {
+                color: black;
+            }
+
         </style>
     </head>
-    <body background="img/green.jpg" >
-        <div class="heading_section">
+    <body>
+        <div class="header_section">
             <h1 id="page_title"> SemanticForce</h1>
             <div class="index_group">
                 <div>
@@ -104,9 +128,9 @@ and open the template in the editor.
                 </p>
                 <form method="GET" action="responseExtractionArticle.jsp">
                     <tr><td><label><h3>Insert Web Site URL </h3></label></td><td><input name="urle" type="text" ></td></tr>
-                    <div style="text-align: center">
-                        <h3 style="color:#006666">Set the crawler</h3>
-                        <h4 style="color:#006666">Depth of crawler</h4><input type="range" name="Cprofa" min="1" max="5" step="1">
+                    <div>
+                        <h3 class="h_type">Set the crawler</h3>
+                        <h4 class="h_type">Depth of crawler</h4><input type="range" name="Cprofa" min="1" max="5" step="1">
                         <br>
                             1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
                         <br>

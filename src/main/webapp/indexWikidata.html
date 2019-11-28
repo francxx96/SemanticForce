@@ -11,44 +11,97 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
             <style>
-                .central_section{
-                        text-align: center;
-                }
-                .heading_section{
-                        text-align: center;
-                }
-                .index_group a {
-                background-color: #4CAF50; /* Green background */
-                border: 1px solid green; /* Green border */
-                color: white; /* White text */
-                padding: 10px 24px; /* Some padding */
-                cursor: pointer; /* Pointer/hand icon */
-                float: left; /* Float the buttons side by side */
-                text-decoration: none; /* Remove underline */
+            body{
+              background-color:#00ffbf;
+            }
+            
+            .central_section{
+                text-align: center;
+            }
+            
+            .heading_section{
+                text-align: center;
+            }
+            
+            .h_type{
+                color:#006666;
+            }
+            .index_group a {
+              background-color: #4CAF50; /* Green background */
+              border: 1px solid green; /* Green border */
+              color: white; /* White text */
+              padding: 10px 24px; /* Some padding */
+              cursor: pointer; /* Pointer/hand icon */
+              float: left; /* Float the buttons side by side */
+              text-decoration: none; /* Remove underline */
+              font-family: Verdana;
+              width: 15%;
+              text-align: center;
+            }
+
+            /* Clear floats (clearfix hack) */
+            .index_group:after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+
+            .index_group a:not(:last-child) {
+              border-right: none; /* Prevent double borders */
+            }
+
+            /* Add a background color on hover */
+            .index_group a:hover {
+              background-color: #3e8e41;
+            }
+
+            /* Center display */
+            .index_group{ 
+                position: relative; 
+                left:4%;
+            }
+
+            #page_title{
+                text-align: center;
                 font-family: Verdana;
-              }
+            }
+            #description_funcionality{
+                position: relative;
+                right: 50%;
 
-              /* Clear floats (clearfix hack) */
-              .index_group:after {
-                content: "";
-                clear: both;
-                display: table;
-              }
+            }
+            fieldset{
+                text-align: center;
+                position: absolute;
+                right: 0%;
+                width:  45%;
+                border-color: green;
+                border-width: 13px;
+                border-radius: 10px 10px 10px 10px;
+            }
 
-              .index_group a:not(:last-child) {
-                border-right: none; /* Prevent double borders */
-              }
+            #description_functionality{
+                text-align: center;
+                font-family: Verdana;
+            }
+            
+            footer{
+                position:fixed; 
+                width: 100%; 
+                bottom:0;
+                left:0;
+                text-align:center;
+                background-color:green;
+            }
+            
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            a:hover {
+                color: black;
+            }
 
-              /* Add a background color on hover */
-              .index_group a:hover {
-                background-color: #3e8e41;
-              }
-
-              /* Center display */
-              .index_group{
-                      position: absolute;
-                      right: 25%;
-              }
             </style>
     </head>
 			
@@ -73,8 +126,9 @@ and open the template in the editor.
                  <input type="submit" value="WIKIDATA">
             </form>
         </div>
-        <div class="footer_section">
-            <h5 id="text_footer"> --------- INSERIRE DESCRIZIONE DI QUESTA SEZIONE FOOTER --------------- </h5>
-        </div>
     </body>
+    
+<footer>
+	<a href="questions.html">Hai domande? Consulta la sezione</a>
+</footer>
 </html>
