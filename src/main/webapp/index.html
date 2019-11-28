@@ -20,6 +20,8 @@ and open the template in the editor.
               float: left; /* Float the buttons side by side */
               text-decoration: none; /* Remove underline */
               font-family: Verdana;
+              width: 15%;
+              text-align: center;
             }
 
             /* Clear floats (clearfix hack) */
@@ -39,10 +41,11 @@ and open the template in the editor.
             }
 
             /* Center display */
-            .index_group{
-                    position: absolute;
-                    right: 25%;
+            .index_group{ 
+                position: relative; 
+                left:4%;
             }
+
             #page_title{
                 text-align: center;
                 font-family: Verdana;
@@ -57,15 +60,28 @@ and open the template in the editor.
                 position: absolute;
                 right: 0%;
                 width:  45%;
+                border-color: green;
+                border-width: 13px;
+                border-radius: 10px 10px 10px 10px;
             }
 
             #description_functionality{
                 text-align: center;
                 font-family: Verdana;
             }
+            
+            footer{
+                position:fixed; 
+                width: 100%; 
+                bottom:0;
+                left:0;
+                text-align:center;
+                background-color:green;
+                
+            }
         </style>
     </head>
-    <body>
+    <body background="img/green.jpg" >
         <div class="heading_section">
             <h1 id="page_title"> SemanticForce</h1>
             <div class="index_group">
@@ -102,4 +118,8 @@ and open the template in the editor.
             </fieldset>
         </div>            
     </body>
+    
+    <footer>
+	<a href="questions.html">Hai domande? Consulta la sezione</a>
+    </footer>
 </html>
