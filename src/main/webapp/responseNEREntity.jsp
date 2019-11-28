@@ -75,7 +75,7 @@
         </div>
         <span style="font-weight: bold;font-size: 18px; color:blue">Press the button to display them within the text</span> 
         <br>
-        <form method="POST" action="colourEntityPage.jsp" autocomplete="off" >
+        <form method="POST" action="responseNERText.jsp" autocomplete="off" >
             <input type="submit" value="ENTITY CLOUR" style="font-size: 18px">
         </form>
         <br> 
