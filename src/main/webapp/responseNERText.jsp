@@ -50,7 +50,7 @@
         <br><br><br><br>
             <ul id="menu" style="position:absolute;right:9%">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="textNER.html">Entity Recognition</a></li>
+                <li><a href="indexNER.html">Entity Recognition</a></li>
                 <li><a href="elastic.html">Elasticsearch</a></li>
                 <li><a href="activities.html">Activities</a></li>
                 <li><a href="contact.html">Contact</a></li>

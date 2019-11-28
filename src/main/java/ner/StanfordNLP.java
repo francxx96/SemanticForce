@@ -34,11 +34,12 @@ public class StanfordNLP {
         Entity entity = new Entity();
         
         for (CoreMap sentence : sentences) {
+
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) { //tokens contained by an annotation
                 String text = token.get(CoreAnnotations.TextAnnotation.class);
-                //String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+                String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
                 String namedEntity = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
-                //System.out.println("Token=" + token + "*\tText=" + text + "*\tPOS=" + pos + "*\tNER=" + namedEntity);
+                System.out.println("Token=" + token + "*\tText=" + text + "*\tPOS=" + pos + "*\tNER=" + namedEntity);
                 
                 if (!inEntity) {
                     if (!"O".equals(namedEntity)) { // eliminate the Other categories
