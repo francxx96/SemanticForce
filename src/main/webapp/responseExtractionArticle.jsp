@@ -58,7 +58,6 @@
             <fieldset>
                 <legend><h3 style="color:#006666">Go to NER</h3></legend>
                 <form method="get" action="responseEntityExtraction.jsp">
-                    <tr><td><label><h3 style="color:#006666">Filename</h3></label></td><td><input name="doca" type="text" ></td></tr>
                     <input class="bottone" type="submit" value="GO!">
                 </form>
             </fieldset>

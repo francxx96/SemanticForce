@@ -24,7 +24,7 @@ import ner.Entity;
  * @author Utente
  */
 public class OutputHandler {
-    private static final String DIRECTORY = System.getProperty("user.home") + File.separator + "SemanticForceProject";
+    private static final String DIRECTORY = System.getProperty("user.home");
     private static final String TXT_URLS = "URLs_list.txt";
     private static final String URLS_PATH  = DIRECTORY + File.separator + TXT_URLS;;
     private static final String JSON_ARTICLES = "Articles_list.json";
