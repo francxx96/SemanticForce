@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-    <head>
-	<title>indexNER</title>
-	<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+        <title>Entity Recognizer "C.G"</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
-		
-    <style>
-	.central_section{
+        <style>
+        
+        .central_section{
 	text-align: center;
 	}
 	.heading_section{
@@ -36,39 +31,38 @@ and open the template in the editor.
         }
         
         .index_group a {
-              background-color: #4CAF50; /* Green background */
-              border: 1px solid green; /* Green border */
-              color: white; /* White text */
-              padding: 10px 24px; /* Some padding */
-              cursor: pointer; /* Pointer/hand icon */
-              float: left; /* Float the buttons side by side */
-              text-decoration: none; /* Remove underline */
-              font-family: Verdana;
-            }
+           background-color: #4CAF50; /* Green background */
+           border: 1px solid green; /* Green border */
+           color: white; /* White text */
+           padding: 10px 24px; /* Some padding */
+           cursor: pointer; /* Pointer/hand icon */
+           float: left; /* Float the buttons side by side */
+           text-decoration: none; /* Remove underline */
+           font-family: Verdana;
+        }
 
-            /* Clear floats (clearfix hack) */
-            .index_group:after {
-              content: "";
-              clear: both;
-              display: table;
-            }
+         /* Clear floats (clearfix hack) */
+        .index_group:after {
+           content: "";
+           clear: both;
+           display: table;
+        }
 
-            .index_group a:not(:last-child) {
-              border-right: none; /* Prevent double borders */
-            }
+         .index_group a:not(:last-child) {
+           border-right: none; /* Prevent double borders */
+        }
 
-            /* Add a background color on hover */
-            .index_group a:hover {
-              background-color: #3e8e41;
-            }
+         /* Add a background color on hover */
+         .index_group a:hover {
+           background-color: #3e8e41;
+        }
 
-            /* Center display */
-            .index_group{
-                    position: absolute;
-                    right: 25%;
-            }
-    </style>
-    
+         /* Center display */
+         .index_group{
+                 position: absolute;
+                 right: 25%;
+        }
+        </style>
     </head>
 	
     <body>
@@ -85,25 +79,27 @@ and open the template in the editor.
             </div>    
         </div>
         <br>
+        
         <div class="description_section">
             <h4 id="text_description"> --------- INSERIRE DESCRIZIONE DI QUESTA SEZIONE --------------- </h4>
         </div>
 
         <div class="central_section">
-           <h4 id="text_central">Insert the text and then click the button</h4>
-           <h5 id="text_central_1"/>(The operation may take a few seconds)</h5>
-           <br>
-           <form method="GET" action="responseNEREntity.jsp" enctype="multipart/form-data" autocomplete="off">
-                <div> <input type="submit" value="Entity Recognition"> </div>
-                <br>
-                <textarea id="textAre" name="textArea" required ></textarea>
-           </form>
-        </div>
+            <a id="text_central">Insert the text and then click the button</a>
+            <br>
+            <a id="text_central_1">(The operation may take a few seconds)</a>
+            <br><br>
 
+            <form method="POST" action="responseNEREntity.jsp" autocomplete="off" >
+               <div> <input type="submit" value="Entity Recognition"> </div>
+               <br>
+               <textarea id="textAre" name="textArea" autofocus required ></textarea>
+            </form>       
+        </div>
+        
         <div class="footer_section">
             <h5 id="text_description"> --------- INSERIRE DESCRIZIONE DI QUESTA SEZIONE FOOTER --------------- </h5>
         </div>
-
+        
     </body>
-
 </html>
