@@ -22,7 +22,7 @@ import utils.OutputHandler;
 
 @Path("WebEstrazione")
 public class Extractor {
-    static App crawler;
+    static Crawler crawler;
     static ArrayList<String> extractedUrl = new ArrayList();
     static ArrayList<Article> articles = new ArrayList();    
 
@@ -69,7 +69,7 @@ public class Extractor {
     @Path("siti/{crawl}")
     @Produces(MediaType.APPLICATION_XML)
     public static String getXml(@PathParam("crawl") String crawl, String cDepth) throws Exception{
-        crawler = new App(crawl, cDepth);
+        crawler = new Crawler(crawl, cDepth);
         
         System.out.println("---- URL LIST ----");
         extractedUrl = OutputHandler.readUrlsFile();
