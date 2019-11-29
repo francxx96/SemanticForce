@@ -32,37 +32,4 @@ public class App {
         // Starts the crawler
         controller.start(TestCrawler.class, CRAWLERS_NUM);
     }
-    
-    /**
-     * Function for data estraction of articles
-     * 
-     * @param x
-     * @param nArticles
-     * @return
-     * @throws Exception 
-     */
-    public ArrayList<Article> extraction(ArrayList<String> x, int nArticles) throws Exception {
-        ArrayList<Article> articles = new ArrayList();
-        
-        int listLen = x.size();
-        if(listLen < nArticles)
-            nArticles = listLen;
-        
-        System.out.println("---- Articles list ----");
-        int addedArt = 0, j = 0;
-        while(addedArt < nArticles && j < listLen) {
-            String url = x.get(j);
-            Article art = Extractor.getArticle(url);
-            
-            if(!art.getTitle().equals("=== WARNING! ===")) {
-                articles.add(art);
-                addedArt++;
-            }
-            
-            j++;
-        }
-        
-        System.out.println(articles);
-        return articles;
-    }
 }

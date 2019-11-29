@@ -1,4 +1,5 @@
 
+<%@page import="utils.OutputHandler"%>
 <%@page import="crawlingScraping.Extractor,java.util.ArrayList,crawlingScraping.Article" contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -37,7 +38,7 @@
                 String nArticles = request.getParameter("nArticles");
                 int numArticles = Integer.parseInt(nArticles);
                 ArrayList<Article> arti = Extractor.getExtractedArticles(numArticles);
-                Extractor.getJSONSavatage();
+                OutputHandler.writeArticlesFile(arti);
             %>
             <span>
                 <%

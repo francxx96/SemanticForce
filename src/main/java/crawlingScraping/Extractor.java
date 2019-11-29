@@ -78,18 +78,37 @@ public class Extractor {
         return extractedUrl.toString();
     }
     
+    /**
+     * Function for data estraction of articles
+     * 
+     * @param nArticles
+     * @return
+     * @throws Exception 
+     */
     @GET
     @Path("articolob")
     @Produces(MediaType.TEXT_HTML)
     public static ArrayList<Article> getExtractedArticles(int nArticles) throws Exception {
-        articles = crawler.extraction(extractedUrl,nArticles);
+        int listLen = extractedUrl.size();
+        
+        if(listLen < nArticles)
+            nArticles = listLen;
+        
+        System.out.println("---- Articles list ----");
+        int addedArt = 0, j = 0;
+        while(addedArt < nArticles && j < listLen) {
+            String url = extractedUrl.get(j);
+            Article art = getArticle(url);
+            
+            if(!art.getTitle().equals("=== WARNING! ===")) {
+                articles.add(art);
+                addedArt++;
+            }
+            
+            j++;
+        }
+        
+        System.out.println(articles);
         return articles;
-    }
-    
-    @GET
-    @Path("artestrazione/{arti}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public static void getJSONSavatage() throws IOException{
-        OutputHandler.writeArticlesFile(articles);
     }
 }
