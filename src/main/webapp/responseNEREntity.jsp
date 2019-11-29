@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Entity Recognizer "C.G"</title>
+        <title>NER Extraction</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">        
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
@@ -77,7 +77,7 @@
         <span style="font-weight: bold;font-size: 18px; color:blue">Press the button to display them within the text</span> 
         <br>
         <form method="POST" action="responseNERText.jsp" autocomplete="off" >
-            <input type="submit" value="ENTITY CLOUR" style="font-size: 18px">
+            <input type="submit" value="ENTITY COLOUR" style="font-size: 18px">
         </form>
         <br> 
         <%
