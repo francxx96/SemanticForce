@@ -54,14 +54,20 @@
                 text-align:center;
                 background-color:green;
             }
-            a{
+            #footer_text{
                 text-decoration: none;
                 color: black;
             }
-            a:hover {
-                color: black;
+            #footer_text:hover {
+                color: white;
             }
         </style>
+        <script>
+            var hide = function(){
+                    var elem = document.getElementById("inputButton");
+                    elem.style.display="none";
+                };
+        </script>
     </head>
     
     <body>
@@ -85,7 +91,7 @@
             <form method="get" action="responseCrawler.jsp">
                 <tr>
                     <td><label><h3>Insert Web Site URL </h3></label></td>
-                    <td><input name="urla" type="text" ></td>
+                    <td><input name="urla" type="text" required></td>
                 </tr>
                 <div>
                         <h3>Set the crawler</h3>
@@ -95,7 +101,7 @@
                             1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
                         <br>
                 </div>
-                <input type="submit" value="GO!">
+                <input id="inputButton" onclick="hide()" type="submit" value="GO!">
             </form>
         </div>
     </body>

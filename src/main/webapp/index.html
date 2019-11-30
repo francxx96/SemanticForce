@@ -86,6 +86,12 @@
                 color: white;
             }
         </style>
+        <script>
+            var hide = function(){
+                    var elem = document.getElementById("inputButton");
+                    elem.style.display="none";
+                };
+        </script>
     </head>
     
     <body>
@@ -112,7 +118,7 @@
                 <form method="GET" action="responseExtractionArticle.jsp">
                     <tr>
                         <td><label><h3>Insert Web Site URL</h3></label></td>
-                        <td><input name="urle" type="text" ></td>
+                        <td><input name="urle" type="text" required></td>
                     </tr>
                     <div>
                         <h3 class="h_type">Set the crawler</h3>
@@ -123,10 +129,10 @@
                         <br>
                         <tr>
                             <td><label><h3>Articles number</h3></label></td>
-                            <td><input name="nArticles" type="text" ></td>
+                            <td><input name="nArticles" type="number" ></td>
                         </tr>
                     </div>
-                    <input type="submit" value="GO!">
+                    <input id="inputButton" onclick="hide()" type="submit" value="GO!">
                 </form>
             </fieldset>
         </div>            

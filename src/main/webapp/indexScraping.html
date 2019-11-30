@@ -59,15 +59,13 @@
                 text-align:center;
                 background-color:green;
             }
-            
-            a{
+            #footer_text{
                 text-decoration: none;
                 color: black;
             }
-            a:hover {
-                color: black;
+            #footer_text:hover {
+                color: white;
             }
-
         </style>
     
     </head>
@@ -92,7 +90,7 @@
             <form method="get" action="responseScraper.jsp">
                     <tr>
                         <td><label><h3>Insert article URL</h3></label></td>
-                        <td><input name="urli" type="text" ></td>
+                        <td><input name="urli" type="text" required></td>
                     </tr>
                     <input class="bottone" type="submit" value="GO!">
             </form>
