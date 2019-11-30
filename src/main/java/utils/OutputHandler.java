@@ -20,18 +20,24 @@ public class OutputHandler {
                                             + File.separator + "SemanticProject";
     private static final String TXT_URLS = "URLs_list.txt";
     private static final String URLS_PATH  = DIRECTORY + File.separator + TXT_URLS;
+    
     private static final String JSON_ARTICLES = "Articles_list.json";
     private static final String ARTICLES_PATH = DIRECTORY + File.separator + JSON_ARTICLES;
+    
     private static final String JSON_ENTITIES = "Entities_list.json";
     private static final String ENTITIES_PATH = DIRECTORY + File.separator + JSON_ENTITIES;
-
+    
+    private static File urlsFile = new File(URLS_PATH);
+    private static File articlesFile = new File(ARTICLES_PATH);
+    private static File entitiesFile = new File(ENTITIES_PATH);
+    
     public OutputHandler() {
     }
     
     public static ArrayList<String> readUrlsFile() {
         ArrayList<String> urlList = new ArrayList();
         
-        try(BufferedReader br = new BufferedReader(new FileReader(URLS_PATH))) {
+        try(BufferedReader br = new BufferedReader(new FileReader(urlsFile))) {
             String url = br.readLine();
             
             while(url != null) {
@@ -46,7 +52,7 @@ public class OutputHandler {
     }
     
     public static void writeUrlsFile(Set<String> links) {
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(URLS_PATH))) {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(urlsFile))) {
             
             for(String link : links)
                 bw.write(link + "\n");
@@ -56,12 +62,16 @@ public class OutputHandler {
         }
     }
     
+    public static void deleteUrlsFile() {
+        urlsFile.delete();
+    }
+    
     public static ArrayList<Article> readArticlesFile() {
         ArrayList<Article> articlesList = new ArrayList();
         Gson g = new Gson();
         
         try {
-            Article[] articlesArray = g.fromJson(new FileReader(ARTICLES_PATH), Article[].class);
+            Article[] articlesArray = g.fromJson(new FileReader(articlesFile), Article[].class);
             articlesList.addAll(Arrays.asList(articlesArray));
         
         } catch (FileNotFoundException e) {
@@ -75,7 +85,7 @@ public class OutputHandler {
         Gson gson = new Gson();
         String data = gson.toJson(articles);
         
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(ARTICLES_PATH))) {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(articlesFile))) {
             bw.write(data);
         
         } catch (IOException e) {
@@ -83,12 +93,16 @@ public class OutputHandler {
         }
     }
     
+    public static void deleteArticlesFile() {
+        articlesFile.delete();
+    }
+    
     public static ArrayList<Entity> readEntitiesFile() {
         ArrayList<Entity> entitiesList = new ArrayList();
         Gson g = new Gson();
         
         try {
-            Entity[] entitiesArray = g.fromJson(new FileReader(ARTICLES_PATH), Entity[].class);
+            Entity[] entitiesArray = g.fromJson(new FileReader(entitiesFile), Entity[].class);
             entitiesList.addAll(Arrays.asList(entitiesArray));
         
         } catch (FileNotFoundException e) {
@@ -102,11 +116,15 @@ public class OutputHandler {
         Gson gson = new Gson();
         String data = gson.toJson(entities);
         
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(ENTITIES_PATH))) {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(entitiesFile))) {
             bw.write(data);
         
         } catch (IOException e) {
             System.err.println(e);
         }
+    }
+    
+    public static void deleteEntitiesFile() {
+        entitiesFile.delete();
     }
 }
