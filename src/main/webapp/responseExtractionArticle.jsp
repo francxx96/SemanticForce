@@ -1,4 +1,5 @@
 
+<%@page import="crawlingScraping.Crawler"%>
 <%@page import="utils.OutputHandler"%>
 <%@page import="crawlingScraping.Extractor,java.util.ArrayList,crawlingScraping.Article" contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -26,30 +27,38 @@
             }
         </style>
     </head>
+    
     <body style="background-color:#CCFFCC">
         <div Style="text-align:center">
             <h1 Style="color:#006666">Articles extracted from the URLs</h1>
         </div>
         <p Style="text-align:justify">
             <%  
-                String url=request.getParameter("urle");
-                String profa = request.getParameter("Cprofa");
-                String links = Extractor.getXml(url,profa);
-                String nArticles = request.getParameter("nArticles");
-                int numArticles = Integer.parseInt(nArticles);
-                ArrayList<Article> arti = Extractor.getExtractedArticles(numArticles);
-                OutputHandler.writeArticlesFile(arti);
+            String url = request.getParameter("urle");
+            String depth = request.getParameter("Cprofa");
+            Crawler.start(url, depth);
+            String nArticles = request.getParameter("nArticles");
+            int numArticles = Integer.parseInt(nArticles);
+            ArrayList<Article> articles = Extractor.getExtractedArticles(numArticles);
+            OutputHandler.writeArticlesFile(articles);
             %>
             <span>
                 <%
-                    for(Article x : arti){
+                for(Article art : articles) {
                 %>
-                    <h2 style="font-family: verdana;"><%out.write("TITOLO: "+x.getTitle());%></h2>
-                    <h3 style="font-family: verdana;"><%out.write("URL: "+x.getUrl());%></h3>
-                    <pre><span style="font-family: verdana; font-size: 10px; color: #000000"><%out.write("TESTO ARTICOLO: "+x.getText()+"\n");%></span></pre>
-                <%  }
+                
+                <h2 style="font-family: verdana;"><% out.write("TITOLO: " + art.getTitle()); %></h2>
+                <h3 style="font-family: verdana;"><%out.write("URL: " + art.getUrl()); %></h3>
+                <pre>
+                    <span style="font-family: verdana; font-size: 10px; color: #000000">
+                        <% out.write("TESTO ARTICOLO: " + art.getText() + "\n"); %>
+                    </span>
+                </pre>
+                
+                <%
+                }
                 %>
-             </span>
+            </span>
         </p>
         <div style="text-align: center">
             <fieldset>
@@ -60,5 +69,4 @@
             </fieldset>
         </div>
     </body>
-    
 </html>
