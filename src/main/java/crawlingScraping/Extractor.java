@@ -29,7 +29,7 @@ public class Extractor {
     @GET
     @Path("articoloa/{url}")
     @Produces(MediaType.APPLICATION_JSON)
-    public static Article getArticle(@PathParam("url") String url) throws Exception {
+    public static Article getArticle(@PathParam("url") String url) {
         HTMLDocument htmlDoc;
         TextDocument doc;
         Article article = new Article();
@@ -44,12 +44,12 @@ public class Extractor {
             article.setText(text);
             article.setTitle(title);
             
-        } catch (MalformedURLException | SAXException | BoilerpipeProcessingException ex) {
+        } catch (IOException | SAXException | BoilerpipeProcessingException ex) {
             System.out.println(ex);
-        } catch (IOException | IllegalCharsetNameException ex) {
-            System.out.println(ex);
-            System.out.println("Cannot retrieve article from: " + url);
-        }
+            article.setTitle("=== WARNING! ===");
+            article.setText("This page cannot be displayed here!");
+            
+        } 
         
         return article;
     }
@@ -58,13 +58,12 @@ public class Extractor {
      * Function for data estraction of articles
      * 
      * @param nArticles
-     * @return
-     * @throws Exception 
+     * @return 
      */
     @GET
     @Path("articolob")
     @Produces(MediaType.TEXT_HTML)
-    public static ArrayList<Article> getExtractedArticles(int nArticles) throws Exception {
+    public static ArrayList<Article> getExtractedArticles(int nArticles){
         ArrayList<Article> articles = new ArrayList();
         ArrayList<String> extractedUrls= OutputHandler.readUrlsFile();
         int listLen = extractedUrls.size();
