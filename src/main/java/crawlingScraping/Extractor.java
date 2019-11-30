@@ -21,10 +21,7 @@ import org.xml.sax.SAXException;
 import utils.OutputHandler;
 
 @Path("WebEstrazione")
-public class Extractor {
-    static Crawler crawler;
-    static ArrayList<String> extractedUrl = new ArrayList();
-    static ArrayList<Article> articles = new ArrayList();    
+public class Extractor {   
 
     public Extractor() {
     }
@@ -58,27 +55,6 @@ public class Extractor {
     }
     
     /**
-     * Retrieves representation of an instance of EstrazioneWebProva.Estractor
-     * 
-     * @param crawl
-     * @param cDepth
-     * @return an instance of java.lang.String
-     * @throws Exception 
-     */
-    @GET
-    @Path("siti/{crawl}")
-    @Produces(MediaType.APPLICATION_XML)
-    public static String getXml(@PathParam("crawl") String crawl, String cDepth) throws Exception{
-        crawler = new Crawler(crawl, cDepth);
-        
-        System.out.println("---- URL LIST ----");
-        extractedUrl = OutputHandler.readUrlsFile();
-        System.out.println(extractedUrl.toString());
-        
-        return extractedUrl.toString();
-    }
-    
-    /**
      * Function for data estraction of articles
      * 
      * @param nArticles
@@ -89,15 +65,16 @@ public class Extractor {
     @Path("articolob")
     @Produces(MediaType.TEXT_HTML)
     public static ArrayList<Article> getExtractedArticles(int nArticles) throws Exception {
-        int listLen = extractedUrl.size();
+        ArrayList<Article> articles = new ArrayList();
+        ArrayList<String> extractedUrls= OutputHandler.readUrlsFile();
+        int listLen = extractedUrls.size();
         
         if(listLen < nArticles)
             nArticles = listLen;
         
-        System.out.println("---- Articles list ----");
         int addedArt = 0, j = 0;
         while(addedArt < nArticles && j < listLen) {
-            String url = extractedUrl.get(j);
+            String url = extractedUrls.get(j);
             Article art = getArticle(url);
             
             if(!art.getTitle().equals("=== WARNING! ===")) {
@@ -108,7 +85,9 @@ public class Extractor {
             j++;
         }
         
+        System.out.println("=== Articles list: ");
         System.out.println(articles);
+        
         return articles;
     }
 }
