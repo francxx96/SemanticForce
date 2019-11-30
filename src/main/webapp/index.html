@@ -6,19 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
         <style>
-            
             body{
               background-color:#00ffbf;
             }
-            
             .central_section{
                 text-align: center;
             }
-            
             .heading_section{
                 text-align: center;
             }
-            
             .h_type{
                 color:#006666;
             }
@@ -34,29 +30,24 @@
               width: 15%;
               text-align: center;
             }
-
             /* Clear floats (clearfix hack) */
             .index_group:after {
               content: "";
               clear: both;
               display: table;
             }
-
             .index_group a:not(:last-child) {
               border-right: none; /* Prevent double borders */
             }
-
             /* Add a background color on hover */
             .index_group a:hover {
               background-color: #3e8e41;
             }
-
             /* Center display */
             .index_group{ 
                 position: relative; 
                 left:4%;
             }
-
             #page_title{
                 text-align: center;
                 font-family: Verdana;
@@ -75,12 +66,10 @@
                 border-width: 13px;
                 border-radius: 10px 10px 10px 10px;
             }
-
             #description_functionality{
                 text-align: center;
                 font-family: Verdana;
             }
-            
             footer{
                 position:fixed; 
                 width: 100%; 
@@ -89,8 +78,6 @@
                 text-align:center;
                 background-color:green;
             }
-            /*Per Christian -> secondo me è più leggibile il codice e renderlo bianco lo fa essere più visibile
-            nella pagina HTML (Alessio)*/
             #footer_text{
                 text-decoration: none;
                 color: black;
@@ -98,12 +85,12 @@
             #footer_text:hover {
                 color: white;
             }
-
         </style>
     </head>
+    
     <body>
         <div class="header_section">
-            <h1 id="page_title"> SemanticForce</h1>
+            <h1 id="page_title">SemanticForce</h1>
             <div class="index_group">
                 <div>
                     <a href="indexCrawling.html">Crawling</a>
@@ -123,21 +110,29 @@
                     DESCRIZIONE
                 </p>
                 <form method="GET" action="responseExtractionArticle.jsp">
-                    <tr><td><label><h3>Insert Web Site URL </h3></label></td><td><input name="urle" type="text" ></td></tr>
+                    <tr>
+                        <td><label><h3>Insert Web Site URL</h3></label></td>
+                        <td><input name="urle" type="text" ></td>
+                    </tr>
                     <div>
                         <h3 class="h_type">Set the crawler</h3>
-                        <h4 class="h_type">Depth of crawler</h4><input type="range" name="Cprofa" min="1" max="5" step="1">
+                        <h4 class="h_type">Depth of crawler</h4>
+                        <input type="range" name="Cprofa" min="1" max="5" step="1" value="1">
                         <br>
                             1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
                         <br>
-                        <tr><td><label><h3>Articles number </h3></label></td><td><input name="nArticles" type="text" ></td></tr>
+                        <tr>
+                            <td><label><h3>Articles number</h3></label></td>
+                            <td><input name="nArticles" type="text" ></td>
+                        </tr>
                     </div>
                     <input type="submit" value="GO!">
                 </form>
             </fieldset>
         </div>            
     </body>
+    
     <footer>
-	<a id="footer_text" href="questions.html">Hai domande? Consulta la sezione</a>
+	<a id="footer_text" href="questions.html">Questions? Consult this section</a>
     </footer>
 </html>

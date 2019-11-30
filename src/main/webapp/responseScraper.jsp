@@ -16,19 +16,23 @@
             #elementContainer{
                 text-align: justify;
             }
-            
         </style>
     </head>
+    
     <body>
-        <%  String url=request.getParameter("urli");
-            Article articolo = Extractor.getArticle(url);
+        <%  
+        String url=request.getParameter("urli");
+        Article art = Extractor.getArticle(url);
         %>
+        
         <div id="infoContainer">
-            <h2><%out.write(articolo.getTitle());%></h2>
-            <h3><%out.write(articolo.getUrl());%></h3>
+            <h2><%out.write(art.getTitle());%></h2>
+            <h3><%out.write(art.getUrl());%></h3>
         </div>
         <p id="elementContainer">
-        <span style="font-family: verdana; font-size: 12px; color: #000000"><%out.write(articolo.getText());%></span>
+            <span style="font-family: verdana; font-size: 12px; color: #000000">
+                <% out.write(art.getText()); %>
+            </span>
         </p>
     </body>
 </html>

@@ -5,13 +5,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
-		
+        
         <style>
-            
             body{
               background-color:#00ffbf;
             }
-            
             .central_section{
                     text-align: center;
             }
@@ -30,29 +28,24 @@
               width: 15%;
               text-align: center;
             }
-
             /* Clear floats (clearfix hack) */
             .index_group:after {
               content: "";
               clear: both;
               display: table;
             }
-
             .index_group a:not(:last-child) {
               border-right: none; /* Prevent double borders */
             }
-
             /* Add a background color on hover */
             .index_group a:hover {
               background-color: #3e8e41;
             }
-
             /* Center display */
             .index_group{
                 position: relative;
                 left: 4%;
             }
-            
             footer{
                 position:fixed; 
                 width: 100%; 
@@ -61,7 +54,6 @@
                 text-align:center;
                 background-color:green;
             }
-            
             a{
                 text-decoration: none;
                 color: black;
@@ -69,14 +61,12 @@
             a:hover {
                 color: black;
             }
-
-            
         </style>
-                
-    </head>	
+    </head>
+    
     <body>
         <div class="heading_section">
-            <h1 id="page_title"> Craw a Web Page </h1>
+            <h1 id="page_title">Crawl a Web Page</h1>
             <div class="index_group">
                 <div>
                     <a href="index.html">Home</a>
@@ -93,20 +83,25 @@
         </div>
         <div class="central_section">
             <form method="get" action="responseCrawler.jsp">
-                <tr><td><label><h3>Insert Web Site URL </h3></label></td><td><input name="urla" type="text" ></td></tr>
+                <tr>
+                    <td><label><h3>Insert Web Site URL </h3></label></td>
+                    <td><input name="urla" type="text" ></td>
+                </tr>
                 <div>
                         <h3>Set the crawler</h3>
-                        <h4>Depth of crawler</h4><input type="range" name="Cprof" min="1" max="5" step="1">
+                        <h4>Depth of crawler</h4>
+                        <input type="range" name="Cprof" min="1" max="5" step="1" value="1">
                         <br>
-                                1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
+                            1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
                         <br>
                 </div>
                 <input type="submit" value="GO!">
             </form>
         </div>
     </body>
+    
     <footer>
-	<a id="footer_text" href="questions.html">Hai domande? Consulta la sezione</a>
+	<a id="footer_text" href="questions.html">Questions? Consult this section</a>
     </footer>
 </html>
 
