@@ -16,6 +16,13 @@
             #elementContainer{
                 text-align: justify;
             }
+            #elementText{
+                font-family: verdana; 
+                font-size: 12px; 
+            }
+            .separatorLine{
+                border: 2px dashed black;
+            }
         </style>
     </head>
     
@@ -28,9 +35,10 @@
         <div id="infoContainer">
             <h2><%out.write(art.getTitle());%></h2>
             <h3><%out.write(art.getUrl());%></h3>
+            <hr class="separatorLine">
         </div>
         <p id="elementContainer">
-            <span style="font-family: verdana; font-size: 12px; color: #000000">
+            <span id="elementText">
                 <% out.write(art.getText()); %>
             </span>
         </p>

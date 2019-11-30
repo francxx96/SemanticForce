@@ -23,6 +23,10 @@
             #errorContainer{
                 text-align: center;
             }
+            #elementText{
+                font-family: verdana; 
+                font-size: 10px; 
+            }
         </style>
     </head>
     
@@ -58,7 +62,7 @@
                 for(String link : links) {
                 %>
                 
-                <span style="font-family: verdana; font-size: 10px; color: #000000">
+                <span id="elementText">
                     <% out.write(link + "\n"); %>
                 </span>
                 
