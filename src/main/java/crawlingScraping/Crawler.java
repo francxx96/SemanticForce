@@ -17,51 +17,57 @@ import java.util.regex.Pattern;
 import utils.OutputHandler;
 
 public class Crawler extends WebCrawler {
-    private Set<String> allLinks = new HashSet();
-    private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
+    private static Set<String> allLinks = new HashSet();
+    private static final Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
     
-    public Crawler() {
+    private static final String CRAWL_STORAGE = System.getProperty("user.home")  // user directory
+                                                + File.separator + "SemanticProject"
+                                                + File.separator + "crawl"
+                                                + File.separator + "root";
+    
+    public Crawler() {   
     }
     
-    public Crawler(String firstUrl, String crawlerDepth) throws Exception {
-        
-        final String CRAWL_STORAGE = System.getProperty("user.home")  // user directory
-                                    + File.separator + "SemanticProject"
-                                    + File.separator + "crawl"
-                                    + File.separator + "root";
+    public static void start(String firstUrl, String crawlerDepth) throws Exception {
         final int CRAWLER_MAX_DEPTH = Integer.parseInt(crawlerDepth);
         final int CRAWLERS_NUM = 1; // +++ aggiustare passaggio del numero di crawlers +++
         
-        // Instantiate crawler config
+        // Instantiates crawler config
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(CRAWL_STORAGE);
         config.setMaxDepthOfCrawling(CRAWLER_MAX_DEPTH);
         
-        // Instantiate controller for this crawler
+        // Instantiates controller for this crawler
         PageFetcher pageFetcher = new PageFetcher(config);
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
         CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
         
-        // Add seed URLs
-        this.allLinks.add(firstUrl);
+        // Deletes the output file
+        OutputHandler.deleteUrlsFile();
+        
+        // Adds seed URLs
+        allLinks.add(firstUrl);
         controller.addSeed(firstUrl);
         
         // Starts the crawler
         controller.start(Crawler.class, CRAWLERS_NUM);
+
+        System.out.println("=== URLs list: " + allLinks.toString());
+        // Saves URLs in the output file
+        System.out.println("=== Saving URLs list, size: " + allLinks.size() + " ...");
+        OutputHandler.writeUrlsFile(allLinks);
+        System.out.println("=== Saving complete!");
     }
-    
     /**
      * Specify whether the given url should be crawled or not based on
      * the crawling logic. Here URLs with extensions css, js etc will not be visited.
      * 
-     * @param referringPage
      * @param url
      * @return true if the page should be visited
      */
-    @Override
-    public boolean shouldVisit(Page referringPage, WebURL url) {
-        String href = url.getURL().toLowerCase();
+    public static boolean shouldVisit(String url) {
+        String href = url.toLowerCase();
         
         return !FILTERS.matcher(href).matches();
     }
@@ -74,9 +80,9 @@ public class Crawler extends WebCrawler {
      */
     @Override
     public void visit(Page page) {
-        WebURL webUrl = page.getWebURL();
+        String url = page.getWebURL().getURL();
         
-        if(shouldVisit(page, webUrl)) {
+        if(shouldVisit(url)) {
             if(page.getParseData() instanceof HtmlParseData) {
                 
                 HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();      
@@ -85,19 +91,14 @@ public class Crawler extends WebCrawler {
                 Set<WebURL> outLinks = htmlParseData.getOutgoingUrls();
                 
                 for(WebURL link : outLinks)
-                    if(shouldVisit(page, link))
+                    if(shouldVisit(link.getURL()))
                         allLinks.add(link.getURL());
-
-                System.out.println("-------------------------------------");
-                System.out.println("Page URL: " + webUrl.getURL());
-                System.out.println("Text length: " + text.length());
-                System.out.println("Html length: " + html.length());
-                System.out.println("Number of outgoing links: " + outLinks.size());
-                System.out.println("-------------------------------------");
                 
-                System.out.println("=== Saving URL list, size: " + allLinks.size() + " ...");
-                OutputHandler.writeUrlsFile(allLinks);
-                System.out.println("=== Saving complete!");
+                System.out.println("-------------------------------------");
+                System.out.println("Page URL: " + url);
+                System.out.println("Page outgoing links number: " + outLinks.size());
+                System.out.println("Total valid outgoing links: " + allLinks.size());
+                System.out.println("-------------------------------------"); 
             }
         }
     }
