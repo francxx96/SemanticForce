@@ -45,23 +45,7 @@
         </style>
     </head>
     <body>
-        <%
-            ArrayList<Entity> pers= new ArrayList();
-            ArrayList<Entity> org = new ArrayList();
-            ArrayList<Entity> loc = new ArrayList();
-            ArrayList<Entity> perc = new ArrayList();
-            ArrayList<Entity> mon = new ArrayList();
-            ArrayList<Entity> tim = new ArrayList();
-            ArrayList<Entity> dat = new ArrayList();            
-            
-            ArrayList<ArrayList<Entity>> person = new ArrayList();
-            ArrayList<ArrayList<Entity>> organization = new ArrayList();
-            ArrayList<ArrayList<Entity>> location = new ArrayList();
-            ArrayList<ArrayList<Entity>> percentage = new ArrayList();
-            ArrayList<ArrayList<Entity>> money = new ArrayList();
-            ArrayList<ArrayList<Entity>> time = new ArrayList();
-            ArrayList<ArrayList<Entity>> date = new ArrayList();            
-            
+        <%   
             ArrayList<ArrayList<Entity>> entitiesList = new ArrayList();            
 
                     
@@ -70,10 +54,7 @@
             ArrayList< HashMap<Entity,Integer> > articlesEntities = new ArrayList();
             
             for(Article art : articles){
-                HashMap<Entity,Integer> entityFreq = NERresource.getEntities(art.getText());
-                articlesEntities.add(entityFreq);
-                ArrayList<Entity> entityy = NERresource.getEntities();
-                entitiesList.add(entityy);
+                entitiesList.add(NERresource.getEntities(art.getText()));
             }
             
             System.out.println("\n\n\n"+entitiesList.toString());
@@ -83,45 +64,7 @@
         <div>
             <h1 id="title"> Entities in Articles </h1>
             <%
-             for(int i = 0; i<articles.size();i++){
-                 for(Entity currEntity: articlesEntities.get(i).keySet()){
-                    switch (currEntity.getType()) {
-                        case "PERSON":
-                            pers.add(currEntity);
-                            break;
-                        case "LOCATION":
-                            loc.add(currEntity);
-                            break;
-                        case "ORGANIZATION":
-                            org.add(currEntity);
-                            break;
-                        case "DATE":
-                            dat.add(currEntity);
-                            break;
-                        case "TIME":
-                            tim.add(currEntity);
-                            break;
-                        case "PERCENT":
-                            perc.add(currEntity);
-                            break;
-                        case "MONEY":
-                            mon.add(currEntity);
-                            break;
-                        default:
-                            System.err.println("OTHER ENTITY");
-                            break;
-                    }
-                }
-                    person.add(pers);
-                    location.add(loc);
-                    organization.add(org);
-                    date.add(dat);
-                    time.add(tim);
-                    percentage.add(perc);
-                    money.add(mon);
-                }
-             
-             
+        
         for(int l=0; l<articles.size(); l++){       
             ArrayList<Entity> entityList = entitiesList.get(l);
             String docText = articles.get(l).getText();

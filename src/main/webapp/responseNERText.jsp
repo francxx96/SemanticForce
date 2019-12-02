@@ -59,8 +59,8 @@
             </ul>
         <br><br><br><br><br><br>      
         <%
-            ArrayList<Entity> entityList = NERresource.getEntities();
             String docText = NERresource.getDocumentText();
+            ArrayList<Entity> entityList = NERresource.getEntities(docText);
             int i = 0, j = 0;
             Entity currEntity;
             String subText;

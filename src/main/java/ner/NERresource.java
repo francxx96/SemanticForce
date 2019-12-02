@@ -32,13 +32,14 @@ public class NERresource {
     
     @GET
     @Produces(MediaType.APPLICATION_XML)
-    public static ArrayList<Entity> getEntities() {       
+    public static ArrayList<Entity> getEntities(String TextArea) {       
+        entityList = ner.recogniseNamedEntity(TextArea);
         return entityList;
     }
     
     @GET
     @Produces(MediaType.APPLICATION_XML)
-    public static HashMap getEntities(String TextArea) {
+    public static HashMap getFreqEntities(String TextArea) {
         Integer numCurrEntity;
         entityList = ner.recogniseNamedEntity(TextArea);
         entityFreq.clear();

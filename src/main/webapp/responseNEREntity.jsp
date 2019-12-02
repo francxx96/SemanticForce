@@ -67,7 +67,7 @@
             
             request.setCharacterEncoding("UTF-8");
             String textArea = request.getParameter("textArea");
-            HashMap<Entity,Integer> enitityFreq = NERresource.getEntities(textArea);
+            HashMap<Entity,Integer> enitityFreq = NERresource.getFreqEntities(textArea);
             System.out.println(textArea);
         %>
         <div style="text-align: center">
