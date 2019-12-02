@@ -15,50 +15,95 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">        
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
-        <style>
-            ul#menu li:hover{
+        <style type="text/css">
+            body{
+                background-color:#00ffbf;
+            }
+            .heading_section{
+                text-align: center;
+            }
+            #articlesSection{
+                text-align:justify;   
+            }
+            #textStyle{
+                font-family: verdana; 
+                font-size: 10px;
+            }
+            .footerSection{
+                text-align: center;
+            }
+            .separatorLine{
+                border: 2px dashed black;
+            }
+            #title{
+                text-align:center;
+                color: red;
+            }
+                    .index_group a {
+           background-color: #4CAF50; /* Green background */
+           border: 1px solid green; /* Green border */
+           color: white; /* White text */
+           padding: 10px 24px; /* Some padding */
+           cursor: pointer; /* Pointer/hand icon */
+           float: left; /* Float the buttons side by side */
+           text-decoration: none; /* Remove underline */
+           font-family: Verdana;
+           width: 15%;
+           text-align: center;
+        }
+
+         /* Clear floats (clearfix hack) */
+        .index_group:after {
+           content: "";
+           clear: both;
+           display: table;
+        }
+
+         .index_group a:not(:last-child) {
+           border-right: none; /* Prevent double borders */
+        }
+
+         /* Add a background color on hover */
+         .index_group a:hover {
+           background-color: #3e8e41;
+        }
+
+         /* Center display */
+            .index_group{
+                position: relative;
+                left: 40%;
+            }
+            
+            footer{
+                position:fixed; 
+                width: 100%; 
+                bottom:0;
+                left:0;
+                text-align:center;
                 background-color:green;
             }
-
-            ul#menu {
-               font-family: Verdana, sans-serif;
-               font-size: 18px;
-            }
-
-            ul#menu li {
-                background-color: blue;
-                display: inline;
-                margin: 1px;
-                float: left; 
-                border-radius:10px 10px 10px 10px;
-            }
-
-            ul#menu li a {
-                color: #fff;
-                display: block;
-                font-weight: bold;
-                line-height: 40px;
+            
+            a{
                 text-decoration: none;
-                width: 244px;
-                height: 40px;
-                text-align: center;
+                color: black;
+            }
+            a:hover {
+                color: black;
+            }
+            
+            #footer_text{
+                text-decoration: none;
+                color: black;
+            }
+            #footer_text:hover {
+                color: white;
             }
         </style>
     </head>
     
-    <body background="img\Sfondo.png">
-        <a style="font-size: 50px;color:green;position: absolute;right:38%; font-family: Verdana, sans-serif">Entity Recognizer</a>
-        <img src="img\cg.png" style="position: absolute;right :0px;top: 0; margin: 10px; height: 90px; width: 100px">
-        <br><br><br><br>
-            <ul id="menu" style="position:absolute;right:9%">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="indexNER.html">Entity Recognition</a></li>
-                <li><a href="elastic.html">Elasticsearch</a></li>
-                <li><a href="activities.html">Activities</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        <br><br><br><br><br><br>      
-        <%
+            <h1 id="title"> Entities in Article </h1>
+            <br>
+            <%
             String docText = NERresource.getDocumentText();
             ArrayList<Entity> entityList = NERresource.getEntities(docText);
             int i = 0, j = 0;
@@ -152,5 +197,14 @@
             <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
         </div>
+        <br><br>
+        <div class="index_group">
+                <div>
+                    <a href="index.html">Home</a>
+        </div>
+            </div>  
+        <footer>
+	<a id="footer_text" href="questions.html">Questions? Consult this section</a>
+        </footer>
     </body>
 </html>
