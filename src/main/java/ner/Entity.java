@@ -11,6 +11,12 @@ public class Entity {
     public Entity() {
     }
 
+    public Entity(String name, String type, int position) {
+        this.type = type;
+        this.name = name;
+        this.position = position;
+    }
+
     
     public String getType() {
         return type;
