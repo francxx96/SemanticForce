@@ -41,6 +41,7 @@
             }
             #title{
                 text-align:center;
+                color: red;
             }
         </style>
     </head>
@@ -74,7 +75,7 @@
             String subText;
             %>
                 <h2 style="color:black"><%out.write(title);%></h2>
-                <br><br><br>
+                <br>
             <%
             while(i < docText.length()){
                 if(j < entityList.size()){
@@ -136,23 +137,23 @@
                     i = docText.length();
                 }   
             }
-                %>
-                    <hr class="separatorLine">               
-               <%
+            %>
+            <br><br><br>
+            <div style="text-align: center">
+                <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
+                <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
+                <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
+                <span style="background-color:blue;font-weight:bold">Date</span>&nbsp;&nbsp;&nbsp;
+                <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
+                <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
+                <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
+            </div>   
+                
+            <hr class="separatorLine">               
+            <%
         }
 
-            
             %>
-        </div>
-        <br><br><br>
-        <div style="text-align: center">
-            <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:blue;font-weight:bold">Date</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
         </div>
     </body>
 </html>
