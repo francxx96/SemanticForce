@@ -58,6 +58,6 @@ public class CrawlerTest {
         assertTrue(shouldVisit(validUrl1));
         assertTrue(shouldVisit(validUrl2));
         assertFalse(shouldVisit(invalidUrl1));
-        //assertFalse(shouldVisit(invalidUrl2));
+        assertFalse(shouldVisit(invalidUrl2));
     }
 }
