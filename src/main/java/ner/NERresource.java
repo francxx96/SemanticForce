@@ -26,16 +26,16 @@ public class NERresource {
         NERresource.documentText = documentText;
     }
     
-
-    public static ArrayList<Entity> getEntities(String TextArea) {       
-        entityList = ner.recogniseNamedEntity(TextArea);
+    public static ArrayList<Entity> getEntities(String text) {       
+        entityList = ner.recogniseNamedEntity(text);
+        NERresource.setDocumentText(text);
         return entityList;
     }
-    
 
-    public static HashMap getFreqEntities(String TextArea) {
+    public static HashMap getFreqEntities(String text) {
         Integer numCurrEntity;
-        entityList = ner.recogniseNamedEntity(TextArea);
+        entityList = ner.recogniseNamedEntity(text);
+        NERresource.setDocumentText(text);
         entityFreq.clear();
 
         for(Entity currEntity: entityList){

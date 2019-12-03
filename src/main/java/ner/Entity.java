@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Entity {
     
-    private String type, name;
+    private String name, type;
     private int position;
     private ArrayList<String> keyWords;
     
@@ -14,8 +14,8 @@ public class Entity {
     }
 
     public Entity(String name, String type, int position) {
-        this.type = type;
         this.name = name;
+        this.type = type;
         this.position = position;
         this.keyWords = new ArrayList<>();
     }
@@ -44,7 +44,7 @@ public class Entity {
     public void setPosition(int position) {
         this.position = position;
     }
-
+    
     public ArrayList<String> getKeyWords() {
         return keyWords;
     }
@@ -85,7 +85,7 @@ public class Entity {
 
     @Override
     public String toString() {
-        return "Name:" + name + " - Type:" + type + " - Position:" +position + "\n";
+        return "Name:"+name + "\t- Type:"+type + "\t- Position:"+position + "\t- KeyWords:"+keyWords + "\n";
     }
     
 }

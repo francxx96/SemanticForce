@@ -62,17 +62,16 @@ public class StanfordNLP {
                     if (!currEntityType.equals(namedEntity)) { //"O".equals(namedEntity) 
                         inEntity = false; 
                         Entity entity = new Entity(currEntity, currEntityType, offset);
-                        System.out.println("\n\nExtracted " + entity.getName() + "\tType=" + entity.getType());
                         
                         Set<IndexedWord> parents = semanticGraph.getParents(new IndexedWord(token));
-                        System.out.println("Parents: " + parents);
                         Set<IndexedWord> children = semanticGraph.getChildren(new IndexedWord(token));
-                        System.out.println("Children: " + children);
+                        //System.out.println("Parents: " + parents + "\tChildren: " + children);
                         
                         ArrayList<String> relatives = getEntityRelated(parents);
                         relatives.addAll(getEntityRelated(children));
                         entity.setKeyWords(relatives);
                         
+                        System.out.println("\n\nExtracted: " + entity);
                         entityList.add(entity);
                         //System.out.println("entityLen="+entityLength+"\toffset="+offset+"\tpos="+(offset-entityLength));                   
                     }else{
@@ -90,8 +89,6 @@ public class StanfordNLP {
                 }
             }
         }
-        
-        NERresource.setDocumentText(doc);
         //System.out.println(entityList.toString());    
         return entityList;                          
     }

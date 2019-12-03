@@ -58,14 +58,14 @@
     
     <body>
         <%   
-            ArrayList<ArrayList<Entity>> entitiesList = new ArrayList();
+            ArrayList<ArrayList<Entity>> entityArticleList = new ArrayList();
             ArrayList<Article> articles = OutputHandler.readArticlesFile();
             
             for(Article art : articles){
-                entitiesList.add(NERresource.getEntities(art.getText()));
+                entityArticleList.add(NERresource.getEntities(art.getText()));
             }
             
-            System.out.println("\n\n\n"+entitiesList.toString());
+            System.out.println("\n\n\n"+entityArticleList.toString());
 
         %>
         
@@ -74,7 +74,7 @@
             <%
         
         for(int l=0; l<articles.size(); l++){       
-            ArrayList<Entity> entityList = entitiesList.get(l);
+            ArrayList<Entity> entityList = entityArticleList.get(l);
             String docText = articles.get(l).getText();
             String title = articles.get(l).getTitle();
             Entity currEntity;
@@ -147,6 +147,11 @@
                     i = docText.length();
                 }   
             }
+            
+            OutputHandler.writeEntityArticleFile(entityArticleList);
+            
+            //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
+
             %>
             <br><br><br>
             <div style="text-align: center">

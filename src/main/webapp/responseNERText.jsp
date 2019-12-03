@@ -1,4 +1,5 @@
 
+<%@page import="utils.OutputHandler"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.io.BufferedWriter"%>
 <%@page import="java.io.FileWriter"%>
@@ -175,20 +176,7 @@
             }   
         }
 
-        Gson gson = new Gson();
-        String userJson = gson.toJson(entityList);
-
-        FileWriter w;
-        BufferedWriter bw;
-        try {
-            w = new FileWriter("../Source Packages/text.json");
-            bw=new BufferedWriter(w);
-            bw.write(userJson);
-            bw.flush();
-            bw.close();            
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+        OutputHandler.writeEntitiesFile(entityList);
 
         %>
         <br><br><br>
