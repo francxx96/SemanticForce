@@ -11,7 +11,7 @@
     <head>
         <title>NER Extraction</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
         <style type="text/css">
             body{
@@ -80,9 +80,11 @@
             ArrayList<Entity> mon = new ArrayList();
             ArrayList<Entity> tim = new ArrayList();
             ArrayList<Entity> dat = new ArrayList();            
+            ArrayList<Entity> num = new ArrayList();  
             
             request.setCharacterEncoding("UTF-8");
             String textArea = request.getParameter("textArea");
+            //System.out.println("NEREntity: \n" + textArea);
             HashMap<Entity,Integer> enitityFreq = NERresource.getFreqEntities(textArea);
             System.out.println(textArea);
        
@@ -109,6 +111,9 @@
                     case "MONEY":
                         mon.add(currEntity);
                         break;
+                    case "NUMBER":
+                        num.add(currEntity);
+                        break;
                     default:
                         System.err.println("OTHER ENTITY");
                         break;
@@ -123,10 +128,13 @@
                 <ul style="list-style-type:disc;">
             <%
             for(Entity currEntity: pers){
-                %> <li><%out.write("Name: " + currEntity.getName() + " - Occurrences: " + enitityFreq.get(currEntity));%></li> <%
-            }    
-        }    
-            %> </ul> <%
+                %> <li><%out.write("Name: " + currEntity.getName() + 
+                        "\t- Occurrences: " + enitityFreq.get(currEntity) +
+                        "\t- Basic Dependencies: " + currEntity.getKeyWords());%></li> <%
+            }
+                %> </ul> <%
+        } 
+
         if(!loc.isEmpty()){
             %>
                 <br> 
@@ -135,10 +143,12 @@
                 <ul style="list-style-type:disc;">
             <%
             for(Entity currEntity: loc){
-                %> <li><%out.write("Name: " + currEntity.getName() + "\t- Occurrences: " + enitityFreq.get(currEntity));%></li> <%
-            }    
+                %> <li><%out.write("Name: " + currEntity.getName() + 
+                        "\t- Occurrences: " + enitityFreq.get(currEntity) +
+                        "\t- Basic Dependencies: " + currEntity.getKeyWords());%></li> <%
+            }  
+                %> </ul> <%
         }    
-            %> </ul> <%
                 
         if(!org.isEmpty()){
             %>
@@ -148,10 +158,12 @@
                 <ul style="list-style-type:disc;">
             <%
             for(Entity currEntity: org){
-                %> <li><%out.write("Name: " + currEntity.getName() + "\t- Occurrences: " + enitityFreq.get(currEntity));%></li> <%
+                %> <li><%out.write("Name: " + currEntity.getName() + 
+                        "\t- Occurrences: " + enitityFreq.get(currEntity) +
+                        "\t- Basic Dependencies: " + currEntity.getKeyWords());%></li> <%
             }    
+                %> </ul> <% 
         }    
-            %> </ul> <%
                 
         if(!dat.isEmpty()){
             %>
@@ -161,10 +173,12 @@
                 <ul style="list-style-type:disc;">
             <%
             for(Entity currEntity: dat){
-                %> <li><%out.write("Name: " + currEntity.getName() + "\t- Occurrences: " + enitityFreq.get(currEntity));%></li> <%
-            }    
+                %> <li><%out.write("Name: " + currEntity.getName() + 
+                        "\t- Occurrences: " + enitityFreq.get(currEntity) +
+                        "\t- Basic Dependencies: " + currEntity.getKeyWords());%></li> <%
+            }
+                %> </ul> <%
         }    
-            %> </ul> <%
                 
         if(!tim.isEmpty()){
             %>
@@ -174,11 +188,13 @@
                 <ul style="list-style-type:disc;">
             <%
             for(Entity currEntity: tim){
-                %> <li><%out.write("Name: " + currEntity.getName() + "\t- Occurrences: " + enitityFreq.get(currEntity));%></li> <%
-            }    
+                %> <li><%out.write("Name: " + currEntity.getName() + 
+                        "\t- Occurrences: " + enitityFreq.get(currEntity) +
+                        "\t- Basic Dependencies: " + currEntity.getKeyWords());%></li> <%
+            }
+                %> </ul> <%
         }    
-            %> </ul> <%
-                
+         
         if(!perc.isEmpty()){
             %>
                 <br> 
@@ -187,10 +203,12 @@
                 <ul style="list-style-type:disc;">
             <%
             for(Entity currEntity: perc){
-                %> <li><%out.write("Name: " + currEntity.getName() + "\t- Occurrences: " + enitityFreq.get(currEntity));%></li> <%
-            }    
+                %> <li><%out.write("Name: " + currEntity.getName() + 
+                        "\t- Occurrences: " + enitityFreq.get(currEntity) +
+                        "\t- Basic Dependencies: " + currEntity.getKeyWords());%></li> <%
+            }
+                %> </ul> <%
         }    
-            %> </ul> <%
                 
         if(!mon.isEmpty()){
             %>
@@ -200,16 +218,32 @@
                 <ul style="list-style-type:disc;">
             <%
             for(Entity currEntity: mon){
-                %> <li><%out.write("Name: " + currEntity.getName() + "\t- Occurrences: " + enitityFreq.get(currEntity));%></li> <%
-            }    
+                %> <li><%out.write("Name: " + currEntity.getName() + 
+                        "\t- Occurrences: " + enitityFreq.get(currEntity) +
+                        "\t- Basic Dependencies: " + currEntity.getKeyWords());%></li> <%
+            }
+                %> </ul> <%
+        }    
+            
+        if(!num.isEmpty()){
+            %>
+                <br> 
+                <a style="color:pink; font-size:18px"> NUMBER </a> 
+                <br>
+                <ul style="list-style-type:disc;">
+            <%
+            for(Entity currEntity: num){
+                %> <li><%out.write("Name: " + currEntity.getName() + 
+                        "\t- Occurrences: " + enitityFreq.get(currEntity) +
+                        "\t- Basic Dependencies: " + currEntity.getKeyWords());%></li> <%
+            }  
+                %> </ul> <%
         }    
             %> 
-            </ul>
             <br><br>
             <div class="footer_section">
                 <span id="footer_message">Press the button to display them within the text</span> 
                 <br>
-
                 <form method="POST" action="responseNERText.jsp" autocomplete="off" >
                     <input type="submit" value="ENTITY">
                 </form>

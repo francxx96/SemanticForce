@@ -22,7 +22,6 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(crawlingScraping.Extractor.class);
-        resources.add(ner.NERresource.class);
     }
     
 }

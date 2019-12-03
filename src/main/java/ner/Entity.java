@@ -1,12 +1,14 @@
 
 package ner;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Entity {
     
     private String type, name;
     private int position;
+    private ArrayList<String> keyWords;
     
     public Entity() {
     }
@@ -15,6 +17,7 @@ public class Entity {
         this.type = type;
         this.name = name;
         this.position = position;
+        this.keyWords = new ArrayList<>();
     }
 
     
@@ -42,6 +45,15 @@ public class Entity {
         this.position = position;
     }
 
+    public ArrayList<String> getKeyWords() {
+        return keyWords;
+    }
+
+    public void setKeyWords(ArrayList<String> keyWords) {
+        this.keyWords = keyWords;
+    }    
+
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -75,4 +87,5 @@ public class Entity {
     public String toString() {
         return "Name:" + name + " - Type:" + type + " - Position:" +position + "\n";
     }
+    
 }

@@ -11,9 +11,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Entity Recognizer "C.G"</title>
+        <title>Entity Recognizer</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
         <link rel="icon" href="img\cg.png" type="image/x-icon"/>
         <style type="text/css">
             body{
@@ -39,41 +39,40 @@
                 text-align:center;
                 color: red;
             }
-                    .index_group a {
-           background-color: #4CAF50; /* Green background */
-           border: 1px solid green; /* Green border */
-           color: white; /* White text */
-           padding: 10px 24px; /* Some padding */
-           cursor: pointer; /* Pointer/hand icon */
-           float: left; /* Float the buttons side by side */
-           text-decoration: none; /* Remove underline */
-           font-family: Verdana;
-           width: 15%;
-           text-align: center;
-        }
+            .index_group a {
+                background-color: #4CAF50; /* Green background */
+                border: 1px solid green; /* Green border */
+                color: white; /* White text */
+                padding: 10px 24px; /* Some padding */
+                cursor: pointer; /* Pointer/hand icon */
+                float: left; /* Float the buttons side by side */
+                text-decoration: none; /* Remove underline */
+                font-family: Verdana;
+                width: 15%;
+                text-align: center;
+            }
 
-         /* Clear floats (clearfix hack) */
-        .index_group:after {
-           content: "";
-           clear: both;
-           display: table;
-        }
+              /* Clear floats (clearfix hack) */
+            .index_group:after {
+                content: "";
+                clear: both;
+                display: table;
+            }
 
-         .index_group a:not(:last-child) {
-           border-right: none; /* Prevent double borders */
-        }
+            .index_group a:not(:last-child) {
+                border-right: none; /* Prevent double borders */
+            }
 
-         /* Add a background color on hover */
-         .index_group a:hover {
-           background-color: #3e8e41;
-        }
+              /* Add a background color on hover */
+            .index_group a:hover {
+                background-color: #3e8e41;
+            }
 
-         /* Center display */
+             /* Center display */
             .index_group{
                 position: relative;
                 left: 40%;
             }
-            
             footer{
                 position:fixed; 
                 width: 100%; 
@@ -82,7 +81,6 @@
                 text-align:center;
                 background-color:green;
             }
-            
             a{
                 text-decoration: none;
                 color: black;
@@ -90,7 +88,6 @@
             a:hover {
                 color: black;
             }
-            
             #footer_text{
                 text-decoration: none;
                 color: black;
@@ -101,92 +98,99 @@
         </style>
     </head>
     
-            <h1 id="title"> Entities in Article </h1>
-            <br>
-            <%
-            String docText = NERresource.getDocumentText();
-            ArrayList<Entity> entityList = NERresource.getEntities(docText);
-            int i = 0, j = 0;
-            Entity currEntity;
-            String subText;
-            
-            while(i < docText.length()){
-                if(j < entityList.size()){
-                    currEntity = entityList.get(j);
-                    System.out.println("ENTITY name="+currEntity.getName()+"*\toffset="+currEntity.getPosition()+"\ttype="+currEntity.getType());
-                    //System.out.println("i="+ i + "\tj="+ j + "\tdocTextLen="+ docText.length()+ "\tseaLen="+ entityList.size() );
-                    subText = docText.substring(i, currEntity.getPosition()); // get another part of text before the new entity 
-                    System.out.println("subText="+subText+"*****************");
-                    %>
-                        <span style="color:black"><%out.write(subText);%></span>
-                    <%
-                    switch (currEntity.getType()) {
-                        case "PERSON":
-                            %>
-                                <span style="color:red; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "LOCATION":
-                            %>
-                                <span style="color:green; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "ORGANIZATION":
-                            %>
-                                <span style="color:orange; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "DATE":
-                            %>
-                                <span style="color:blue; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "TIME":
-                            %>
-                                <span style="color:gold; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "PERCENT":
-                            %>
-                                <span style="color:brown; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "MONEY":
-                            %>
-                                <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        default:
-                            System.err.println("ERROR: OTHER ENTITY");
-                            break;
-                    }    
-                    i = currEntity.getPosition() + currEntity.getName().length();
-                    j++;
-                } else{
-                    subText = docText.substring(i);
-                    %>
-                        <span style="color:black"><%out.write(subText);%></span>
-                    <%
-                    i = docText.length();
-                }   
-            }
+    <body>
+        <h1 id="title"> Entities in Article </h1>
+        <br>
+        <%
+        String docText = NERresource.getDocumentText();
+        //System.out.println("NERText: \n" + docText);
+        ArrayList<Entity> entityList = NERresource.getEntities(docText);
+        Entity currEntity;
+        String subText;
+        int i = 0, j = 0;
 
-            Gson gson = new Gson();
-            String userJson = gson.toJson(entityList);
-           
-            FileWriter w;
-            BufferedWriter bw;
-            try {
-                w = new FileWriter("../Source Packages/text.json");
-                bw=new BufferedWriter(w);
-                bw.write(userJson);
-                bw.flush();
-                bw.close();            
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }
+        while(i < docText.length()){
+            if(j < entityList.size()){
+                currEntity = entityList.get(j);
+                //System.out.println("ENTITY name="+currEntity.getName()+"*\toffset="+currEntity.getPosition()+"\ttype="+currEntity.getType());
+                //System.out.println("i="+ i + "\tj="+ j + "\tdocTextLen="+ docText.length()+ "\tseaLen="+ entityList.size() );
+                subText = docText.substring(i, currEntity.getPosition()); // get another part of text before the new entity 
+                //System.out.println("subText="+subText+"*****************");
+                %>
+                    <span style="color:black"><%out.write(subText);%></span>
+                <%
+                switch (currEntity.getType()) {
+                    case "PERSON":
+                        %>
+                            <span style="color:red; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "LOCATION":
+                        %>
+                            <span style="color:green; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "ORGANIZATION":
+                        %>
+                            <span style="color:orange; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "DATE":
+                        %>
+                            <span style="color:blue; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "TIME":
+                        %>
+                            <span style="color:gold; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "PERCENT":
+                        %>
+                            <span style="color:brown; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "MONEY":
+                        %>
+                            <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "NUMBER":
+                        %>
+                            <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    default:
+                        System.err.println("ERROR: OTHER ENTITY in responseNERText.jsp");
+                        break;
+                }    
+                i = currEntity.getPosition() + currEntity.getName().length();
+                j++;
+            } else{
+                subText = docText.substring(i);
+                %>
+                    <span style="color:black"><%out.write(subText);%></span>
+                <%
+                i = docText.length();
+            }   
+        }
 
-            %>
+        Gson gson = new Gson();
+        String userJson = gson.toJson(entityList);
+
+        FileWriter w;
+        BufferedWriter bw;
+        try {
+            w = new FileWriter("../Source Packages/text.json");
+            bw=new BufferedWriter(w);
+            bw.write(userJson);
+            bw.flush();
+            bw.close();            
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+
+        %>
         <br><br><br>
         <div style="text-align: center">
             <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
@@ -196,15 +200,19 @@
             <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
         </div>
         <br><br>
         <div class="index_group">
-                <div>
-                    <a href="index.html">Home</a>
-        </div>
-            </div>  
+            <div>
+                <a href="index.html">Home</a>
+            </div>
+        </div> 
+        
         <footer>
 	<a id="footer_text" href="questions.html">Questions? Consult this section</a>
         </footer>
+        
     </body>
+    
 </html>

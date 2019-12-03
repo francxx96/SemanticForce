@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Extracted Articles</title>
         <link rel="icon" href="img\tabLogo.png" type="image/x-icon"/>
         <style type="text/css">
@@ -51,17 +51,16 @@
             <span>
                 <%
                 for(Article art : articles) {
-                %>
-                
-                <h2><% out.write("TITOLO: " + art.getTitle()); %></h2>
-                <h3><%out.write("URL: " + art.getUrl()); %></h3>
-                <pre>
-                    <span id="textStyle">
-                        <% out.write("TESTO ARTICOLO: " + art.getText() + "\n"); %>
-                    </span>
-                </pre>
-                <hr class="separatorLine">
-                <%
+                    %>
+                    <h2> <% out.write("TITOLO: " + art.getTitle()); %> </h2>
+                    <h3> <%out.write("URL: " + art.getUrl()); %> </h3>
+                    <pre>
+                        <span id="textStyle">
+                            <% out.write("TESTO ARTICOLO: " + art.getText() + "\n"); %>
+                        </span>
+                    </pre>
+                    <hr class="separatorLine" />    
+                    <%
                 }
                 %>
             </span>

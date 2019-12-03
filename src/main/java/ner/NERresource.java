@@ -3,12 +3,8 @@ package ner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.ws.rs.Produces;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.MediaType;
 
-@Path("utente")
+
 public class NERresource {
     private static String documentText = "";
     private static StanfordNLP ner = new StanfordNLP();
@@ -30,15 +26,13 @@ public class NERresource {
         NERresource.documentText = documentText;
     }
     
-    @GET
-    @Produces(MediaType.APPLICATION_XML)
+
     public static ArrayList<Entity> getEntities(String TextArea) {       
         entityList = ner.recogniseNamedEntity(TextArea);
         return entityList;
     }
     
-    @GET
-    @Produces(MediaType.APPLICATION_XML)
+
     public static HashMap getFreqEntities(String TextArea) {
         Integer numCurrEntity;
         entityList = ner.recogniseNamedEntity(TextArea);
