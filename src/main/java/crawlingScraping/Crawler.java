@@ -19,6 +19,8 @@ import utils.OutputHandler;
 public class Crawler extends WebCrawler {
     private static Set<String> allLinks = new HashSet();
     private static final Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
+    private static final Pattern FILTERSURL = Pattern.compile("^(https?:\\/\\/)?(www){1}\\.(thetimes|theguardian|independent|standard|thesun|express|dailymail|mirror|metro)\\.([a-z\\.]{2,6})([\\/\\w \\.-])\\/?");
+    
     
     private static final String CRAWL_STORAGE = System.getProperty("user.home")  // user directory
                                                 + File.separator + "SemanticProject"
@@ -68,8 +70,14 @@ public class Crawler extends WebCrawler {
      */
     public static boolean shouldVisit(String url) {
         String href = url.toLowerCase();
-        
-        return !FILTERS.matcher(href).matches();
+        /*
+        System.out.println("=== URL === " + url);
+        System.out.println("=== VALIDATE EXTENCTION === " + !FILTERS.matcher(href).matches());
+        System.out.println("=== VALIDATE PAGE === " + FILTERSURL.matcher(href).matches());
+        System.out.println("=== REGEX === " + FILTERSURL);
+        System.out.println("=== FINAL === " + (!FILTERS.matcher(href).matches() && FILTERSURL.matcher(href).find()));
+        */
+        return (!FILTERS.matcher(href).matches() && FILTERSURL.matcher(href).find());
     }
 
     /**

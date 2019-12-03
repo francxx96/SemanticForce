@@ -63,10 +63,27 @@
             }
         </style>
         <script>
-            var hide = function(){
-                    var elem = document.getElementById("inputButton");
+            var validate = function(){
+                var url = document.getElementById("url").value;
+                var valid_url = /^(https?:\/\/)?(www){1}\.(thetimes|theguardian|independent|standard|thesun|express|dailymail|mirror|metro)\.([a-z\.]{2,6})([\/\w \.-])\/?/g;
+                var invalid_page = /.*(\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))/g;
+                var result_url = valid_url.test(url);
+                var result_page = invalid_page.test(url);
+                var elem = document.getElementById("inputButton");
+                if(!result_url == true){
+                    window.alert("We are sorry. You have entered an invalid URL. Try again.");
+                    return false;
+                }else if(result_page == true){
+                    window.alert("We are sorry. You have entered an invalid URL. Try again.");
+                    return false;
+                }else if(url == ""){
+                    document.getElementById("url").focus();
+                    return false;
+                }else{
                     elem.style.display="none";
-                };
+                    return true;
+                }
+            }
         </script>
     </head>
     
@@ -88,20 +105,20 @@
             <h4 id="text_description"> --------- INSERIRE DESCRIZIONE DI QUESTA SEZIONE --------------- </h4>
         </div>
         <div class="central_section">
-            <form method="get" action="responseCrawler.jsp">
+            <form method="get" action="responseCrawler.jsp" name="goToExtraction" onsubmit="return validate();">
                 <tr>
                     <td><label><h3>Insert Web Site URL </h3></label></td>
-                    <td><input name="urla" type="text" required></td>
+                    <td><input id="url" name="urla" type="text" required></td>
                 </tr>
                 <div>
                         <h3>Set the crawler</h3>
                         <h4>Depth of crawler</h4>
-                        <input type="range" name="Cprof" min="1" max="5" step="1" value="1">
+                        <input type="range" name="Cprof" min="0" max="4" step="1" value="0">
                         <br>
                             1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
                         <br>
                 </div>
-                <input id="inputButton" onclick="hide()" type="submit" value="GO!">
+                <input id="inputButton" onclick="validate()" type="submit" value="GO!">
             </form>
         </div>
     </body>
