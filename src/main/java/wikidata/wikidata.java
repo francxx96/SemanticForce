@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 
 public class wikidata {
     
-    public static String get(String urlToRead) throws Exception {
+    public static String getwael(String urlToRead) throws Exception {
         StringBuilder result = new StringBuilder();
         URL url = new URL(urlToRead);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -38,7 +38,7 @@ public class wikidata {
     
     public static ArrayList<String[]> executeGet(String itemLabel) throws Exception{
         JSONParser parser = new JSONParser();
-        String wikidatajson = get(enJsonForSearch(itemLabel));
+        String wikidatajson = getwael(enJsonForSearch(itemLabel));
         JSONObject jsonObject = (JSONObject) parser.parse(wikidatajson);
         System.out.println("JsonObject "+jsonObject + "\n");
         JSONArray list = new JSONArray();
