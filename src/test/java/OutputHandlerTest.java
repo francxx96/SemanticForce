@@ -49,6 +49,7 @@ public class OutputHandlerTest {
     //
     // @Test
     // public void hello() {}
+    
     @Test
     public void readTest () {
         articles = OutputHandler.readArticlesFile();
