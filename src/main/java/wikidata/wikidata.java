@@ -44,7 +44,7 @@ public class wikidata {
         JSONArray list = new JSONArray();
         list = (JSONArray) parser.parse(jsonObject.get("search").toString());
         ArrayList<String[]> returnedList = new ArrayList<String[]>();
-        System.out.println("Sono arrivato qua ");
+        
         int i = 0;
         
          for(i=0;i<list.size();i++){
@@ -52,9 +52,10 @@ public class wikidata {
             jsonObject = (JSONObject) parser.parse(item);
             String label = jsonObject.get("label").toString();
             String url = jsonObject.get("url").toString();
+            String description = jsonObject.get("description").toString();
             
    
-            String [] container = {label,url};
+            String [] container = {label,url,description};
            
             returnedList.add(container);
             
