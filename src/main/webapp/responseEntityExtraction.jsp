@@ -128,13 +128,11 @@
                                 <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
                             <%
                             break;
-                        case "NUMBER":
-                            %>
-                                <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
                         default:
                             System.err.println("ERROR: OTHER ENTITY");
+                            %>
+                                <span style="color:black"><%out.write(currEntity.getName());%></span>
+                            <%
                             break;
                     }    
                     i = currEntity.getEndPos();
@@ -149,35 +147,28 @@
             }
             
             OutputHandler.writeEntityArticleFile(entityArticleList);
+            
             //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
 
             %>
             <br><br><br>
-            <div style="text-align: center">
-                <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:blue;font-weight:bold">Date</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
-            </div>   
-                
             <hr class="separatorLine">               
         <%
         }
         %>
         </div>
-        
         <br>
-        <form method="GET" action="wikidataInformation.jsp" autocomplete="off" >
-            <input type="submit" value="WIKIDATA">
-        </form>
-        <br>
-        
         <footer>
-            <a id="footer_text" href="questions.html">Questions? Consult this section</a>
+	<div id="footer_bar">
+            <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:blue;font-weight:bold">Date</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
+        </div>
         </footer>
     </body>
 

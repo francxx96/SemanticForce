@@ -25,8 +25,13 @@
                 font-family: verdana; 
                 font-size: 10px;
             }
-            .footerSection{
-                text-align: center;
+            footer{
+                position:fixed; 
+                width: 100%; 
+                bottom:0;
+                left:0;
+                text-align:center;
+                background-color:#556b2f;        
             }
             .separatorLine{
                 border: 2px dashed black;
@@ -65,11 +70,12 @@
                 %>
             </span>
         </p>
-        <div class="footerSection">
-            <h3>Go to NER</h3>
+        <footer>
+        <div>
             <form method="GET" action="responseEntityExtraction.jsp">
-                <input class="bottone" type="submit" value="GO!">
+                <input class="bottone" type="submit" value="GO TO NER!">
             </form>
         </div>
+        </footer>
     </body>
 </html>

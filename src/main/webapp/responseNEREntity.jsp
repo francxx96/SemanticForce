@@ -41,7 +41,7 @@
             }
             #title{
                 text-align:center;
-                color: red;
+                color: black;
             }
             a{
                 text-decoration: none;
@@ -57,14 +57,6 @@
                 left:0;
                 text-align:center;
                 background-color:green;
-            }
-            
-            #footer_text{
-                text-decoration: none;
-                color: black;
-            }
-            #footer_text:hover {
-                color: white;
             }
         </style>
     </head>
@@ -86,7 +78,7 @@
             String textArea = request.getParameter("textArea");
             //System.out.println("NEREntity: \n" + textArea);
             HashMap<Entity,Integer> enitityFreq = NERresource.getFreqEntities(textArea);
-            System.out.println(textArea);
+            //System.out.println(textArea);
        
             for(Entity currEntity: enitityFreq.keySet()){
                 switch (currEntity.getType()) {
@@ -249,8 +241,5 @@
                 </form>
                 <br>
             </div>
-        <footer>
-            <a id="footer_text" href="questions.html">Questions? Consult this section</a>
-        </footer>
     </body>
 </html>

@@ -89,10 +89,10 @@
         <script>
             var validate = function(){
                 var url = document.getElementById("url").value;
-                var valid_url = /^(https?:\/\/)?(www){1}\.(thetimes|theguardian|independent|standard|thesun|express|dailymail|mirror|metro)\.([a-z\.]{2,6})([\/\w \.-])\/?/g;
+                var valid_url = /^(https?:\/\/)?(www){1}\.(thetimes|theguardian|independent|standard|thesun|express|dailymail|mirror|metro)(\.[a-z]+)+(\/.*)*/g;
                 var nArticle = document.getElementById("numArticles").value;
                 var result_url = valid_url.test(url);
-                var invalid_page = /.*(\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))/g;
+                var invalid_page = /.*(\.(css|js|gif|jpg|png|mp3|mp4|zip|gz)).*/g;
                 var result_page = invalid_page.test(url);
                 var elem = document.getElementById("inputButton");
                 var elem2 = document.getElementById("menuBar");
