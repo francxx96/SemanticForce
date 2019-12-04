@@ -1,7 +1,10 @@
 
 <%@page import="crawlingScraping.Crawler"%>
 <%@page import="utils.OutputHandler"%>
-<%@page import="crawlingScraping.Extractor,java.util.ArrayList,crawlingScraping.Article" contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="crawlingScraping.Extractor"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="crawlingScraping.Article"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -52,6 +55,7 @@
             int numArticles = Integer.parseInt(nArticles);
             ArrayList<Article> articles = Extractor.getExtractedArticles(numArticles);
             OutputHandler.writeArticlesFile(articles);
+            System.out.println("responseExtractionArticle file saved");
             %>
             <span>
                 <%
