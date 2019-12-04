@@ -65,9 +65,6 @@
             for(Article art : articles){
                 entityArticleList.add(NERresource.getEntities(art.getText()));
             }
-            
-            System.out.println("\n\n\n"+entityArticleList.toString());
-
         %>
         
         <div>
@@ -80,7 +77,7 @@
             String title = articles.get(l).getTitle();
             Entity currEntity;
             String subText;
-            int i = 0, j = 0;
+            int i=0, j=0;
             %>
                 <h2 style="color:black"> <%out.write(title);%> </h2>
                 <br>
@@ -130,7 +127,7 @@
                             <%
                             break;
                         default:
-                            System.err.println("OTHER ENTITY in responseEntityExtraction");
+                            System.out.println("OTHER ENTITY in responseEntityExtraction");
                             %>
                                 <span style="color:black"><%out.write(currEntity.getName());%></span>
                             <%
@@ -146,15 +143,15 @@
                     i = docText.length();
                 }   
             }
-            
-            OutputHandler.writeEntityArticleFile(entityArticleList);           
-            //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
-
             %>
             <br><br><br>
             <hr class="separatorLine">               
         <%
         }
+
+        OutputHandler.writeEntityArticleFile(entityArticleList);           
+        System.out.println("responseEntityExtraction file saved");
+        //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
         %>
         </div>
         <br>
