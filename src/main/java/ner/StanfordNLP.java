@@ -19,8 +19,9 @@ public class StanfordNLP {
 
     private Properties props; // The Properties class represents a persistent set of properties
     private StanfordCoreNLP pipeline; // Stanford CoreNLP provides a set of human language technology tools
+    private static StanfordNLP instance = null;
     
-    public StanfordNLP() {
+    private StanfordNLP() {
         props = new Properties(); // set up pipeline properties
         // set the list of annotators to run
         props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse"); //, regexner, parse, mention, entitymentions");
@@ -28,6 +29,12 @@ public class StanfordNLP {
         pipeline = new StanfordCoreNLP(props); // build pipeline
     }
 
+    public static StanfordNLP getStanfordNLP(){
+        if(instance == null){
+            instance = new StanfordNLP();
+        }
+        return instance;
+    }
     
     public ArrayList<Entity> recogniseNamedEntity(String doc) { 
         if(!doc.endsWith("."))
