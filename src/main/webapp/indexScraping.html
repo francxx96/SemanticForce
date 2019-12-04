@@ -49,36 +49,38 @@
             .index_group{
                 position: relative;
                 left: 4%;
-            }
-            
-            footer{
-                position:fixed; 
-                width: 100%; 
-                bottom:0;
-                left:0;
-                text-align:center;
-                background-color:green;
-            }
-            #footer_text{
-                text-decoration: none;
-                color: black;
-            }
-            #footer_text:hover {
-                color: white;
-            }
+            }   
         </style>
+        <script>
+            var barReplace = function(){
+                var elem = document.getElementById("article").value;
+                var elem2 = document.getElementById("menuBar");
+                var elem3 = document.getElementById("menuBarReplace");
+                if(elem != ""){
+                    elem2.style.display="none";
+                    elem3.style.display="inline";
+                }
+            }
+        </script>
     
     </head>
     <body>
         <div class="heading_section">
             <h1 id="page_title"> Scraping Article </h1>
             <div class="index_group">
-                <div>
+                <div id="menuBar">
                     <a href="index.html">Home</a>
                     <a href="indexCrawling.html">Crawling</a>
                     <a href="indexNER.html">EntityRecognition</a>
                     <a href="indexWikidata.html">Wikidata</a>
                     <a href="aboutus.html">About</a>
+                </div>
+                <div id="menuBarReplace" style="display: none">
+                    <a>Home</a>
+                    <a>Crawling</a>
+                    <a>EntityRecognition</a>
+                    <a>Wikidata</a>
+                    <a>About</a>
                 </div>
             </div>
         </div>
@@ -90,13 +92,10 @@
             <form method="get" action="responseScraper.jsp">
                     <tr>
                         <td><label><h3>Insert article URL</h3></label></td>
-                        <td><input name="urli" type="text" required></td>
+                        <td><input id="article" name="urli" type="text" required></td>
                     </tr>
-                    <input class="bottone" type="submit" value="GO!">
+                    <input class="bottone" type="submit" value="GO!" onclick="barReplace()">
             </form>
         </div>
     </body>
-    <footer>
-	<a id="footer_text" href="questions.html">Questions? Consult this section</a>
-    </footer>
 </html>

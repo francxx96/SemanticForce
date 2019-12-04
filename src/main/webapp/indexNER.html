@@ -67,16 +67,6 @@
                 position: relative;
                 left: 4%;
             }
-
-            footer{
-                position:fixed; 
-                width: 100%; 
-                bottom:0;
-                left:0;
-                text-align:center;
-                background-color:green;
-            }
-
             a{
                 text-decoration: none;
                 color: black;
@@ -84,15 +74,18 @@
             a:hover {
                 color: black;
             }
-
-            #footer_text{
-                text-decoration: none;
-                color: black;
-            }
-            #footer_text:hover {
-                color: white;
-            }
         </style>
+        <script>
+            var barReplace = function(){
+                var elem = document.getElementById("textAre").value;
+                var elem2 = document.getElementById("menuBar");
+                var elem3 = document.getElementById("menuBarReplace");
+                if(elem != ""){
+                    elem2.style.display="none";
+                    elem3.style.display="inline";
+                }
+            }
+        </script>
     </head>
 	
     <body>
@@ -129,15 +122,11 @@
             <br><br>
 
             <form method="POST" action="responseNEREntity.jsp" autocomplete="off" >
-               <div> <input type="submit" value="Entity Recognition"> </div>
+               <div> <input type="submit" value="Entity Recognition" onclick="barReplace()"> </div>
                <br>
                <textarea id="textAre" name="textArea" autofocus required ></textarea>
             </form>       
         </div>
-        
-        <footer>
-            <a id="footer_text" href="questions.html">Questions? Consult this section</a>
-        </footer>
     </body>
     
 </html>
