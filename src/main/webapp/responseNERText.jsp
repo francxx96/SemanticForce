@@ -74,14 +74,6 @@
                 position: relative;
                 left: 40%;
             }
-            footer{
-                position:fixed; 
-                width: 100%; 
-                bottom:0;
-                left:0;
-                text-align:center;
-                background-color:green;
-            }
             a{
                 text-decoration: none;
                 color: black;
