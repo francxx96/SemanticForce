@@ -82,7 +82,7 @@
             String subText;
             int i = 0, j = 0;
             %>
-                <h2 style="color:black"><%out.write(title);%></h2>
+                <h2 style="color:black"> <%out.write(title);%> </h2>
                 <br>
             <%
             while(i < docText.length()){
@@ -130,7 +130,7 @@
                             <%
                             break;
                         default:
-                            System.err.println("ERROR: OTHER ENTITY");
+                            System.err.println("OTHER ENTITY in responseEntityExtraction");
                             %>
                                 <span style="color:black"><%out.write(currEntity.getName());%></span>
                             <%
@@ -147,8 +147,7 @@
                 }   
             }
             
-            OutputHandler.writeEntityArticleFile(entityArticleList);
-            
+            OutputHandler.writeEntityArticleFile(entityArticleList);           
             //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
 
             %>
