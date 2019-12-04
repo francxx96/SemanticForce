@@ -4,7 +4,7 @@
         <title>SemanticForce</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="img\cg.png" type="image/x-icon"/>
+        <link rel="icon" href="img\logo.png" type="image/x-icon"/>
         <style>
             body{
               background-color:#00ffbf;
@@ -65,6 +65,7 @@
                 border-color: green;
                 border-width: 13px;
                 border-radius: 10px 10px 10px 10px;
+               
             }
             #description_functionality{
                 text-align: center;
@@ -85,6 +86,19 @@
             #footer_text:hover {
                 color: white;
             }
+            #logo{
+                position: absolute;
+                right: 5%;
+                top: 0%;
+                height: 80px;
+                width: 85px
+            }
+            legend{
+                font-size: 22px;
+                color: green;
+            }
+                
+
         </style>
         <script>
             var validate = function(){
@@ -113,11 +127,13 @@
                     elem3.style.display="inline";
                     return true;
                 }
+                
             }
         </script>
     </head>
     
     <body>
+        <img id="logo" src="img\logo.png">
         <div class="header_section">
             <h1 id="page_title">SemanticForce</h1>
             <div class="index_group">
@@ -137,38 +153,36 @@
                 </div>
             </div>
         </div>
-        <br><br><br><br><br><br>
+        <br><br><br>
         <div class="central_section">
-            <img src="img\kibhome.jpg" style=" width:50%; float:left; ">
+            <img src="img\text-analysis.png" style=" width:40%; float:left; ">
             <fieldset>
-                <legend><h3>Main Functionality</h3></legend>
+                <legend><b>Main Functionality</b></legend>
                 <p id="description_functionality">
                     DESCRIZIONE
                 </p>
                 <form method="GET" action="responseExtractionArticle.jsp" name="goToExtraction" onsubmit="return validate();">
-                    <tr>
-                        <td><label><h3>Insert Web Site URL</h3></label></td>
-                        <td><input id="url" name="urle" type="text" required></td>
-                    </tr>
+                    <label>Insert Web Site URL</label>
+                    <br>
+                    <input id="url" name="urle" type="text" required>                  
                     <div>
                         <h3 class="h_type">Set the crawler</h3>
                         <h4 class="h_type">Depth of crawler</h4>
                         <input type="range" name="Cprofa" min="0" max="4" step="1" value="0">
                         <br>
                             1&ensp;&ensp;&ensp;2&ensp;&ensp;&ensp;3&ensp;&ensp;&ensp;4&ensp;&ensp;&ensp;5   
+                        <br><br><br>
+                        <label>Articles number</label>
                         <br>
-                        <tr>
-                            <td><label><h3>Articles number</h3></label></td>
-                            <td><input id="numArticles" name="nArticles" type="number" required></td>
-                        </tr>
+                        <input id="numArticles" name="nArticles" type="number" required>
                     </div>
                     <input id="inputButton" onclick="validate()" type="submit" value="GO!">
                 </form>
             </fieldset>
         </div>            
+        <footer>
+            <a id="footer_text" href="questions.html">Questions? Consult this section</a>
+        </footer>
     </body>
-    
-    <footer>
-	<a id="footer_text" href="questions.html">Questions? Consult this section</a>
-    </footer>
+   
 </html>
