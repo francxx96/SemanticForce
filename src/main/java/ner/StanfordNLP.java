@@ -71,7 +71,7 @@ public class StanfordNLP {
                         relatives.addAll(getEntityRelated(children));
                         entity.setKeyWords(relatives);
                         
-                        System.out.println("\n\nExtracted: " + entity);
+                        System.out.println("Extracted: " + entity);
                         entityList.add(entity);
                         //System.out.println("entityLen="+entityLength+"\toffset="+startPos+"\tpos="+(startPos-entityLength));                   
                     }else{

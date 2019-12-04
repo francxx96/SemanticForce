@@ -7,6 +7,7 @@
 <%@page import="ner.Entity"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -167,7 +168,6 @@
             <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
         </div>
         </footer>
     </body>
