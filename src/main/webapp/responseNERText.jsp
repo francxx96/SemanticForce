@@ -169,6 +169,7 @@
                         <%
                         break;
                     default:
+                        System.out.println("OTHER ENTITY in responseEntityExtraction");
                         %>
                             <span style="color:black"><%out.write(currEntity.getName());%></span>
                         <%
@@ -186,7 +187,8 @@
         }
 
         OutputHandler.writeEntitiesFile(entityList);
-
+        System.out.println("responseNERText saved");
+        //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
         %>
         <br><br><br>
         <div class="index_group">
