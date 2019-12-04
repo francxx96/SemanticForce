@@ -169,7 +169,7 @@
                         <%
                         break;
                     default:
-                        System.out.println("OTHER ENTITY in responseEntityExtraction");
+                        System.out.println("OTHER ENTITY in responseEntityExtraction: " + currEntity);
                         %>
                             <span style="color:black"><%out.write(currEntity.getName());%></span>
                         <%
