@@ -169,6 +169,10 @@
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
         </div>
         </footer>
+        
+        <div>
+            <a href="responseWikiExtraction.jsp">Pass to wikidata</a>
+        </div>
     </body>
 
 </html>
