@@ -154,24 +154,23 @@
 
             %>
             <br><br><br>
-            <div style="text-align: center">
-                <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:blue;font-weight:bold">Date</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
-            </div>   
-                
             <hr class="separatorLine">               
         <%
         }
         %>
         </div>
+        <br>
         <footer>
-            <a id="footer_text" href="questions.html">Questions? Consult this section</a>
+	<div id="footer_bar">
+            <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:blue;font-weight:bold">Date</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
+        </div>
         </footer>
     </body>
 

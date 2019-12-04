@@ -38,7 +38,7 @@
             }
             #title{
                 text-align:center;
-                color: red;
+                color: black;
             }
             .index_group a {
                 background-color: #4CAF50; /* Green background */
@@ -89,18 +89,31 @@
             a:hover {
                 color: black;
             }
-            #footer_text{
+            footer{
+                position:fixed; 
+                width: 100%; 
+                bottom:0;
+                left:0;
+                text-align:center;
+                background-color:#556b2f;
+            }
+            a{
                 text-decoration: none;
                 color: black;
             }
-            #footer_text:hover {
-                color: white;
+            a:hover {
+                color: black;
             }
+            #footer_bar{
+                text-decoration: none;
+                color: black;
+            }
+
         </style>
     </head>
     
     <body>
-        <h1 id="title"> Entities in Article </h1>
+        <h1 id="title"> Entities in Text </h1>
         <br>
         <%
         String docText = NERresource.getDocumentText();
@@ -180,7 +193,13 @@
 
         %>
         <br><br><br>
-        <div style="text-align: center">
+        <div class="index_group">
+            <div>
+                <a href="index.html">Home</a>
+            </div>
+        </div> 
+        <footer>
+        <div id="footer_bar">
             <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
@@ -190,17 +209,7 @@
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
         </div>
-        <br><br>
-        <div class="index_group">
-            <div>
-                <a href="index.html">Home</a>
-            </div>
-        </div> 
-        
-        <footer>
-	<a id="footer_text" href="questions.html">Questions? Consult this section</a>
-        </footer>
-        
+        </footer>  
     </body>
     
 </html>
