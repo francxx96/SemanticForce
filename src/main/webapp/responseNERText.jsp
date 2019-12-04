@@ -113,9 +113,9 @@
         while(i < docText.length()){
             if(j < entityList.size()){
                 currEntity = entityList.get(j);
-                //System.out.println("ENTITY name="+currEntity.getName()+"*\toffset="+currEntity.getPosition()+"\ttype="+currEntity.getType());
+                //System.out.println(currEntity);
                 //System.out.println("i="+ i + "\tj="+ j + "\tdocTextLen="+ docText.length()+ "\tseaLen="+ entityList.size() );
-                subText = docText.substring(i, currEntity.getPosition()); // get another part of text before the new entity 
+                subText = docText.substring(i, currEntity.getStartPos()); // get another part of text before the new entity 
                 //System.out.println("subText="+subText+"*****************");
                 %>
                     <span style="color:black"><%out.write(subText);%></span>
@@ -156,16 +156,14 @@
                             <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
                         <%
                         break;
-                    case "NUMBER":
+                    default:
+                        System.err.println("OTHER ENTITY in responseNERText.jsp");
                         %>
-                            <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                            <span style="color:black"><%out.write(currEntity.getName());%></span>
                         <%
                         break;
-                    default:
-                        System.err.println("ERROR: OTHER ENTITY in responseNERText.jsp");
-                        break;
                 }    
-                i = currEntity.getPosition() + currEntity.getName().length();
+                i = currEntity.getEndPos();
                 j++;
             } else{
                 subText = docText.substring(i);
@@ -188,7 +186,6 @@
             <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
         </div>
         <br><br>
         <div class="index_group">

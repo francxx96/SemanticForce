@@ -88,7 +88,7 @@
                 if(j < entityList.size()){
                     currEntity = entityList.get(j);
                     //System.out.println("ENTITY name="+currEntity.getName()+"*\toffset="+currEntity.getPosition()+"\ttype="+currEntity.getType());
-                    subText = docText.substring(i, currEntity.getPosition()); // get another part of text before the new entity 
+                    subText = docText.substring(i, currEntity.getStartPos()); // get another part of text before the new entity 
                     %>
                         <span style="color:black"><%out.write(subText);%></span>
                     <%
@@ -137,7 +137,7 @@
                             System.err.println("ERROR: OTHER ENTITY");
                             break;
                     }    
-                    i = currEntity.getPosition() + currEntity.getName().length();
+                    i = currEntity.getEndPos();
                     j++;
                 } else{
                     subText = docText.substring(i);
@@ -149,7 +149,6 @@
             }
             
             OutputHandler.writeEntityArticleFile(entityArticleList);
-            
             //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
 
             %>
@@ -170,6 +169,13 @@
         }
         %>
         </div>
+        
+        <br>
+        <form method="GET" action="wikidataInformation.jsp" autocomplete="off" >
+            <input type="submit" value="WIKIDATA">
+        </form>
+        <br>
+        
         <footer>
             <a id="footer_text" href="questions.html">Questions? Consult this section</a>
         </footer>

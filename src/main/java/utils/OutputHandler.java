@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Set;
 import ner.Entity;
 
@@ -140,7 +141,7 @@ public class OutputHandler {
         try {
             Entity[][] entitiesArray = g.fromJson(new FileReader(entityArticlesFile), Entity[][].class);
             for(int i=0; i<entitiesArray.length; i++){
-                entitiesList.add(i, (ArrayList<Entity>) Arrays.asList(entitiesArray[i]));
+                entitiesList.add(i, new ArrayList((Collection) Arrays.asList(entitiesArray[i])));
             }   
         } catch (FileNotFoundException e) {
             System.out.println(e);

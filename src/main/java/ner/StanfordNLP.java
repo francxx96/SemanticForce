@@ -38,7 +38,7 @@ public class StanfordNLP {
         List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class); // get the sentences contained in an annotation
         
         boolean inEntity = false;
-        int offset = 0;
+        int startPos = 0, endPos = 0;
         String text, pos, namedEntity, currEntity = "", currEntityType = "O";
         ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -61,7 +61,7 @@ public class StanfordNLP {
                 if(inEntity){ 
                     if (!currEntityType.equals(namedEntity)) { //"O".equals(namedEntity) 
                         inEntity = false; 
-                        Entity entity = new Entity(currEntity, currEntityType, offset);
+                        Entity entity = new Entity(currEntity, currEntityType, startPos, endPos);
                         
                         Set<IndexedWord> parents = semanticGraph.getParents(new IndexedWord(token));
                         Set<IndexedWord> children = semanticGraph.getChildren(new IndexedWord(token));
@@ -73,9 +73,10 @@ public class StanfordNLP {
                         
                         System.out.println("\n\nExtracted: " + entity);
                         entityList.add(entity);
-                        //System.out.println("entityLen="+entityLength+"\toffset="+offset+"\tpos="+(offset-entityLength));                   
+                        //System.out.println("entityLen="+entityLength+"\toffset="+startPos+"\tpos="+(startPos-entityLength));                   
                     }else{
                         currEntity += " " + text.trim();
+                        endPos = token.beginPosition() + text.length();
                         //entity.setName(entity.getName() + " " + text);//token.originalText();
                     }
                 }
@@ -84,7 +85,8 @@ public class StanfordNLP {
                         inEntity = true;
                         currEntity = text.trim();
                         currEntityType = namedEntity;
-                        offset = token.beginPosition();
+                        startPos = token.beginPosition();
+                        endPos = token.beginPosition() + text.length();
                     }
                 }
             }
