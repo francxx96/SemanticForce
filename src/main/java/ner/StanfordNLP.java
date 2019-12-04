@@ -22,16 +22,17 @@ public class StanfordNLP {
     private static StanfordNLP instance = null;
     
     private StanfordNLP() {
-        props = new Properties(); // set up pipeline properties
-        // set the list of annotators to run
-        props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse"); //, regexner, parse, mention, entitymentions");
-        props.put("ner.applyFineGrained", "false");
-        pipeline = new StanfordCoreNLP(props); // build pipeline
+        
     }
 
     public static StanfordNLP getStanfordNLP(){
         if(instance == null){
             instance = new StanfordNLP();
+            instance.props = new Properties(); // set up pipeline properties
+            // set the list of annotators to run
+            instance.props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse"); //, regexner, parse, mention, entitymentions");
+            instance.props.put("ner.applyFineGrained", "false");
+            instance.pipeline = new StanfordCoreNLP(instance.props); // build pipeline
         }
         return instance;
     }
@@ -46,6 +47,7 @@ public class StanfordNLP {
         
         boolean inEntity = false;
         int startPos = 0, endPos = 0;
+        IndexedWord currToken = new IndexedWord();
         String text, pos, namedEntity, currEntity = "", currEntityType = "O";
         ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -57,7 +59,7 @@ public class StanfordNLP {
             // dependency parse
             SemanticGraph semanticGraph = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
             //System.out.println(semanticGraph.toList());
-            //System.out.println(semanticGraph);
+            System.out.println(semanticGraph);
             
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) { //tokens contained by an annotation
                 text = token.get(CoreAnnotations.TextAnnotation.class);
@@ -70,10 +72,9 @@ public class StanfordNLP {
                         inEntity = false; 
                         Entity entity = new Entity(currEntity, currEntityType, startPos, endPos);
                         
-                        Set<IndexedWord> parents = semanticGraph.getParents(new IndexedWord(token));
-                        Set<IndexedWord> children = semanticGraph.getChildren(new IndexedWord(token));
+                        Set<IndexedWord> parents = semanticGraph.getParents(currToken);
+                        Set<IndexedWord> children = semanticGraph.getChildren(currToken);
                         //System.out.println("Parents: " + parents + "\tChildren: " + children);
-                        
                         ArrayList<String> relatives = getEntityRelated(parents);
                         relatives.addAll(getEntityRelated(children));
                         entity.setKeyWords(relatives);
@@ -84,7 +85,7 @@ public class StanfordNLP {
                     }else{
                         currEntity += " " + text.trim();
                         endPos = token.beginPosition() + text.length();
-                        //entity.setName(entity.getName() + " " + text);//token.originalText();
+                        currToken = new IndexedWord(token);
                     }
                 }
                 if(!inEntity){
@@ -94,6 +95,7 @@ public class StanfordNLP {
                         currEntityType = namedEntity;
                         startPos = token.beginPosition();
                         endPos = token.beginPosition() + text.length();
+                        currToken = new IndexedWord(token);
                     }
                 }
             }

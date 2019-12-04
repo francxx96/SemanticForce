@@ -165,4 +165,5 @@ public class OutputHandler {
     public static void deleteEntityArticlesFile() {
         entityArticlesFile.delete();
     }
+    
 }
