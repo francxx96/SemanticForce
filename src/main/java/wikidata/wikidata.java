@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 
 public class wikidata {
     
-    public static String get(String urlToRead) throws Exception {
+    public static String getwael(String urlToRead) throws Exception {
         StringBuilder result = new StringBuilder();
         URL url = new URL(urlToRead);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -27,7 +27,6 @@ public class wikidata {
     }
     
     public static String enJsonForSearch(String subject){
-        subject = subject.replace(" ", "%20");
         return "https://www.wikidata.org/w/api.php?"+"action=wbsearchentities&search="+subject+"&language=en&format=json";
     }
     
@@ -37,32 +36,9 @@ public class wikidata {
     }
     
     
-    public static String enSparql(){
-        
-        String endpoint = "https://query.wikidata.org/sparql?format=json&query=";
-        String query = "SELECT DISTINCT ?item ?itemLabel ?desc WHERE{ ?item wdt:P31 wd:Q5; schema:description ?desc; rdfs:label ?itemLabel. FILTER(LANG(?itemLabel) = \"en\"). FILTER contains(?itemLabel,\"Albert\"). } LIMIT 5";
-        
-        query = query.replace("(","%28");
-        query = query.replace(")","%29");
-        query = query.replace("?","%3F");
-        //query = query.replace("{","%7B");
-        //query = query.replace("}","%7D");
-        //query = query.replace(".","%2E");
-        query = query.replace(":","%3A");
-        query = query.replace("=","%3D");
-        query = query.replace(";","%3B");
-        query = query.replace(",","%2C");
-        query = query.replace(" ","%20");
-        query = query.replace("\"","%22");
-
-        return endpoint+query;
-    }
-
-
-
     public static ArrayList<String[]> executeGet(String itemLabel) throws Exception{
         JSONParser parser = new JSONParser();
-        String wikidatajson = get(enJsonForSearch(itemLabel));
+        String wikidatajson = getwael(enJsonForSearch(itemLabel));
         JSONObject jsonObject = (JSONObject) parser.parse(wikidatajson);
         System.out.println("JsonObject "+jsonObject + "\n");
         JSONArray list = new JSONArray();
