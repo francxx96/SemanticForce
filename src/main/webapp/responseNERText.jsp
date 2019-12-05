@@ -38,7 +38,7 @@
             }
             #title{
                 text-align:center;
-                color: red;
+                color: black;
             }
             .index_group a {
                 background-color: #4CAF50; /* Green background */
@@ -74,13 +74,20 @@
                 position: relative;
                 left: 40%;
             }
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            a:hover {
+                color: black;
+            }
             footer{
                 position:fixed; 
                 width: 100%; 
                 bottom:0;
                 left:0;
                 text-align:center;
-                background-color:green;
+                background-color:#556b2f;
             }
             a{
                 text-decoration: none;
@@ -89,18 +96,16 @@
             a:hover {
                 color: black;
             }
-            #footer_text{
+            #footer_bar{
                 text-decoration: none;
                 color: black;
             }
-            #footer_text:hover {
-                color: white;
-            }
+
         </style>
     </head>
     
     <body>
-        <h1 id="title"> Entities in Article </h1>
+        <h1 id="title"> Entities in Text </h1>
         <br>
         <%
         String docText = NERresource.getDocumentText();
@@ -113,10 +118,9 @@
         while(i < docText.length()){
             if(j < entityList.size()){
                 currEntity = entityList.get(j);
-                //System.out.println("ENTITY name="+currEntity.getName()+"*\toffset="+currEntity.getPosition()+"\ttype="+currEntity.getType());
-                //System.out.println("i="+ i + "\tj="+ j + "\tdocTextLen="+ docText.length()+ "\tseaLen="+ entityList.size() );
-                subText = docText.substring(i, currEntity.getPosition()); // get another part of text before the new entity 
-                //System.out.println("subText="+subText+"*****************");
+                //System.out.println(currEntity);
+                //System.out.println("i="+i + "\tj="+j + "\tdocTextLen="+docText.length() + "\tseaLen="+entityList.size());
+                subText = docText.substring(i, currEntity.getStartPos()); // get another part of text before the new entity 
                 %>
                     <span style="color:black"><%out.write(subText);%></span>
                 <%
@@ -156,16 +160,14 @@
                             <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
                         <%
                         break;
-                    case "NUMBER":
+                    default:
+                        System.out.println("OTHER ENTITY in responseEntityExtraction: " + currEntity);
                         %>
-                            <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                            <span style="color:black"><%out.write(currEntity.getName());%></span>
                         <%
                         break;
-                    default:
-                        System.err.println("ERROR: OTHER ENTITY in responseNERText.jsp");
-                        break;
                 }    
-                i = currEntity.getPosition() + currEntity.getName().length();
+                i = currEntity.getEndPos();
                 j++;
             } else{
                 subText = docText.substring(i);
@@ -177,10 +179,17 @@
         }
 
         OutputHandler.writeEntitiesFile(entityList);
-
+        System.out.println("responseNERText saved");
+        //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
         %>
         <br><br><br>
-        <div style="text-align: center">
+        <div class="index_group">
+            <div>
+                <a href="index.html">Home</a>
+            </div>
+        </div> 
+        <footer>
+        <div id="footer_bar">
             <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
@@ -188,19 +197,8 @@
             <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
-            <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
         </div>
-        <br><br>
-        <div class="index_group">
-            <div>
-                <a href="index.html">Home</a>
-            </div>
-        </div> 
-        
-        <footer>
-	<a id="footer_text" href="questions.html">Questions? Consult this section</a>
-        </footer>
-        
+        </footer>  
     </body>
     
 </html>

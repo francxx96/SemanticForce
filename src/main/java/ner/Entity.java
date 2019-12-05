@@ -7,16 +7,17 @@ import java.util.Objects;
 public class Entity {
     
     private String name, type;
-    private int position;
+    private int startPos, endPos;
     private ArrayList<String> keyWords;
     
     public Entity() {
     }
 
-    public Entity(String name, String type, int position) {
+    public Entity(String name, String type, int startPos, int endPos) {
         this.name = name;
         this.type = type;
-        this.position = position;
+        this.startPos = startPos;
+        this.endPos = endPos;
         this.keyWords = new ArrayList<>();
     }
 
@@ -37,12 +38,20 @@ public class Entity {
         this.name = name;
     }
  
-    public int getPosition() {
-        return position;
+    public int getStartPos() {
+        return startPos;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public void setStartPos(int startPos) {
+        this.startPos = startPos;
+    }
+
+    public int getEndPos() {
+        return endPos;
+    }
+
+    public void setEndPos(int endPos) {
+        this.endPos = endPos;
     }
     
     public ArrayList<String> getKeyWords() {
@@ -85,7 +94,7 @@ public class Entity {
 
     @Override
     public String toString() {
-        return "Name:"+name + "\t- Type:"+type + "\t- Position:"+position + "\t- KeyWords:"+keyWords + "\n";
+        return "Name:"+name + "\t- Type:"+type + "\t- Position:"+startPos + "\t- KeyWords:"+keyWords + "\n";
     }
     
 }

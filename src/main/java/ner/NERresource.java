@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class NERresource {
     private static String documentText = "";
-    private static StanfordNLP ner = new StanfordNLP();
+    private static StanfordNLP ner = StanfordNLP.getStanfordNLP();
     private static ArrayList<Entity> entityList = new ArrayList();
     private static HashMap<Entity, Integer> entityFreq = new HashMap();
 

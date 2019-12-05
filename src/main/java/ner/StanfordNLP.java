@@ -19,15 +19,23 @@ public class StanfordNLP {
 
     private Properties props; // The Properties class represents a persistent set of properties
     private StanfordCoreNLP pipeline; // Stanford CoreNLP provides a set of human language technology tools
+    private static StanfordNLP instance = null;
     
-    public StanfordNLP() {
-        props = new Properties(); // set up pipeline properties
-        // set the list of annotators to run
-        props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse"); //, regexner, parse, mention, entitymentions");
-        props.put("ner.applyFineGrained", "false");
-        pipeline = new StanfordCoreNLP(props); // build pipeline
+    private StanfordNLP() {
+        
     }
 
+    public static StanfordNLP getStanfordNLP(){
+        if(instance == null){
+            instance = new StanfordNLP();
+            instance.props = new Properties(); // set up pipeline properties
+            // set the list of annotators to run
+            instance.props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse"); //, regexner, parse, mention, entitymentions");
+            instance.props.put("ner.applyFineGrained", "false");
+            instance.pipeline = new StanfordCoreNLP(instance.props); // build pipeline
+        }
+        return instance;
+    }
     
     public ArrayList<Entity> recogniseNamedEntity(String doc) { 
         if(!doc.endsWith("."))
@@ -38,7 +46,8 @@ public class StanfordNLP {
         List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class); // get the sentences contained in an annotation
         
         boolean inEntity = false;
-        int offset = 0;
+        int startPos = 0, endPos = 0;
+        IndexedWord currToken = new IndexedWord();
         String text, pos, namedEntity, currEntity = "", currEntityType = "O";
         ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -50,7 +59,7 @@ public class StanfordNLP {
             // dependency parse
             SemanticGraph semanticGraph = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
             //System.out.println(semanticGraph.toList());
-            //System.out.println(semanticGraph);
+            System.out.println(semanticGraph);
             
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) { //tokens contained by an annotation
                 text = token.get(CoreAnnotations.TextAnnotation.class);
@@ -61,22 +70,22 @@ public class StanfordNLP {
                 if(inEntity){ 
                     if (!currEntityType.equals(namedEntity)) { //"O".equals(namedEntity) 
                         inEntity = false; 
-                        Entity entity = new Entity(currEntity, currEntityType, offset);
+                        Entity entity = new Entity(currEntity, currEntityType, startPos, endPos);
                         
-                        Set<IndexedWord> parents = semanticGraph.getParents(new IndexedWord(token));
-                        Set<IndexedWord> children = semanticGraph.getChildren(new IndexedWord(token));
+                        Set<IndexedWord> parents = semanticGraph.getParents(currToken);
+                        Set<IndexedWord> children = semanticGraph.getChildren(currToken);
                         //System.out.println("Parents: " + parents + "\tChildren: " + children);
-                        
                         ArrayList<String> relatives = getEntityRelated(parents);
                         relatives.addAll(getEntityRelated(children));
                         entity.setKeyWords(relatives);
                         
-                        System.out.println("\n\nExtracted: " + entity);
+                        System.out.println("Extracted: " + entity);
                         entityList.add(entity);
-                        //System.out.println("entityLen="+entityLength+"\toffset="+offset+"\tpos="+(offset-entityLength));                   
+                        //System.out.println("entityLen="+entityLength+"\toffset="+startPos+"\tpos="+(startPos-entityLength));                   
                     }else{
                         currEntity += " " + text.trim();
-                        //entity.setName(entity.getName() + " " + text);//token.originalText();
+                        endPos = token.beginPosition() + text.length();
+                        currToken = new IndexedWord(token);
                     }
                 }
                 if(!inEntity){
@@ -84,7 +93,9 @@ public class StanfordNLP {
                         inEntity = true;
                         currEntity = text.trim();
                         currEntityType = namedEntity;
-                        offset = token.beginPosition();
+                        startPos = token.beginPosition();
+                        endPos = token.beginPosition() + text.length();
+                        currToken = new IndexedWord(token);
                     }
                 }
             }

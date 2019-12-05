@@ -46,30 +46,17 @@
                 position: relative;
                 left: 4%;
             }
-            footer{
-                position:fixed; 
-                width: 100%; 
-                bottom:0;
-                left:0;
-                text-align:center;
-                background-color:green;
-            }
-            #footer_text{
-                text-decoration: none;
-                color: black;
-            }
-            #footer_text:hover {
-                color: white;
-            }
         </style>
         <script>
             var validate = function(){
                 var url = document.getElementById("url").value;
-                var valid_url = /^(https?:\/\/)?(www){1}\.(thetimes|theguardian|independent|standard|thesun|express|dailymail|mirror|metro)\.([a-z\.]{2,6})([\/\w \.-])\/?/g;
-                var invalid_page = /.*(\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))/g;
+                var valid_url = /^(https?:\/\/)?(www){1}\.(thetimes|theguardian|independent|standard|thesun|express|dailymail|mirror|metro)(\.[a-z]+)+(\/.*)*/g;
+                var invalid_page = /.*(\.(css|js|gif|jpg|png|mp3|mp4|zip|gz)).*/g;
                 var result_url = valid_url.test(url);
                 var result_page = invalid_page.test(url);
                 var elem = document.getElementById("inputButton");
+                var elem2 = document.getElementById("menuBar");
+                var elem3 = document.getElementById("menuBarReplace");
                 if(!result_url == true){
                     window.alert("We are sorry. You have entered an invalid URL. Try again.");
                     return false;
@@ -81,6 +68,8 @@
                     return false;
                 }else{
                     elem.style.display="none";
+                    elem2.style.display="none";
+                    elem3.style.display="inline";
                     return true;
                 }
             }
@@ -91,12 +80,19 @@
         <div class="heading_section">
             <h1 id="page_title">Crawl a Web Page</h1>
             <div class="index_group">
-                <div>
+                <div id="menuBar">
                     <a href="index.html">Home</a>
                     <a href="indexScraping.html">Scraping</a>
                     <a href="indexNER.html">EntityRecognition</a>
                     <a href="indexWikidata.html">Wikidata</a>
                     <a href="aboutus.html">About</a>
+                </div>
+                <div id="menuBarReplace" style="display: none">
+                    <a>Crawling</a>
+                    <a>Scraping</a>
+                    <a>EntityRecognition</a>
+                    <a>Wikidata</a>
+                    <a>About</a>
                 </div>
             </div>
         </div>
@@ -121,11 +117,6 @@
                 <input id="inputButton" onclick="validate()" type="submit" value="GO!">
             </form>
         </div>
-    
-        <footer>
-            <a id="footer_text" href="questions.html">Questions? Consult this section</a>
-        </footer>
-        
     </body>
   
 </html>

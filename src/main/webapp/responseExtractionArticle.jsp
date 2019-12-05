@@ -1,7 +1,10 @@
 
 <%@page import="crawlingScraping.Crawler"%>
 <%@page import="utils.OutputHandler"%>
-<%@page import="crawlingScraping.Extractor,java.util.ArrayList,crawlingScraping.Article" contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="crawlingScraping.Extractor"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="crawlingScraping.Article"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,8 +28,13 @@
                 font-family: verdana; 
                 font-size: 10px;
             }
-            .footerSection{
-                text-align: center;
+            footer{
+                position:fixed; 
+                width: 100%; 
+                bottom:0;
+                left:0;
+                text-align:center;
+                background-color:#556b2f;        
             }
             .separatorLine{
                 border: 2px dashed black;
@@ -47,6 +55,7 @@
             int numArticles = Integer.parseInt(nArticles);
             ArrayList<Article> articles = Extractor.getExtractedArticles(numArticles);
             OutputHandler.writeArticlesFile(articles);
+            System.out.println("responseExtractionArticle file saved");
             %>
             <span>
                 <%
@@ -65,11 +74,12 @@
                 %>
             </span>
         </p>
-        <div class="footerSection">
-            <h3>Go to NER</h3>
+        <footer>
+        <div>
             <form method="GET" action="responseEntityExtraction.jsp">
-                <input class="bottone" type="submit" value="GO!">
+                <input class="bottone" type="submit" value="GO TO NER!">
             </form>
         </div>
+        </footer>
     </body>
 </html>

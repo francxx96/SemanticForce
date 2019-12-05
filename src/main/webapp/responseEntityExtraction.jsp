@@ -7,6 +7,7 @@
 <%@page import="ner.Entity"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -64,9 +65,6 @@
             for(Article art : articles){
                 entityArticleList.add(NERresource.getEntities(art.getText()));
             }
-            
-            System.out.println("\n\n\n"+entityArticleList.toString());
-
         %>
         
         <div>
@@ -79,16 +77,16 @@
             String title = articles.get(l).getTitle();
             Entity currEntity;
             String subText;
-            int i = 0, j = 0;
+            int i=0, j=0;
             %>
-                <h2 style="color:black"><%out.write(title);%></h2>
+                <h2 style="color:black"> <%out.write(title);%> </h2>
                 <br>
             <%
             while(i < docText.length()){
                 if(j < entityList.size()){
                     currEntity = entityList.get(j);
                     //System.out.println("ENTITY name="+currEntity.getName()+"*\toffset="+currEntity.getPosition()+"\ttype="+currEntity.getType());
-                    subText = docText.substring(i, currEntity.getPosition()); // get another part of text before the new entity 
+                    subText = docText.substring(i, currEntity.getStartPos()); // get another part of text before the new entity 
                     %>
                         <span style="color:black"><%out.write(subText);%></span>
                     <%
@@ -128,16 +126,14 @@
                                 <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
                             <%
                             break;
-                        case "NUMBER":
+                        default:
+                            System.out.println("OTHER ENTITY in responseEntityExtraction: " + currEntity);
                             %>
-                                <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
+                                <span style="color:black"><%out.write(currEntity.getName());%></span>
                             <%
                             break;
-                        default:
-                            System.err.println("ERROR: OTHER ENTITY");
-                            break;
                     }    
-                    i = currEntity.getPosition() + currEntity.getName().length();
+                    i = currEntity.getEndPos();
                     j++;
                 } else{
                     subText = docText.substring(i);
@@ -147,32 +143,33 @@
                     i = docText.length();
                 }   
             }
-            
-            OutputHandler.writeEntityArticleFile(entityArticleList);
-            
-            //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
-
             %>
             <br><br><br>
-            <div style="text-align: center">
-                <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:blue;font-weight:bold">Date</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
-                <span style="background-color:pink;font-weight:bold">Number</span>&nbsp;&nbsp;&nbsp;
-            </div>   
-                
             <hr class="separatorLine">               
         <%
         }
+
+        OutputHandler.writeEntityArticleFile(entityArticleList);           
+        System.out.println("responseEntityExtraction file saved");
+        //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
         %>
         </div>
+        <br>
         <footer>
-            <a id="footer_text" href="questions.html">Questions? Consult this section</a>
+	<div id="footer_bar">
+            <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:blue;font-weight:bold">Date</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
+            <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
+        </div>
         </footer>
+        
+        <div>
+            <a href="responseWikiExtraction.jsp">Pass to wikidata</a>
+        </div>
     </body>
 
 </html>

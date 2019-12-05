@@ -8,14 +8,11 @@ import de.l3s.boilerpipe.sax.BoilerpipeSAXInput;
 import de.l3s.boilerpipe.sax.HTMLDocument;
 import de.l3s.boilerpipe.sax.HTMLFetcher;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import org.xml.sax.SAXException;
 import utils.OutputHandler;
@@ -29,7 +26,7 @@ public class Extractor {
     @GET
     @Path("articoloa/{url}")
     @Produces(MediaType.APPLICATION_JSON)
-    public static Article getArticle(@PathParam("url") String url) {
+    public static Article getArticle(String url) {
         HTMLDocument htmlDoc;
         TextDocument doc;
         Article article = new Article();
