@@ -58,8 +58,9 @@ public class StanfordNLP {
             
             // dependency parse
             SemanticGraph semanticGraph = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
+            removePunctFromSemGraph(semanticGraph);
             //System.out.println(semanticGraph.toList());
-            System.out.println(semanticGraph);
+            //System.out.println(semanticGraph);
             
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) { //tokens contained by an annotation
                 text = token.get(CoreAnnotations.TextAnnotation.class);
@@ -79,13 +80,13 @@ public class StanfordNLP {
                         relatives.addAll(getEntityRelated(children));
                         entity.setKeyWords(relatives);
                         
-                        System.out.println("Extracted: " + entity);
+                        System.out.println("Extracted\t" + entity);
                         entityList.add(entity);
                         //System.out.println("entityLen="+entityLength+"\toffset="+startPos+"\tpos="+(startPos-entityLength));                   
                     }else{
                         currEntity += " " + text.trim();
                         endPos = token.beginPosition() + text.length();
-                        currToken = new IndexedWord(token);
+                        //currToken = new IndexedWord(token);
                     }
                 }
                 if(!inEntity){
@@ -108,10 +109,22 @@ public class StanfordNLP {
         ArrayList<String> entityList = new ArrayList<>();
         
         for(IndexedWord iw: entitiesIW){
+            
             entityList.add(iw.originalText());
         }
         
         return entityList;
     }
 
+    private void removePunctFromSemGraph(SemanticGraph semanticGraph){
+        String punctuations = "`~!@#%^*()_+{}|:\"<>?=[];'./,";
+        
+        for(IndexedWord vertex : new ArrayList<>(semanticGraph.vertexSet())){
+   
+            if(punctuations.contains(vertex.value())){
+                semanticGraph.removeVertex(vertex);
+            } 
+        }   
+    }
+    
 }

@@ -1,70 +1,194 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>indexScraping</title>
+        <title>SemanticForce</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="img\cg.png" type="image/x-icon"/>
+        <link rel="icon" href="img\logo.png" type="image/x-icon"/>
 
         <style>
             body{
               background-color:#00ffbf;
             }
-            .central_section{
-                    text-align: center;
+            #logo{
+                position: absolute;
+                right: 5%;
+                top: 0%;
+                height: 80px;
+                width: 85px
             }
             .heading_section{
                     text-align: center;
             }
-        .index_group a {
-          background-color: #4CAF50; /* Green background */
-          border: 1px solid green; /* Green border */
-          color: white; /* White text */
-          padding: 10px 24px; /* Some padding */
-          cursor: pointer; /* Pointer/hand icon */
-          float: left; /* Float the buttons side by side */
-          text-decoration: none; /* Remove underline */
-          font-family: Verdana;
-          width: 15%;
-          text-align: center;
-        }
+            .index_group a {
+              background-color: #4CAF50; /* Green background */
+              border: 1px solid green; /* Green border */
+              color: white; /* White text */
+              padding: 10px 24px; /* Some padding */
+              cursor: pointer; /* Pointer/hand icon */
+              float: left; /* Float the buttons side by side */
+              text-decoration: none; /* Remove underline */
+              font-family: Verdana;
+              width: 15%;
+              text-align: center;
+            }
 
-        /* Clear floats (clearfix hack) */
-        .index_group:after {
-          content: "";
-          clear: both;
-          display: table;
-        }
+            /* Clear floats (clearfix hack) */
+            .index_group:after {
+              content: "";
+              clear: both;
+              display: table;
+            }
 
-        .index_group a:not(:last-child) {
-          border-right: none; /* Prevent double borders */
-        }
+            .index_group a:not(:last-child) {
+              border-right: none; /* Prevent double borders */
+            }
 
-        /* Add a background color on hover */
-        .index_group a:hover {
-          background-color: #3e8e41;
-        }
+            /* Add a background color on hover */
+            .index_group a:hover {
+              background-color: #3e8e41;
+            }
 
-        /* Center display */
+            /* Center display */
             .index_group{
                 position: relative;
                 left: 4%;
             }   
+
+            #page_title{
+                text-align: center;
+                font-family: Verdana;
+            }
+            #inputButton{
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                font: bold 12px Arial, Helvetica, sans-serif;
+                color: #fff;
+                padding: 10px 20px;
+                border: solid 1px #16a085;
+                background: #1abc9c;
+                -moz-border-radius: 20px;
+                -webkit-border-radius: 20px;
+                border-radius: 20px;
+            }
+            #inputButton:hover { 
+                background: #109177;
+            } 
+            .form-style-5{
+                max-width: 500px;
+                padding: 10px 20px;
+                background: #f4f7f8;
+                margin: 10px auto;
+                padding: 20px;
+                background: #f4f7f8;
+                border-radius: 8px;
+                font-family: Georgia, "Times New Roman", Times, serif;
+                border: 6px solid green;
+            }
+            .form-style-5 fieldset{
+                    border: none;
+            }
+            .form-style-5 legend {
+                    font-size: 1.4em;
+                    margin-bottom: 10px;
+            }
+            .form-style-5 label {
+                    display: block;
+                    margin-bottom: 8px;
+            }
+            .form-style-5 input[type="text"],
+            .form-style-5 input[type="number"],
+            .form-style-5 input[type="url"],
+            .form-style-5 select {
+                    font-family: Georgia, "Times New Roman", Times, serif;
+                    background: rgba(255,255,255,.1);
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 15px;
+                    margin: 0;
+                    outline: 0;
+                    padding: 10px;
+                    width: 100%;
+                    box-sizing: border-box; 
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box; 
+                    background-color: #e8eeef;
+                    color:#8a97a0;
+                    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                    margin-bottom: 30px;
+            }
+            .form-style-5 input[type="text"]:focus,
+            .form-style-5 input[type="number"]:focus,
+            .form-style-5 input[type="url"]:focus,
+            .form-style-5 select:focus{
+                    background: #d2d9dd;
+            }
+            .form-style-5 select{
+                    -webkit-appearance: menulist-button;
+                    height:35px;
+            }
+            .form-style-5 .number {
+                    background: #1abc9c;
+                    color: #fff;
+                    height: 30px;
+                    width: 30px;
+                    display: inline-block;
+                    font-size: 0.8em;
+                    margin-right: 4px;
+                    line-height: 30px;
+                    text-align: center;
+                    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+                    border-radius: 15px 15px 15px 0px;
+            }
+            .form-style-5 input[type="submit"],
+            .form-style-5 input[type="button"]
+            {
+                    position: relative;
+                    display: block;
+                    padding: 19px 39px 18px 39px;
+                    color: #FFF;
+                    margin: 0 auto;
+                    background: #1abc9c;
+                    font-size: 18px;
+                    text-align: center;
+                    font-style: normal;
+                    width: 100%;
+                    border: 1px solid #16a085;
+                    border-width: 1px 1px 3px;
+                    margin-bottom: 10px;
+            }
+            .form-style-5 input[type="submit"]:hover,
+            .form-style-5 input[type="button"]:hover
+            {
+                    background: #109177;
+            }
         </style>
         <script>
             var barReplace = function(){
                 var elem = document.getElementById("article").value;
                 var elem2 = document.getElementById("menuBar");
                 var elem3 = document.getElementById("menuBarReplace");
+                var invalid_page = /.*(\.(html).*/g;
+                var result_url = valid_url.test(url);
                 if(elem != ""){
-                    elem2.style.display="none";
-                    elem3.style.display="inline";
+                    if(result_url==true){
+                        elem2.style.display="none";
+                        elem3.style.display="inline";
+                        return true;
+                    }else{
+                        window.alert("We are sorry. You have entered an invalid URL. Try again.");
+                        return false;
+                    }
                 }
             }
         </script>
     
     </head>
     <body>
+        <img id="logo" src="img\logo.png">
         <div class="heading_section">
             <h1 id="page_title"> Scraping Article </h1>
             <div class="index_group">
@@ -84,17 +208,15 @@
                 </div>
             </div>
         </div>
-        <br>
-        <div class="description_section">
-            <h4 id="text_description"> --------- INSERIRE DESCRIZIONE DI QUESTA SEZIONE --------------- </h4>
-        </div>
-        <div class="central_section">
-            <form method="get" action="responseScraper.jsp">
-                    <tr>
-                        <td><label><h3>Insert article URL</h3></label></td>
-                        <td><input id="article" name="urli" type="text" required></td>
-                    </tr>
-                    <input class="bottone" type="submit" value="GO!" onclick="barReplace()">
+        <br><br>
+        <div class="form-style-5">
+            <form method="get" action="responseScraper.jsp" onsubmit="return barReplace();">
+                <fieldset>
+                    <legend>Insert article URL </legend>
+                    <br>
+                    <input id="article" name="urli" type="text" required>
+                </fieldset>
+                <input id="inputButton" onclick="barReplace()" type="submit" value="GO!">
             </form>
         </div>
     </body>

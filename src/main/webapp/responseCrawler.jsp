@@ -8,11 +8,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Extracted URLs</title>
-        <link rel="icon" href="img\tabLogo.png" type="image/x-icon"/>
+        <title>SemanticForce</title>
+        <link rel="icon" href="img\logo.png" type="image/x-icon"/>
         <style>
             body{
                 background-color:#00ffbf;
+            }
+            #logo{
+                position: absolute;
+                right: 5%;
+                top: 0%;
+                height: 80px;
+                width: 85px
             }
             #crawlingInfo{
                 text-align: center;
@@ -24,13 +31,46 @@
                 text-align: center;
             }
             #elementText{
-                font-family: verdana; 
-                font-size: 10px; 
+                font-family: Verdana; 
+                font-size: 14px; 
             }
+            #title{
+                text-align:center;
+                font-family: Verdana;
+            }
+            #text{
+                font-family: Verdana;
+                font-size: 16px;
+                font-weight: bold;
+                
+            }
+            #text_1{
+                font-family: Verdana;
+                font-size: 16px;     
+            }
+            #bottone{
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                font: bold 12px Arial, Helvetica, sans-serif;
+                color: #fff;
+                padding: 10px 20px;
+                border: solid 1px #16a085;
+                background: #1abc9c;
+                -moz-border-radius: 20px;
+                -webkit-border-radius: 20px;
+                border-radius: 20px;
+            }
+            #bottone:hover { 
+                background: #109177;
+            } 
+            
         </style>
     </head>
     
     <body>
+        <img id="logo" src="img\logo.png">
         <%  
         String url = request.getParameter("urla");
         String time = null;
@@ -52,10 +92,15 @@
         %>
         
         <div id="crawlingInfo">
-            <h1>Extracted URLs</h1>
-            <h3>Execution time: <% out.write(time); %>ms</h3>
-            <h3>N° of extracted URLs: <% out.write(linksNum); %></h3>
+            <h1 id="title">Extracted URLs</h1>
         </div>
+        <br><br>
+        <span id="text"><% out.write("Execution time:"); %></span>
+        <span id="text_1"><% out.write(" " + time); %></span>
+        <br>
+        <span id="text"><% out.write("N° of extracted URLs:"); %></span>
+        <span id="text_1"><% out.write(" " + linksNum); %></span>
+        <br><br> 
         <p id="crawlingElements">
             <span>
                 <%
@@ -63,8 +108,9 @@
                 %>
                 
                 <span id="elementText">
-                    <% out.write(link + "\n"); %>
+                    <% out.write("- " + link); %>
                 </span>
+                <br>
                 
                 <%
                 }
@@ -83,5 +129,12 @@
         <%
         }
         %>
+        
+        <br>
+        <div style="text-align:center;">
+            <form action="index.html" autocomplete="off" >
+                <input  type="submit" id="bottone" value="HOME">
+            </form>
+        </div>
     </body>
 </html>

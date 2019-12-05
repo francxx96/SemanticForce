@@ -1,5 +1,5 @@
-
 package wikidata;
+
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 
 public class wikidata {
     
-    public static String getwael(String urlToRead) throws Exception {
+    public static String get(String urlToRead) throws Exception {
         StringBuilder result = new StringBuilder();
         URL url = new URL(urlToRead);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -27,7 +27,8 @@ public class wikidata {
     }
     
     public static String enJsonForSearch(String subject){
-        return "https://www.wikidata.org/w/api.php?"+"action=wbsearchentities&search="+subject+"&language=en&format=json";
+        subject = subject.replace(" ","%20");
+        return "https://www.wikidata.org/w/api.php?action=wbsearchentities&search="+subject+"&language=en&format=json&limit=50";
     }
     
     public static String enJsonForEntity(String id){
@@ -38,7 +39,7 @@ public class wikidata {
     
     public static ArrayList<String[]> executeGet(String itemLabel) throws Exception{
         JSONParser parser = new JSONParser();
-        String wikidatajson = getwael(enJsonForSearch(itemLabel));
+        String wikidatajson = get(enJsonForSearch(itemLabel));
         JSONObject jsonObject = (JSONObject) parser.parse(wikidatajson);
         System.out.println("JsonObject "+jsonObject + "\n");
         JSONArray list = new JSONArray();
@@ -52,10 +53,18 @@ public class wikidata {
             jsonObject = (JSONObject) parser.parse(item);
             String label = jsonObject.get("label").toString();
             String url = jsonObject.get("url").toString();
-            String description = jsonObject.get("description").toString();
+            String description = "";
+            try{
+                description = jsonObject.get("description").toString();
+            }catch(NullPointerException e ){
+                System.out.println("Entità senza descrizione");
+                
+            }
+            
             
    
             String [] container = {label,url,description};
+            
            
             returnedList.add(container);
             

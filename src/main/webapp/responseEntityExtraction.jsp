@@ -12,13 +12,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Extracted Entities</title>
+        <link rel="icon" href="img\logo.png" type="image/x-icon"/>
+        <title>SemanticForce</title>
         <style type="text/css">
             body{
                 background-color:#00ffbf;
-            }
-            .heading_section{
-                text-align: center;
             }
             #articlesSection{
                 text-align:justify;   
@@ -37,27 +35,49 @@
             }
             #title{
                 text-align:center;
-                color: red;
+                font-family: Verdana;
             }
             footer{
                 position:fixed; 
                 width: 100%; 
                 bottom:0;
                 left:0;
-                text-align:center;
-                background-color:green;
+                background-color:#4CAF50;
             }
-            #footer_text{
+            #footer_bar{       
+                text-align: center;
+            }
+            #bottone{
+                outline: none;
+                cursor: pointer;
+                text-align: center;
                 text-decoration: none;
-                color: black;
+                font: bold 12px Arial, Helvetica, sans-serif;
+                color: #fff;
+                padding: 10px 20px;
+                border: solid 1px #16a085;
+                background: #1abc9c;
+                -moz-border-radius: 20px;
+                -webkit-border-radius: 20px;
+                border-radius: 20px;
             }
-            #footer_text:hover {
-                color: white;
+            #bottone:hover { 
+                background: #109177;
+            }  
+            #logo{
+                position: absolute;
+                right: 5%;
+                top: 0%;
+                height: 80px;
+                width: 85px
             }
+            
         </style>
     </head>
-    
     <body>
+        <img id="logo" src="img\logo.png">
+        <h1 id="title">Extracted Entities</h1>
+        <br>
         <%   
             ArrayList<ArrayList<Entity>> entityArticleList = new ArrayList();
             ArrayList<Article> articles = OutputHandler.readArticlesFile();
@@ -68,7 +88,6 @@
         %>
         
         <div>
-            <h1 id="title"> Entities in Articles </h1>
             <%
         
         for(int l=0; l<articles.size(); l++){       
@@ -88,59 +107,59 @@
                     //System.out.println("ENTITY name="+currEntity.getName()+"*\toffset="+currEntity.getPosition()+"\ttype="+currEntity.getType());
                     subText = docText.substring(i, currEntity.getStartPos()); // get another part of text before the new entity 
                     %>
-                        <span style="color:black"><%out.write(subText);%></span>
-                    <%
-                    switch (currEntity.getType()) {
-                        case "PERSON":
-                            %>
-                                <span style="color:red; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "LOCATION":
-                            %>
-                                <span style="color:green; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "ORGANIZATION":
-                            %>
-                                <span style="color:orange; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "DATE":
-                            %>
-                                <span style="color:blue; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "TIME":
-                            %>
-                                <span style="color:gold; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "PERCENT":
-                            %>
-                                <span style="color:brown; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        case "MONEY":
-                            %>
-                                <span style="color:violet; font-weight: bold"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                        default:
-                            System.out.println("OTHER ENTITY in responseEntityExtraction: " + currEntity);
-                            %>
-                                <span style="color:black"><%out.write(currEntity.getName());%></span>
-                            <%
-                            break;
-                    }    
-                    i = currEntity.getEndPos();
-                    j++;
-                } else{
-                    subText = docText.substring(i);
-                    %>
-                        <span style="color:black"><%out.write(subText);%></span>
-                    <%
-                    i = docText.length();
+                        <span style="color:black; font-family: Verdana; font-size: 16px;"><%out.write(subText);%></span>
+                <%
+                switch (currEntity.getType()) {
+                    case "PERSON":
+                        %>
+                            <span style="color:red; font-weight: bold; font-size: 16px; font-family: Verdana;"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "LOCATION":
+                        %>
+                            <span style="color:green; font-weight: bold; font-size: 16px; font-family: Verdana;"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "ORGANIZATION":
+                        %>
+                            <span style="color:orange; font-weight: bold; font-size: 16px; font-family: Verdana;"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "DATE":
+                        %>
+                            <span style="color:blue; font-weight: bold; font-size: 16px; font-family: Verdana;"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "TIME":
+                        %>
+                            <span style="color:gold; font-weight: bold; font-size: 16px; font-family: Verdana;"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "PERCENT":
+                        %>
+                            <span style="color:brown; font-weight: bold; font-size: 16px; font-family: Verdana;"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    case "MONEY":
+                        %>
+                            <span style="color:violet; font-weight: bold; font-size: 16px; font-family: Verdana;"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                    default:
+                        System.out.println("OTHER ENTITY in responseEntityExtraction: " + currEntity);
+                        %>
+                            <span style="color:black; font-family: Verdana; font-size: 16px;"><%out.write(currEntity.getName());%></span>
+                        <%
+                        break;
+                }    
+                i = currEntity.getEndPos();
+                j++;
+            } else{
+                subText = docText.substring(i);
+                %>
+                    <span style="color:black; font-family: Verdana; font-size: 16px;"><%out.write(subText);%></span>
+                <%
+                i = docText.length();
                 }   
             }
             %>
@@ -164,12 +183,12 @@
             <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
+            
+            <form style="float:right;"method="GET" action="responseWikiExtraction.jsp">
+                    <input  type="submit" id="bottone" value="GO to WikiData!">
+            </form>
         </div>
         </footer>
-        
-        <div>
-            <a href="responseWikiExtraction.jsp">Pass to wikidata</a>
-        </div>
     </body>
 
 </html>

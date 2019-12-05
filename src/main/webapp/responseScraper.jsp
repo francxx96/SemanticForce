@@ -4,43 +4,94 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Extracted Article</title>
-        <link rel="icon" href="img\tabLogo.png" type="image/x-icon"/>
+        <title>SemanticForce</title>
+        <link rel="icon" href="img\logo.png" type="image/x-icon"/>
         <style>
             body{
                 background-color:#00ffbf;
-            }
-            #infoContainer{
-                text-align: center;
             }
             #elementContainer{
                 text-align: justify;
             }
             #elementText{
-                font-family: verdana; 
-                font-size: 12px; 
+                font-family: Verdana; 
+                font-size: 14px; 
             }
             .separatorLine{
                 border: 2px dashed black;
+            }
+            #title{
+                text-align:center;
+                font-family: Verdana;
+            }
+            
+            #logo{
+                position: absolute;
+                right: 5%;
+                top: 0%;
+                height: 80px;
+                width: 85px
+            }
+            #bottone{
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                font: bold 12px Arial, Helvetica, sans-serif;
+                color: #fff;
+                padding: 10px 20px;
+                border: solid 1px #16a085;
+                background: #1abc9c;
+                -moz-border-radius: 20px;
+                -webkit-border-radius: 20px;
+                border-radius: 20px;
+            }
+            #bottone:hover { 
+                background: #109177;
+            } 
+            #text{
+                font-family: Verdana;
+                font-size: 16px;
+                font-weight: bold;
+                color: red;
+                
+            }
+            #text_1{
+                font-family: Verdana;
+                font-size: 16px;
+                font-weight: bold;
             }
         </style>
     </head>
     
     <body>
+        <img id="logo" src="img\logo.png">
+        
+        <h1 id="title">Extracted Article</h1>
+        <br>
         <%  
         String url=request.getParameter("urli");
         Article art = Extractor.getArticle(url);
         %>
-        
-        <div id="infoContainer">
-            <h2><%out.write(art.getTitle());%></h2>
-            <h3><%out.write(art.getUrl());%></h3>
-            <hr class="separatorLine">
-        </div>
+        <span id="text"><% out.write("Title:"); %></span>
+        <span id="text_1"><% out.write(" " + art.getTitle()); %></span>
+        <br><br>
+        <span id="text"><% out.write("URL:"); %></span>
+        <span id="text_1"><% out.write(" " + art.getUrl()); %></span>
+        <br>
         <p id="elementContainer">
             <span id="elementText">
+                <span id="text"><% out.write("Text:"); %></span>
+                <br>
                 <% out.write(art.getText()); %>
             </span>
         </p>
+        
+        <br>
+        <div style="text-align:center;">
+            <form action="index.html" autocomplete="off" >
+                <input  type="submit" id="bottone" value="HOME">
+            </form>
+        </div>
     </body>
 </html>

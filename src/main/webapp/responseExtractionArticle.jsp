@@ -10,14 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Extracted Articles</title>
-        <link rel="icon" href="img\tabLogo.png" type="image/x-icon"/>
+        <title>SemanticForce</title>
+        <link rel="icon" href="img\logo.png" type="image/x-icon"/>
         <style type="text/css">
             body{
                 background-color:#00ffbf;
             }
-            .heading_section{
-                text-align: center;
+            #elementContainer{
+                text-align: justify;
             }
             #articlesSection{
                 text-align:justify;   
@@ -34,18 +34,59 @@
                 bottom:0;
                 left:0;
                 text-align:center;
-                background-color:#556b2f;        
+                background-color:#4CAF50;
             }
-            .separatorLine{
-                border: 2px dashed black;
+            #bottone{
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                font: bold 12px Arial, Helvetica, sans-serif;
+                color: #fff;
+                padding: 10px 20px;
+                border: solid 1px #16a085;
+                background: #1abc9c;
+                -moz-border-radius: 20px;
+                -webkit-border-radius: 20px;
+                border-radius: 20px;
+            }
+            #bottone:hover { 
+                background: #109177;
+            }  
+            #logo{
+                position: absolute;
+                right: 5%;
+                top: 0%;
+                height: 80px;
+                width: 85px
+            }
+            #title{
+                text-align:center;
+                font-family: Verdana;
+            }
+            #elementText{
+                font-family: Verdana; 
+                font-size: 14px; 
+            }
+            #text{
+                font-family: Verdana;
+                font-size: 16px;
+                font-weight: bold;
+                color: red;
+                
+            }
+            #text_1{
+                font-family: Verdana;
+                font-size: 16px;
+                font-weight: bold;
             }
         </style>
     </head>
     
     <body>
-        <div class="heading_section">
-            <h1>Articles extracted from the URLs</h1>
-        </div>
+        <img id="logo" src="img\logo.png">
+        <h1 id="title">Extracted Articles</h1>
+        <br>
         <p id="articleSection">
             <%  
             String url = request.getParameter("urle");
@@ -57,29 +98,37 @@
             OutputHandler.writeArticlesFile(articles);
             System.out.println("responseExtractionArticle file saved");
             %>
-            <span>
+            
+        
+        <div>
                 <%
                 for(Article art : articles) {
                     %>
-                    <h2> <% out.write("TITOLO: " + art.getTitle()); %> </h2>
-                    <h3> <%out.write("URL: " + art.getUrl()); %> </h3>
-                    <pre>
-                        <span id="textStyle">
-                            <% out.write("TESTO ARTICOLO: " + art.getText() + "\n"); %>
+                    <span id="text"><% out.write("Title:"); %></span>
+                    <span id="text_1"><% out.write(" " + art.getTitle()); %></span>
+                    <br><br>
+                    <span id="text"><% out.write("URL:"); %></span>
+                    <span id="text_1"><% out.write(" " + art.getUrl()); %></span>
+                    <p id="elementContainer">
+                        <span id="elementText">
+                            <span id="text"><% out.write("Text:"); %></span>
+                            <br>
+                            <% out.write(art.getText()); %>
                         </span>
-                    </pre>
+                    </p>
                     <hr class="separatorLine" />    
                     <%
                 }
                 %>
-            </span>
+        </div>
+     
         </p>
         <footer>
-        <div>
-            <form method="GET" action="responseEntityExtraction.jsp">
-                <input class="bottone" type="submit" value="GO TO NER!">
-            </form>
-        </div>
+            <div style="float:right;">
+                <form method="GET" action="responseEntityExtraction.jsp">
+                    <input  type="submit" id="bottone" value="GO TO NER!">
+                </form>
+            </div>
         </footer>
     </body>
 </html>

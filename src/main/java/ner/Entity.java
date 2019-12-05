@@ -9,6 +9,17 @@ public class Entity {
     private String name, type;
     private int startPos, endPos;
     private ArrayList<String> keyWords;
+    private String kWords;
+
+    public String getkWords() {
+        return kWords;
+    }
+
+    public void setkWords(String kWords) {
+        this.kWords = kWords;
+    }
+
+    
     
     public Entity() {
     }
