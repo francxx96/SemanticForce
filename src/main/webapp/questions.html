@@ -1,10 +1,287 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>SemanticForce</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="img\logo.png" type="image/x-icon"/>
+        <style>
+            body{
+                background-color:#00ffbf;
+                text-align: center;
+            }
+            #logo{
+                position: absolute;
+                right: 5%;
+                top: 0%;
+                height: 80px;
+                width: 85px
+            }
+            
+            #title{
+                text-align:center;
+                font-family: Verdana;
+            }
+            #text{
+                font-family: Verdana;
+                font-size: 24px;
+            }
+            #text_1{
+                font-family: Verdana;
+                font-size: 16px;
+            }
+            #inputButton{
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                font: bold 12px Arial, Helvetica, sans-serif;
+                color: #fff;
+                padding: 10px 20px;
+                border: solid 1px #16a085;
+                background: #1abc9c;
+                -moz-border-radius: 20px;
+                -webkit-border-radius: 20px;
+                border-radius: 20px;
+            }
+            #inputButton:hover { 
+                background: #109177;
+            } 
+            .form-style-5{
+                max-width: 500px;
+                padding: 10px 20px;
+                background: #f4f7f8;
+                margin: 10px auto;
+                padding: 20px;
+                background: #f4f7f8;
+                border-radius: 8px;
+                font-family: Georgia, "Times New Roman", Times, serif;
+                border: 6px solid green;
+                position:relative;
+                left: 25%;
+            }
+            .form-style-5 fieldset{
+                    border: none;
+            }
+            .form-style-5 legend {
+                    font-size: 1.4em;
+                    margin-bottom: 10px;
+            }
+            .form-style-5 label {
+                    display: block;
+                    margin-bottom: 8px;
+            }
+            .form-style-5 input[type="text"],
+            .form-style-5 input[type="number"],
+            .form-style-5 input[type="url"],
+            .form-style-5 textarea,
+            .form-style-5 select {
+                    font-family: Georgia, "Times New Roman", Times, serif;
+                    background: rgba(255,255,255,.1);
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 15px;
+                    margin: 0;
+                    outline: 0;
+                    padding: 10px;
+                    width: 100%;
+                    box-sizing: border-box; 
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box; 
+                    background-color: #e8eeef;
+                    color:#8a97a0;
+                    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+                    margin-bottom: 30px;
+                    height: 340px;
+                    width: 470px;
+                    resize: none;
+                    
+            }
+            .form-style-5 input[type="text"]:focus,
+            .form-style-5 input[type="number"]:focus,
+            .form-style-5 input[type="url"]:focus,
+            .form-style-5 textarea,
+            .form-style-5 select:focus{
+                    background: #d2d9dd;
+            }
+            .form-style-5 select{
+                    -webkit-appearance: menulist-button;
+                    height:35px;
+            }
+            .form-style-5 .number {
+                    background: #1abc9c;
+                    color: #fff;
+                    height: 30px;
+                    width: 30px;
+                    display: inline-block;
+                    font-size: 0.8em;
+                    margin-right: 4px;
+                    line-height: 30px;
+                    text-align: center;
+                    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+                    border-radius: 15px 15px 15px 0px;
+            }
+
+            .form-style-5 input[type="submit"],
+            .form-style-5 input[type="button"]
+            {
+                    position: relative;
+                    display: block;
+                    padding: 19px 39px 18px 39px;
+                    color: #FFF;
+                    margin: 0 auto;
+                    background: #1abc9c;
+                    font-size: 18px;
+                    text-align: center;
+                    font-style: normal;
+                    width: 100%;
+                    border: 1px solid #16a085;
+                    border-width: 1px 1px 3px;
+                    margin-bottom: 10px;
+            }
+            .form-style-5 input[type="submit"]:hover,
+            .form-style-5 input[type="button"]:hover
+            {
+                    background: #109177;
+            }
+            .index_group a {
+               background-color: #4CAF50; /* Green background */
+               border: 1px solid green; /* Green border */
+               color: white; /* White text */
+               padding: 10px 24px; /* Some padding */
+               cursor: pointer; /* Pointer/hand icon */
+               float: left; /* Float the buttons side by side */
+               text-decoration: none; /* Remove underline */
+               font-family: Verdana;
+               width: 15%;
+               text-align: center;
+            }
+
+             /* Clear floats (clearfix hack) */
+            .index_group:after {
+               content: "";
+               clear: both;
+               display: table;
+            }
+
+             .index_group a:not(:last-child) {
+               border-right: none; /* Prevent double borders */
+            }
+
+             /* Add a background color on hover */
+             .index_group a:hover {
+               background-color: #3e8e41;
+            }
+
+            /* Center display */
+            .index_group{
+                position: relative;
+                left: 4%;
+            }
+            #img{
+                width:45%; 
+                position:absolute;
+                left: 5%;
+                top:30%;
+                border-radius: 10px 10px 10px 10px;
+                
+            }
+            
+        </style>
+        
+        <script>
+            var changeQuestion = function(){
+                var selected = document.getElementById("selBar").value;
+                var q1 = document.getElementById("Question1");
+                var q2 = document.getElementById("Question2");
+                var q3 = document.getElementById("Question3");
+                var q4 = document.getElementById("Question4");
+                var q5 = document.getElementById("Question5");
+                if(selected == "opt0"){
+                        q1.style.display="none";
+                        q2.style.display="none";
+                        q3.style.display="none";
+                        q4.style.display="none";
+                        q5.style.display="none";
+                }
+                if(selected == "opt1"){
+                        q1.style.display="inline";
+                        q2.style.display="none";
+                        q3.style.display="none";
+                        q4.style.display="none";
+                        q5.style.display="none";
+                }
+                if(selected == "opt2"){
+                        q1.style.display="none";
+                        q2.style.display="inline";
+                        q3.style.display="none";
+                        q4.style.display="none";
+                        q5.style.display="none";
+                }
+                if(selected == "opt3"){
+                        q1.style.display="none";
+                        q2.style.display="none";
+                        q3.style.display="inline";
+                        q4.style.display="none";
+                        q5.style.display="none";
+                }
+                if(selected == "opt4"){
+                        q1.style.display="none";
+                        q2.style.display="none";
+                        q3.style.display="none";
+                        q4.style.display="inline";
+                        q5.style.display="none";
+                }
+                if(selected == "opt5"){
+                        q1.style.display="none";
+                        q2.style.display="none";
+                        q3.style.display="none";
+                        q4.style.display="none";
+                        q5.style.display="inline";
+                }
+            }
+    </script>
     </head>
     <body>
+        <img id="logo" src="img\logo.png">
+       
+        
+        <h1 id="title">Questions</h1>
+        
+            <div class="index_group">
+                <div>
+                    <a href="index.html">Home</a>
+                    <a href="indexScraping.html">Scraping</a>
+                    <a href="indexNER.html">EntityRecognition</a>
+                    <a href="indexWikidata.html">Wikidata</a>
+                    <a href="aboutus.html">About</a>
+                </div>
+            </div>
+        <br><br><br>
+        <img id="img" src="img\pipe.jpg">
+        <br><br>
+        <div class="form-style-5">
+            <fieldset>
+                <legend> Ask us a question </legend>
+                <select id="selBar" onclick="changeQuestion()">
+                    <option value="opt0">Select</option>
+                    <option value="opt1">What is SemanticForce</option>
+                    <option value="opt2">Crawling</option>
+                    <option value="opt3">Scraping</option>
+                    <option value="opt4">EntityExtraction</option>
+                    <option value="opt5">Wikidata</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <div id="Question1" style="display:none"><span id="text_1"> SemanticForce is..... </span></div>
+                <div id="Question2" style="display:none"><span id="text_1"> Crawling is............ </span></div>
+                <div id="Question3" style="display:none"><span id="text_1"> Scraping is............ </span></div>
+                <div id="Question4" style="display:none"><span id="text_1"> EntityExtraction is............ </span></div>
+                <div id="Question5" style="display:none"><span id="text_1"> Wikidata is............ </span></div>
+            </fieldset>
+        </div>
+        
     </body>
 </html>
+

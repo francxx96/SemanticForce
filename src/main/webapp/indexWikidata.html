@@ -8,6 +8,8 @@
             <style>
             body{
               background-color:#00ffbf;
+              text-align:center;
+
             }
             #logo{
                 position: absolute;
@@ -180,17 +182,7 @@
                     background: #109177;
             }
             </style>
-            <script>
-            var barReplace = function(){
-                var elem = document.getElementById("textAre").value;
-                var elem2 = document.getElementById("menuBar");
-                var elem3 = document.getElementById("menuBarReplace");
-                if(elem != ""){
-                    elem2.style.display="none";
-                    elem3.style.display="inline";
-                }
-            }
-        </script>
+            
     </head>
 			
     <body>
@@ -223,7 +215,7 @@
                         <textarea autofocus required name="entityWiki" id="textAre"></textarea>
                         <input type ="hidden" name="keyWords" value =" ">
                     </fieldset>
-                    <input id="bottone" type="submit" value="GO!" onclick="barReplace() ">
+                    <input id="bottone" type="submit" value="GO! ">
             </form>
         </div>
     </body>

@@ -185,14 +185,10 @@
         //System.out.println("LETTURA FILE:\n" + OutputHandler.readEntityArticlesFile());
         %>
         <br><br>
-        <div style="text-align:center;">
-            <form action="index.html" autocomplete="off" >
-                <input  type="submit" id="bottone" value="HOME">
-            </form>
-        </div>
+        
         
         <footer>
-        <div id="footer_bar">
+	<div id="footer_bar">
             <span style="background-color:red;font-weight:bold">Person</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:green;font-weight:bold">Location</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:orange;font-weight:bold">Organization</span>&nbsp;&nbsp;&nbsp;
@@ -200,8 +196,13 @@
             <span style="background-color:gold;font-weight:bold">Time</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:brown;font-weight:bold">Percent</span>&nbsp;&nbsp;&nbsp;
             <span style="background-color:violet;font-weight:bold">Money</span>&nbsp;&nbsp;&nbsp;
+            
+            <form style="float:right;" action="index.html">
+                    <input  type="submit" id="bottone" value="HOME">
+            </form>
         </div>
-        </footer>  
+        </footer>
     </body>
     
 </html>
+

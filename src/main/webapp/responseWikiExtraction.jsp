@@ -77,6 +77,16 @@
                 text-align:center;
                 font-family: Verdana;
             }
+            #an{
+                color:blue; 
+                font-family: Verdana; 
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .separatorLine{
+                border: 2px dashed black;
+            }
+            
             
     </style>
     <body>
@@ -133,8 +143,8 @@
                         
                         subText = docText.substring(i, currEntity.getStartPos()); 
             %>
-            <span style="color:black"><%out.write(subText);%></span>
-            <a href="responseWikidata.jsp?entityWiki=<%out.write(currEntity.getName());%>&keyWords=<%out.write(keyWords);%>"><%out.write(currEntity.getName());%></a>
+            <span style="color:black; font-family: Verdana; font-size: 16px"><%out.write(subText);%></span>
+            <a id="an" href="responseWikidata.jsp?entityWiki=<%out.write(currEntity.getName());%>&keyWords=<%out.write(keyWords);%>"><%out.write(currEntity.getName());%></a>
 
                <%
 
@@ -144,7 +154,7 @@
                } else {
                    subText = docText.substring(i);
                %>
-               <span style="color:black"><%out.write(subText);%></span>
+               <span style="color:black; font-family: Verdana; font-size: 16px;"><%out.write(subText);%></span>
                 <%
                             i = docText.length();
                         }
@@ -152,7 +162,7 @@
 
 
                 %>
-                <br><br><br>
+                <br><br>
                 <hr class="separatorLine">               
                 <%            }
                 OutputHandler.writeEntityArticleFile(entities);

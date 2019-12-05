@@ -77,7 +77,6 @@
     <body>
         <img id="logo" src="img\logo.png">
         <h1 id="title">Extracted Entities</h1>
-        <br>
         <%   
             ArrayList<ArrayList<Entity>> entityArticleList = new ArrayList();
             ArrayList<Article> articles = OutputHandler.readArticlesFile();
@@ -163,7 +162,7 @@
                 }   
             }
             %>
-            <br><br><br>
+            <br><br>
             <hr class="separatorLine">               
         <%
         }

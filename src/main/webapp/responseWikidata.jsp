@@ -14,7 +14,7 @@
             .myBox {
                 border: groove;
                 padding: 5px;
-                font: 24px/36px Verdana;
+                font: 16px/36px Verdana;
                 width: 90%;
                 height: 550px;
                 overflow: scroll;

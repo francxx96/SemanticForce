@@ -66,7 +66,7 @@
             }
             #elementText{
                 font-family: Verdana; 
-                font-size: 14px; 
+                font-size: 16px; 
             }
             #text{
                 font-family: Verdana;
@@ -80,6 +80,10 @@
                 font-size: 16px;
                 font-weight: bold;
             }
+            .separatorLine{
+                border: 2px dashed black;
+            }
+            
         </style>
     </head>
     
@@ -116,6 +120,7 @@
                             <% out.write(art.getText()); %>
                         </span>
                     </p>
+                    <br>
                     <hr class="separatorLine" />    
                     <%
                 }

@@ -65,6 +65,14 @@
             #bottone:hover { 
                 background: #109177;
             } 
+            footer{
+                position:fixed; 
+                width: 100%; 
+                bottom:0;
+                left:0;
+                text-align:center;
+                background-color:#4CAF50;
+            }
             
         </style>
     </head>
@@ -131,10 +139,13 @@
         %>
         
         <br>
-        <div style="text-align:center;">
-            <form action="index.html" autocomplete="off" >
-                <input  type="submit" id="bottone" value="HOME">
-            </form>
-        </div>
+        <footer>
+            <div style="float:right;">
+                <form action="index.html" autocomplete="off" >
+                    <input  type="submit" id="bottone" value="HOME">
+                </form>
+            </div>
+        </footer>
     </body>
 </html>
+
