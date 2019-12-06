@@ -15,6 +15,13 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+
+/**
+ * This class uses StanfordCoreNLP for tokenization, stop word removal, 
+ * POS tagging, NER, chunking and parse for basic dependencies. The class 
+ * implements the singleton pattern to reduce the time complexity of the classifier.
+ * @author emili
+ */
 public class StanfordNLP {
 
     private Properties props; // The Properties class represents a persistent set of properties

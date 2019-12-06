@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
+/**
+ * The class provides methods of accessing resources obtained with stanford.
+ * @author emili
+ */
 public class NERresource {
+    
     private static String documentText = "";
     private static StanfordNLP ner = StanfordNLP.getStanfordNLP();
     private static ArrayList<Entity> entityList = new ArrayList();
     private static HashMap<Entity, Integer> entityFreq = new HashMap();
 
-    /**
-     * Creates a new instance of UserResource
-     */
+
     public NERresource() {
     }
 

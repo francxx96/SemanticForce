@@ -4,6 +4,11 @@ package ner;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * This class represents the object containing the text, the category, 
+ * the position, and the keywords associated with the entity.
+ * @author emili
+ */
 public class Entity {
     
     private String name, type;
