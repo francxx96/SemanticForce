@@ -170,13 +170,14 @@
         </style>
         <script>
             var barReplace = function(){
+                var url = document.getElementById("article").value;
                 var elem = document.getElementById("article").value;
                 var elem2 = document.getElementById("menuBar");
                 var elem3 = document.getElementById("menuBarReplace");
-                var invalid_page = /.*(\.(html).*/g;
-                var result_url = valid_url.test(url);
+                var invalid_page = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-])\/?/g;
+                var result_page = invalid_page.test(url);
                 if(elem != ""){
-                    if(result_url==true){
+                    if(result_page==true){
                         elem2.style.display="none";
                         elem3.style.display="inline";
                         return true;

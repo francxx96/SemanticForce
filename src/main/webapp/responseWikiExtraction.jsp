@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SemanticForce</title>
         <link rel="icon" href="img\logo.png" type="image/x-icon"/>
-    </head>
+    
     <style>
         .myBox {
             border: groove;
@@ -86,9 +86,8 @@
             .separatorLine{
                 border: 2px dashed black;
             }
-            
-            
-    </style>
+        </style>
+    </head>
     <body>
         <img id="logo" src="img\logo.png">
         <h1 id="title">Search entities</h1>
@@ -163,10 +162,10 @@
 
                 %>
                 <br><br>
-                <hr class="separatorLine">               
+                <hr class="separatorLine"/>               
                 <%            }
                 OutputHandler.writeEntityArticleFile(entities);
                 %>
                 
-                </body>
-                </html>
+    </body>
+</html>

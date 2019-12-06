@@ -213,9 +213,10 @@
                 }else if(result_page == true){
                     window.alert("We are sorry. You have entered an invalid URL. Try again.");
                     return false;
-                }else if(url == "" || nArticle == "" ){
+                }else if(url == "" || nArticle == "" || nArticle < 0){
                     document.getElementById("url").focus();
                     document.getElementById("numArticles").focus();
+                    window.alert("Articles Number is not valid. Please select 0 or a number grather than 0");
                     return false;
                 }else{
                     elem.style.display="none";
