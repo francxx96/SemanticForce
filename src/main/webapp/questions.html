@@ -187,6 +187,11 @@
                 border-radius: 10px 10px 10px 10px;
                 
             }
+            #img1{
+                width:20%;
+                border-radius: 10px 10px 10px 10px;
+                
+            }
             
         </style>
         
@@ -263,22 +268,42 @@
         <br><br>
         <div class="form-style-5">
             <fieldset>
-                <legend> Ask us a question </legend>
+                <legend> Ask us </legend>
                 <select id="selBar" onclick="changeQuestion()">
                     <option value="opt0">Select</option>
-                    <option value="opt1">What is SemanticForce</option>
+                    <option value="opt1">What is SemanticForce?</option>
                     <option value="opt2">Crawling</option>
                     <option value="opt3">Scraping</option>
-                    <option value="opt4">EntityExtraction</option>
+                    <option value="opt4">EntityRecognition</option>
                     <option value="opt5">Wikidata</option>
                 </select>
             </fieldset>
             <fieldset>
-                <div id="Question1" style="display:none"><span id="text_1"> SemanticForce is..... </span></div>
-                <div id="Question2" style="display:none"><span id="text_1"> Crawling is............ </span></div>
-                <div id="Question3" style="display:none"><span id="text_1"> Scraping is............ </span></div>
-                <div id="Question4" style="display:none"><span id="text_1"> EntityExtraction is............ </span></div>
-                <div id="Question5" style="display:none"><span id="text_1"> Wikidata is............ </span></div>
+                <div id="Question1" style="display:none">
+                    <span id="text_1"> SemanticForce is our main function! It allows you to perform all the operations sequentially (Pipeline), then passing through the Crawling to extract the url from the inserted page, the Scarping of the associated texts, the Named Entity Recnognition of these texts and finally the queries to Wikidata to search for the exact associations to these entities. </span>
+                    <br><br>
+                    <img id="img1" src="img\logo.png">
+                </div>
+                <div id="Question2" style="display:none">
+                    <span id="text_1"> The Crawling is the feature that allows you to automatically analyze Web content by identifying all the hyperlinks related to the URL and then visiting all the links. The final product is an index of web page URLs. </span>
+                    <br><br>
+                    <img id="img1" src="img\craw.jpeg">
+                </div>
+                <div id="Question3" style="display:none">
+                    <span id="text_1"> Scraping is a function of extracting data from websites. In particular it extracts TITLE, AUTHOR and TEXT from the web page passed by URL. </span>
+                    <br><br>
+                    <img id="img1" src="img\boil.jpeg">
+                </div>
+                <div id="Question4" style="display:none">
+                    <span id="text_1"> EntityRecognition consists of searching for unstructured text to identify and classify the entity named in predefined categories in particular: names, organizations, locations, temporal expressions, percentages, monetary values, dates. </span>
+                    <br><br>
+                    <img id="img1" src="img\stanf.jpeg">
+                </div>
+                <div id="Question5" style="display:none">
+                    <span id="text_1"> Wikidata allows you to make a request to the service by sending it an entity name. It returns the corresponding associations, in particular the ten best results. </span>
+                    <br><br>
+                    <img id="img1" src="img\wiki.png">
+                </div>
             </fieldset>
         </div>
         

@@ -16,7 +16,7 @@
                 padding: 5px;
                 font: 16px/36px Verdana;
                 width: 90%;
-                height: 550px;
+                height: 500px;
                 overflow: scroll;
                 background-color: white;
                 margin-left: auto;
