@@ -195,7 +195,65 @@
             {
                     background: #109177;
             }
+            /* Popup container */
+            .popup {
+              position: relative;
+              display: inline-block;
+              cursor: pointer;
+            }
+
+            /* The actual popup (appears on top) */
+            .popup .popuptext {
+              visibility: hidden;
+              width: 160px;
+              background-color: #555;
+              color: #fff;
+              text-align: center;
+              border-radius: 6px;
+              padding: 8px 0;
+              position: absolute;
+              z-index: 1;
+              bottom: 125%;
+              left: 50%;
+              margin-left: -80px;
+            }
+
+            /* Popup arrow */
+            .popup .popuptext::after {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: #555 transparent transparent transparent;
+            }
+
+            /* Toggle this class when clicking on the popup container (hide and show the popup) */
+            .popup .show {
+              visibility: visible;
+              -webkit-animation: fadeIn 1s;
+              animation: fadeIn 1s
+            }
+
+            /* Add animation (fade in the popup) */
+            @-webkit-keyframes fadeIn {
+              from {opacity: 0;} 
+              to {opacity: 1;}
+            }
+
+            @keyframes fadeIn {
+              from {opacity: 0;}
+              to {opacity:1 ;}
+            }
         </style>
+        <script>
+        function myFunction() {
+          var popup = document.getElementById("myPopup");
+          popup.classList.toggle("show");
+        }
+        </script>
         <script>
             var validate = function(){
                 var url = document.getElementById("url").value;
@@ -257,7 +315,15 @@
             <div class="form-style-5">
                 <form method="GET" action="responseExtractionArticle.jsp" name="goToExtraction" onsubmit="return validate();">
                     <fieldset>
-                        <legend><span class="number">1</span> Insert Web Site URL </legend>
+                        <legend>
+                            <span class="number">1</span> Insert Web Site URL 
+                            &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                            <span>
+                                <span style=" color: #1abc9c; font-weight: bold; font-size: 16px;" class="popup" onclick="myFunction()">Allowed sites
+                                <span style=" font-size: 12px;" class="popuptext" id="myPopup">The Times<br>The Guardian<br>Independent<br>Standard<br>The Sun<br>Express<br>Daily Mail<br>Mirror<br>Metro</span>
+                                </span>
+                            </span> 
+                        </legend>
                         <input id="url" name="urle" type="text" required>
                     </fieldset>
                     <fieldset>
